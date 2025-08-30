@@ -18,26 +18,30 @@ class MemoryChallengeScreen extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body:
-          BlocBuilder<PerformMemoryChallangeBloc, PerformMemoryChallangeState>(
-            // TODO - not work
-            buildWhen: (previous, current) =>
-                (previous is! PerformMemoryChallangeLoaded &&
-                current is PerformMemoryChallangeLoaded),
-            builder: (context, state) {
-              return switch (state) {
-                PerformMemoryChallangeInitial() => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                PerformMemoryChallangeLoaded() => const Center(
-                  child: MemoryChallengeView(),
-                ),
-                PerformMemoryChallangeError(failure: final failure) => Center(
-                  child: Text(failure.message),
-                ),
-              };
-            },
-          ),
+      body: SafeArea(
+        child:
+            BlocBuilder<
+              PerformMemoryChallangeBloc,
+              PerformMemoryChallangeState
+            >(
+              buildWhen: (previous, current) =>
+                  (previous is! PerformMemoryChallangeLoaded &&
+                  current is PerformMemoryChallangeLoaded),
+              builder: (context, state) {
+                return switch (state) {
+                  PerformMemoryChallangeInitial() => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  PerformMemoryChallangeLoaded() => const Center(
+                    child: MemoryChallengeView(),
+                  ),
+                  PerformMemoryChallangeError(failure: final failure) => Center(
+                    child: Text(failure.message),
+                  ),
+                };
+              },
+            ),
+      ),
     );
   }
 }

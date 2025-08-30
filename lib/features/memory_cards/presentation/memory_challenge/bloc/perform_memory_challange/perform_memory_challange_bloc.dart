@@ -13,23 +13,35 @@ class PerformMemoryChallangeBloc
   PerformMemoryChallangeBloc({required this.challange})
     : super(PerformMemoryChallangeInitial()) {
     on<PerformMemoryChallangeDataReadyEvent>(_onDataReady);
+    on<PerformMemoryChallangeAnswerEvent>(_onAnswer);
     on<PerformMemoryChallangeNextEvent>(_onNext);
   }
 
   final MemoryChallangePerformer challange;
+
+  static const _duration = Duration(milliseconds: 300);
 
   Future<void> _onDataReady(
     PerformMemoryChallangeDataReadyEvent event,
     Emitter<PerformMemoryChallangeState> emit,
   ) async {
     emit(PerformMemoryChallangeChooseCard());
+    await Future.delayed(_duration);
+
     challange.init(event.cards);
     final card = challange.getNextCard(feedback: null);
     if (card != null) {
-      emit(PerformMemoryChallangeCardReady(card));
+      emit(PerformMemoryChallangeQuestion(card));
     } else {
       emit(PerformMemoryChallangeFinished());
     }
+  }
+
+  Future<void> _onAnswer(
+    PerformMemoryChallangeAnswerEvent event,
+    Emitter<PerformMemoryChallangeState> emit,
+  ) async {
+    emit(PerformMemoryChallangeAnswer(event.card));
   }
 
   Future<void> _onNext(
@@ -37,9 +49,11 @@ class PerformMemoryChallangeBloc
     Emitter<PerformMemoryChallangeState> emit,
   ) async {
     emit(PerformMemoryChallangeChooseCard());
+    await Future.delayed(_duration);
+
     final card = challange.getNextCard(feedback: event.feedback);
     if (card != null) {
-      emit(PerformMemoryChallangeCardReady(card));
+      emit(PerformMemoryChallangeQuestion(card));
     } else {
       emit(PerformMemoryChallangeFinished());
     }

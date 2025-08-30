@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_callange_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memoory_challenge_widget.dart';
 
 class MemoryChallengeView extends StatelessWidget {
   const MemoryChallengeView({super.key});
@@ -9,27 +9,20 @@ class MemoryChallengeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PerformMemoryChallangeBloc, PerformMemoryChallangeState>(
-      buildWhen: (previous, current) =>
-          previous is PerformMemoryChallangeLoaded &&
-          current is PerformMemoryChallangeLoaded,
       builder: (context, state) {
         if (state is PerformMemoryChallangeChooseCard) {
           return CircularProgressIndicator();
         }
-        if (state is PerformMemoryChallangeCardReady) {
-          return InkWell(
-            child: Text(state.card.front),
-            onTap: () {
-              context.read<PerformMemoryChallangeBloc>().add(
-                PerformMemoryChallangeNextEvent(
-                  DualMemoryChallangeFeedback(
-                    cardId: state.card.id,
-                    isCorrect: true,
-                  ),
-                ),
-              );
-            },
-          );
+        if ((state is PerformMemoryChallangeQuestion ||
+            state is PerformMemoryChallangeAnswer)) {
+          final card = switch (state) {
+            PerformMemoryChallangeQuestion() => state.card,
+            PerformMemoryChallangeAnswer() => state.card,
+            // TODO: Handle other states.
+            _ => throw UnimplementedError(),
+          };
+          final isAnswered = state is PerformMemoryChallangeAnswer;
+          return MemooryChallengeWidget(isAnswered: isAnswered, card: card);
         }
         if (state is PerformMemoryChallangeFinished) {
           return const Placeholder();

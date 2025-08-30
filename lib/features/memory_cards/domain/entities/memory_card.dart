@@ -2,19 +2,33 @@ import 'package:equatable/equatable.dart';
 
 class MemoryCard extends Equatable {
   final String id;
-  final String front;
-  final String back;
 
-  const MemoryCard({required this.id, required this.front, required this.back});
+  final String fWord;
+  final String fTranscript;
+  final String fLang;
 
-  MemoryCard copyWith({String? id, String? front, String? back}) {
-    return MemoryCard(
-      id: id ?? this.id,
-      front: front ?? this.front,
-      back: back ?? this.back,
-    );
-  }
+  final String sWord;
+  final String sTranscript;
+  final String sLang;
+
+  const MemoryCard({
+    required this.id,
+    required this.fWord,
+    required this.fTranscript,
+    required this.sWord,
+    required this.sTranscript,
+    required this.fLang,
+    required this.sLang,
+  });
 
   @override
-  List<Object?> get props => [id, front, back];
+  List<Object?> get props => [
+    id,
+    fWord,
+    sWord,
+    fLang,
+    sLang,
+    fTranscript,
+    sTranscript,
+  ];
 }

@@ -14,6 +14,13 @@ final class PerformMemoryChallangeDataReadyEvent
   final List<MemoryCard> cards;
 }
 
+final class PerformMemoryChallangeAnswerEvent
+    extends PerformMemoryChallangeEvent {
+  const PerformMemoryChallangeAnswerEvent(this.card);
+
+  final MemoryCard card;
+}
+
 final class PerformMemoryChallangeNextEvent
     extends PerformMemoryChallangeEvent {
   const PerformMemoryChallangeNextEvent(this.feedback);
