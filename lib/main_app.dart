@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'features/memory_cards/presentation/memory_cards_page.dart';
+import 'features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const MemoryCardsPage();
+          return const CardsDashboardPage();
         },
       ),
     ],
