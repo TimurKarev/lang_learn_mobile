@@ -125,20 +125,20 @@ class _ButtonPanel extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: null,
           child: SizedBox(
             width: double.infinity,
             child: Center(child: const Text('ShowHistory')),
           ),
         ),
         const SizedBox(height: 8),
-        ElevatedButton(
-          onPressed: () {},
-          child: SizedBox(
-            width: double.infinity,
-            child: Center(child: const Text('ShowVocabulary')),
-          ),
-        ),
+        // ElevatedButton(
+        //   onPressed: () {},
+        //   child: SizedBox(
+        //     width: double.infinity,
+        //     child: Center(child: const Text('ShowVocabulary')),
+        //   ),
+        // ),
         const SizedBox(height: 32),
       ],
     );

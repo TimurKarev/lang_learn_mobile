@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
 
 /// Centralized route constants and navigation helpers
@@ -8,16 +9,23 @@ class AppRoutes {
   // Route path constants
   static const String home = '/';
   static const String challenge = '/challenge';
+  static const String information = '/information';
 
   // Parameter keys
   static const String challengeIdParam = 'id';
 
   // Full path templates
   static const String challengePath = '$challenge/:$challengeIdParam';
+  static const String informationPath = '$information/:$challengeIdParam';
 
   /// Generate challenge path with ID
   static String challengeWithId(String challengeId) {
     return '$challenge/$challengeId';
+  }
+
+  /// Generate information path with ID
+  static String informationWithId(String challengeId) {
+    return '$information/$challengeId';
   }
 
   /// Navigation helper methods
@@ -30,6 +38,13 @@ class AppRoutes {
     required String challengeId,
   }) {
     context.go(challengeWithId(challengeId));
+  }
+
+  static void goToInformation(
+    BuildContext context, {
+    required String challengeId,
+  }) {
+    context.push(informationWithId(challengeId));
   }
 
   /// GoRouter configuration
@@ -49,6 +64,13 @@ class AppRoutes {
             },
           ),
         ],
+      ),
+      GoRoute(
+        path: informationPath,
+        builder: (BuildContext context, GoRouterState state) {
+          final challengeId = state.pathParameters[challengeIdParam];
+          return InformationPage(challengeId: challengeId!);
+        },
       ),
     ],
   );

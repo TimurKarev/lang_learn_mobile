@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/router/routes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_view.dart';
 
 class MemoryChallengeScreen extends StatelessWidget {
-  const MemoryChallengeScreen({super.key});
+  const MemoryChallengeScreen({super.key, required this.challengeId});
+
+  final String challengeId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memory Challenge'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
-        ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info),
+            onPressed: () =>
+                AppRoutes.goToInformation(context, challengeId: challengeId),
+          ),
+        ],
       ),
       body: SafeArea(
         child:

@@ -15,16 +15,6 @@ class CardsDashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Memory Cards'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              context.read<CardListBloc>().add(
-                FetchDataEvent<List<MemoryCardsPreview>>(),
-              );
-            },
-          ),
-        ],
       ),
       body: BlocBuilder<CardListBloc, FetchState<List<MemoryCardsPreview>>>(
         builder: (context, state) {
@@ -58,6 +48,10 @@ class CardsDashboardScreen extends StatelessWidget {
                             title: card.title,
                             description: card.description,
                             onTap: () => AppRoutes.goToChallenge(
+                              context,
+                              challengeId: card.id,
+                            ),
+                            onInfoTap: () => AppRoutes.goToInformation(
                               context,
                               challengeId: card.id,
                             ),

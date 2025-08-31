@@ -2,6 +2,7 @@ import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/vocabulary.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/numbers_cards.dart';
 
 abstract class MemoryCardsRepository {
@@ -9,6 +10,7 @@ abstract class MemoryCardsRepository {
   Future<Either<Failure, List<MemoryCard>>> getMemoryCardsForChallenge(
     String challengeId,
   );
+  Future<Either<Failure, Vocabulary>> getInformation(String challengeId);
 }
 
 class MemoryCardsRepositoryMock implements MemoryCardsRepository {
@@ -34,5 +36,12 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
     await Future.delayed(_duration);
 
     return Right(numbersMemoryCards);
+  }
+
+  @override
+  Future<Either<Failure, Vocabulary>> getInformation(String challengeId) async {
+    await Future.delayed(_duration);
+
+    return Right(Vocabulary(memoryCards: numbersMemoryCards));
   }
 }

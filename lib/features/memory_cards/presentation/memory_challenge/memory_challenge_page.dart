@@ -54,7 +54,7 @@ class MemoryChallengePage extends StatelessWidget {
                   );
                 }
               },
-              child: const MemoryChallengeScreen(),
+              child: MemoryChallengeScreen(challengeId: id),
             ),
       );
     } else {

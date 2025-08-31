@@ -6,6 +6,7 @@ class MemoryCardTile extends StatelessWidget {
     required this.description,
     this.padding = EdgeInsets.zero,
     this.onTap,
+    this.onInfoTap,
     super.key,
   });
 
@@ -13,6 +14,7 @@ class MemoryCardTile extends StatelessWidget {
   final String description;
   final EdgeInsets padding;
   final VoidCallback? onTap;
+  final VoidCallback? onInfoTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,15 @@ class MemoryCardTile extends StatelessWidget {
         child: Material(
           color: Theme.of(context).colorScheme.surfaceContainerHighest,
           elevation: 2,
-          child: InkWell(
+          child: ListTile(
+            title: Text(title),
+            subtitle: Text(description),
             onTap: onTap,
-            child: ListTile(title: Text(title), subtitle: Text(description)),
+            trailing: IconButton(
+              iconSize: 42,
+              icon: const Icon(Icons.info),
+              onPressed: onInfoTap,
+            ),
           ),
         ),
       ),
