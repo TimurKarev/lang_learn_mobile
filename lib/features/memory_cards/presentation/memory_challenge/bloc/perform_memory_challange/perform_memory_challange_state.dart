@@ -27,11 +27,23 @@ final class PerformMemoryChallangeChooseCard
   const PerformMemoryChallangeChooseCard();
 }
 
-final class PerformMemoryChallangeCardReady
+final class PerformMemoryChallangeQuestion
     extends PerformMemoryChallangeLoaded {
-  const PerformMemoryChallangeCardReady(this.card);
+  const PerformMemoryChallangeQuestion(this.card);
 
   final MemoryCard card;
+
+  @override
+  List<Object> get props => [card];
+}
+
+final class PerformMemoryChallangeAnswer extends PerformMemoryChallangeLoaded {
+  const PerformMemoryChallangeAnswer(this.card);
+
+  final MemoryCard card;
+
+  @override
+  List<Object> get props => [card];
 }
 
 final class PerformMemoryChallangeFinished
