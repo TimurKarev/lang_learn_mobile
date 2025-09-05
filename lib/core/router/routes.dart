@@ -4,8 +4,6 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/history_view.dart'
-    show HistoryView;
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
 
 /// Centralized route constants and navigation helpers

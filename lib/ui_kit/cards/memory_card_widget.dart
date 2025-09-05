@@ -97,16 +97,16 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
                       alignment: Alignment.center,
                       child: !isShowingBack
                           ? _QuestionBody(
-                              question: widget.card.fWord,
-                              lang: widget.card.fLang,
-                              transcript: widget.card.fTranscript,
+                              question: widget.card.fWord.word,
+                              lang: widget.card.fWord.lang,
+                              transcript: widget.card.fWord.transcript,
                             )
                           : _AnswerBody(
-                              question: widget.card.fWord,
-                              questionlang: widget.card.fLang,
-                              answerTranscript: widget.card.sTranscript,
-                              answer: widget.card.sWord,
-                              answerLang: widget.card.sLang,
+                              question: widget.card.fWord.word,
+                              questionlang: widget.card.fWord.lang,
+                              answerTranscript: widget.card.sWord.transcript,
+                              answer: widget.card.sWord.word,
+                              answerLang: widget.card.sWord.lang,
                             ),
                     ),
                   ),

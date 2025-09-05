@@ -14,18 +14,18 @@ class VocabularyTile extends StatelessWidget {
         children: [
           Flexible(
             child: Text(
-              memoryCard.fWord,
+              memoryCard.fWord.word,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
           const SizedBox(width: 32),
           Text(
-            memoryCard.sWord,
+            memoryCard.sWord.word,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(width: 8),
           Text(
-            '/${memoryCard.sTranscript}/',
+            '/${memoryCard.sWord.transcript}/',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],

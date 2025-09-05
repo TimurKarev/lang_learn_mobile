@@ -14,7 +14,7 @@ class HistoryView extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(history[index]?.card.fWord ?? ''),
+            Text(history[index]?.card.fWord.word ?? ''),
             Text(history[index]?.isCorrect.toString() ?? ''),
           ],
         );

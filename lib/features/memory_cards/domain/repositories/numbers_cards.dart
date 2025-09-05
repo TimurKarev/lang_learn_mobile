@@ -1,23 +1,16 @@
+import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 
 const List<MemoryCard> numbersMemoryCards = [
   MemoryCard(
     id: '0',
-    fWord: 'Ноль',
-    fTranscript: 'Nol',
-    fLang: 'Russian',
-    sWord: 'Нөл',
-    sTranscript: 'Nöl',
-    sLang: 'Kyrgyz',
+    fWord: Literal(id: '0', word: 'Ноль', transcript: 'Nol', lang: 'Russian'),
+    sWord: Literal(id: '0', word: 'Нөл', transcript: 'Nöl', lang: 'Kyrgyz'),
   ),
   MemoryCard(
     id: '1',
-    fWord: 'Один',
-    fTranscript: 'Odin',
-    fLang: 'Russian',
-    sWord: 'Бир',
-    sTranscript: 'Bir',
-    sLang: 'Kyrgyz',
+    fWord: Literal(id: '1', word: 'Один', transcript: 'Odin', lang: 'Russian'),
+    sWord: Literal(id: '1', word: 'Бир', transcript: 'Bir', lang: 'Kyrgyz'),
   ),
   // MemoryCard(
   //   id: '2',
