@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/history_view.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memoory_challenge_widget.dart';
 
 class MemoryChallengeView extends StatelessWidget {
@@ -25,18 +26,7 @@ class MemoryChallengeView extends StatelessWidget {
           return MemoryChallengeWidget(isAnswered: isAnswered, card: card);
         }
         if (state is PerformMemoryChallangeFinished) {
-          return ListView.builder(
-            itemCount: state.history.length,
-            itemBuilder: (context, index) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(state.history[index]?.card.fWord ?? ''),
-                  Text(state.history[index]?.isCorrect.toString() ?? ''),
-                ],
-              );
-            },
-          );
+          return HistoryView(history: state.history);
         }
         return const Placeholder();
       },

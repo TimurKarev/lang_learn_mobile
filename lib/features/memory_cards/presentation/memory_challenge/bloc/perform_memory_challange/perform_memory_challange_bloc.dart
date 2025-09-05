@@ -21,6 +21,8 @@ class PerformMemoryChallangeBloc
 
   static const _duration = Duration(milliseconds: 300);
 
+  List<FlashcardFeedback?> get history => challange.history;
+
   Future<void> _onDataReady(
     PerformMemoryChallangeDataReadyEvent event,
     Emitter<PerformMemoryChallangeState> emit,

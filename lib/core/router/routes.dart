@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/history_view.dart'
+    show HistoryView;
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
 
 /// Centralized route constants and navigation helpers
@@ -10,6 +14,7 @@ class AppRoutes {
   static const String home = '/';
   static const String challenge = '/challenge';
   static const String information = '/information';
+  static const String flashcardHistory = '/flashcard-history';
 
   // Parameter keys
   static const String challengeIdParam = 'id';
@@ -47,6 +52,13 @@ class AppRoutes {
     context.push(informationWithId(challengeId));
   }
 
+  static void goToFlashcardHistory(
+    BuildContext context, {
+    required List<FlashcardFeedback?> history,
+  }) {
+    context.push(flashcardHistory, extra: {'history': history});
+  }
+
   /// GoRouter configuration
   static final router = GoRouter(
     routes: <RouteBase>[
@@ -61,6 +73,14 @@ class AppRoutes {
             builder: (BuildContext context, GoRouterState state) {
               final challengeId = state.pathParameters[challengeIdParam];
               return MemoryChallengePage(challengeId: challengeId);
+            },
+          ),
+          GoRoute(
+            path: flashcardHistory,
+            builder: (BuildContext context, GoRouterState state) {
+              final extra = state.extra as Map<String, dynamic>?;
+              final history = extra?['history'] as List<FlashcardFeedback?>?;
+              return HistoryPage(history: history ?? []);
             },
           ),
         ],

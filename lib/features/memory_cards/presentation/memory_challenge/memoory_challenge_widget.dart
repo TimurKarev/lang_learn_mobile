@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/router/routes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
@@ -100,20 +101,26 @@ class _ButtonPanel extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: null,
+          onPressed: () {
+            AppRoutes.goToFlashcardHistory(
+              context,
+              history: context.read<PerformMemoryChallangeBloc>().history,
+            );
+          },
           child: SizedBox(
             width: double.infinity,
             child: Center(child: const Text('ShowHistory')),
           ),
         ),
         const SizedBox(height: 8),
-        // ElevatedButton(
-        //   onPressed: () {},
-        //   child: SizedBox(
-        //     width: double.infinity,
-        //     child: Center(child: const Text('ShowVocabulary')),
-        //   ),
-        // ),
+        ElevatedButton(
+          onPressed: () =>
+              AppRoutes.goToInformation(context, challengeId: cardId),
+          child: SizedBox(
+            width: double.infinity,
+            child: Center(child: const Text('ShowVocabulary')),
+          ),
+        ),
         const SizedBox(height: 32),
       ],
     );
