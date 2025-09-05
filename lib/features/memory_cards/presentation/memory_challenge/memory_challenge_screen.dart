@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lang_learn_mobile/core/bloc/model_bloc/model_bloc.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/common/memory_challenge_view.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc.dart';
 
 class MemoryChallengeScreen extends StatelessWidget {
   const MemoryChallengeScreen({super.key, required this.challengeId});
@@ -14,31 +17,41 @@ class MemoryChallengeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Memory Challenge'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        actions: [IconButton(icon: const Icon(Icons.info), onPressed: () {})],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info),
+            onPressed: () {
+              context.read<SettingsBloc>().add(SetSomeValueEvent(true));
+            },
+          ),
+        ],
       ),
-      body: SafeArea(
-        child:
-            BlocBuilder<
-              PerformMemoryChallangeBloc,
-              PerformMemoryChallangeState
-            >(
-              buildWhen: (previous, current) =>
-                  (previous is! PerformMemoryChallangeLoaded &&
-                  current is PerformMemoryChallangeLoaded),
-              builder: (context, state) {
-                return switch (state) {
-                  PerformMemoryChallangeInitial() => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  PerformMemoryChallangeLoaded() => const Center(
-                    child: MemoryChallengeView(),
-                  ),
-                  PerformMemoryChallangeError(failure: final failure) => Center(
-                    child: Text(failure.message),
-                  ),
-                };
-              },
-            ),
+      body: BlocBuilder<SettingsBloc, ModelState<FlashcardsSettings>>(
+        builder: (context, state) {
+          return SafeArea(
+            child:
+                BlocBuilder<
+                  PerformMemoryChallangeBloc,
+                  PerformMemoryChallangeState
+                >(
+                  buildWhen: (previous, current) =>
+                      (previous is! PerformMemoryChallangeLoaded &&
+                      current is PerformMemoryChallangeLoaded),
+                  builder: (context, state) {
+                    return switch (state) {
+                      PerformMemoryChallangeInitial() => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      PerformMemoryChallangeLoaded() => const Center(
+                        child: MemoryChallengeView(),
+                      ),
+                      PerformMemoryChallangeError(failure: final failure) =>
+                        Center(child: Text(failure.message)),
+                    };
+                  },
+                ),
+          );
+        },
       ),
     );
   }
