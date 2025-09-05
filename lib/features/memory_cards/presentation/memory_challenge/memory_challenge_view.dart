@@ -22,10 +22,21 @@ class MemoryChallengeView extends StatelessWidget {
             _ => throw UnimplementedError(),
           };
           final isAnswered = state is PerformMemoryChallangeAnswer;
-          return MemooryChallengeWidget(isAnswered: isAnswered, card: card);
+          return MemoryChallengeWidget(isAnswered: isAnswered, card: card);
         }
         if (state is PerformMemoryChallangeFinished) {
-          return const Placeholder();
+          return ListView.builder(
+            itemCount: state.history.length,
+            itemBuilder: (context, index) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(state.history[index]?.card.fWord ?? ''),
+                  Text(state.history[index]?.isCorrect.toString() ?? ''),
+                ],
+              );
+            },
+          );
         }
         return const Placeholder();
       },

@@ -1,48 +1,30 @@
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_callange_feedback.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
+// import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
+// import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+// import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
-class NoFeedbackMemoryChallangePerformer extends MemoryChallangePerformer {
-  NoFeedbackMemoryChallangePerformer();
+// class NoFeedbackMemoryChallangePerformer implements MemoryChallangePerformer {
+//   NoFeedbackMemoryChallangePerformer();
 
-  List<MemoryCard>? _shuffledCards;
-  int _currentIndex = 0;
+//   List<MemoryCard>? _shuffledCards;
+//   int _currentIndex = 0;
 
-  @override
-  void init(List<MemoryCard> cards) {
-    _shuffledCards = List<MemoryCard>.from(cards)..shuffle();
-    _currentIndex = 0;
-  }
+//   @override
+//   List<FlashcardFeedback?> get history => [];
 
-  @override
-  MemoryCard? getNextCard({MemoryChallangeFeedback? feedback}) {
-    if (_currentIndex >= _shuffledCards!.length) {
-      return null;
-    }
+//   @override
+//   void init(List<MemoryCard> cards) {
+//     _shuffledCards = List<MemoryCard>.from(cards)..shuffle();
+//     _currentIndex = 0;
+//   }
 
-    final card = _shuffledCards?[_currentIndex];
-    _currentIndex++;
-    return card;
-  }
+//   @override
+//   MemoryCard? getNextCard({bool? feedback}) {
+//     if (_currentIndex >= _shuffledCards!.length) {
+//       return null;
+//     }
 
-  bool get hasMoreCards {
-    if (_shuffledCards?.length case final int length) {
-      return _currentIndex < length;
-    }
-    return false;
-  }
-
-  int get remainingCards {
-    if (_shuffledCards?.length case final int length) {
-      return length - _currentIndex;
-    }
-    return 0;
-  }
-
-  int get totalCards {
-    if (_shuffledCards?.length case final int length) {
-      return length;
-    }
-    return 0;
-  }
-}
+//     final card = _shuffledCards?[_currentIndex];
+//     _currentIndex++;
+//     return card;
+//   }
+// }

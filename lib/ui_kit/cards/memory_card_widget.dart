@@ -7,7 +7,7 @@ class MemoryCardWidget extends StatefulWidget {
   const MemoryCardWidget({
     super.key,
     required this.card,
-    required this.onPressedAfterFlipped,
+    this.onPressedAfterFlipped,
     this.onCardFlipped,
     this.padding = EdgeInsets.zero,
   });

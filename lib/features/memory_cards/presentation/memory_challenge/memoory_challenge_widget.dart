@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_callange_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
 
-class MemooryChallengeWidget extends StatelessWidget {
-  const MemooryChallengeWidget({
-    required this.isAnswered,
-    super.key,
-    this.card,
-  });
+class MemoryChallengeWidget extends StatelessWidget {
+  const MemoryChallengeWidget({required this.isAnswered, super.key, this.card});
 
   final MemoryCard? card;
   final bool isAnswered;
@@ -41,16 +36,6 @@ class MemooryChallengeWidget extends StatelessWidget {
               onCardFlipped: () {
                 context.read<PerformMemoryChallangeBloc>().add(
                   PerformMemoryChallangeAnswerEvent(card),
-                );
-              },
-              onPressedAfterFlipped: () {
-                context.read<PerformMemoryChallangeBloc>().add(
-                  PerformMemoryChallangeNextEvent(
-                    DualMemoryChallangeFeedback(
-                      cardId: card.id,
-                      isCorrect: true,
-                    ),
-                  ),
                 );
               },
             ),
@@ -86,12 +71,7 @@ class _ButtonPanel extends StatelessWidget {
                   onPressed: isAnswered
                       ? () {
                           context.read<PerformMemoryChallangeBloc>().add(
-                            PerformMemoryChallangeNextEvent(
-                              DualMemoryChallangeFeedback(
-                                cardId: cardId,
-                                isCorrect: false,
-                              ),
-                            ),
+                            PerformMemoryChallangeNextEvent(feedback: false),
                           );
                         }
                       : null,
@@ -108,12 +88,7 @@ class _ButtonPanel extends StatelessWidget {
                   onPressed: isAnswered
                       ? () {
                           context.read<PerformMemoryChallangeBloc>().add(
-                            PerformMemoryChallangeNextEvent(
-                              DualMemoryChallangeFeedback(
-                                cardId: cardId,
-                                isCorrect: true,
-                              ),
-                            ),
+                            PerformMemoryChallangeNextEvent(feedback: true),
                           );
                         }
                       : null,

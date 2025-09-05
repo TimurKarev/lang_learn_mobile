@@ -48,5 +48,7 @@ final class PerformMemoryChallangeAnswer extends PerformMemoryChallangeLoaded {
 
 final class PerformMemoryChallangeFinished
     extends PerformMemoryChallangeLoaded {
-  const PerformMemoryChallangeFinished();
+  const PerformMemoryChallangeFinished({required this.history});
+
+  final List<FlashcardFeedback?> history;
 }

@@ -23,7 +23,7 @@ final class PerformMemoryChallangeAnswerEvent
 
 final class PerformMemoryChallangeNextEvent
     extends PerformMemoryChallangeEvent {
-  const PerformMemoryChallangeNextEvent(this.feedback);
+  const PerformMemoryChallangeNextEvent({required this.feedback});
 
-  final MemoryChallangeFeedback feedback;
+  final bool? feedback;
 }

@@ -4,7 +4,7 @@ import 'package:lang_learn_mobile/core/bloc/fetch_bloc/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/use_case/fetch_memory_cards_for_challenge.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/performers/no_feedback_memory_challange_performer.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/performers/feedback_performer.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/fetch_memory_challenge/memory_challenge_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
@@ -32,9 +32,8 @@ class MemoryChallengePage extends StatelessWidget {
             )..add(FetchDataEvent<List<MemoryCard>>()),
           ),
           BlocProvider(
-            create: (context) => PerformMemoryChallangeBloc(
-              challange: NoFeedbackMemoryChallangePerformer(),
-            ),
+            create: (context) =>
+                PerformMemoryChallangeBloc(challange: FeedbackPerformer()),
           ),
         ],
         child:

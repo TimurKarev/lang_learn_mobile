@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_callange_feedback.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
@@ -29,11 +29,11 @@ class PerformMemoryChallangeBloc
     await Future.delayed(_duration);
 
     challange.init(event.cards);
-    final card = challange.getNextCard(feedback: null);
+    final card = challange.startChallange();
     if (card != null) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
-      emit(PerformMemoryChallangeFinished());
+      emit(PerformMemoryChallangeFinished(history: challange.history));
     }
   }
 
@@ -55,7 +55,7 @@ class PerformMemoryChallangeBloc
     if (card != null) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
-      emit(PerformMemoryChallangeFinished());
+      emit(PerformMemoryChallangeFinished(history: challange.history));
     }
   }
 }
