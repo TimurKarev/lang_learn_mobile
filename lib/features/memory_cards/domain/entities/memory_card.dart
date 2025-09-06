@@ -13,6 +13,10 @@ class MemoryCard extends Equatable {
     required this.sWord,
   });
 
+  MemoryCard revert() {
+    return MemoryCard(id: id, fWord: sWord, sWord: fWord);
+  }
+
   @override
   List<Object?> get props => [id, fWord, sWord];
 }

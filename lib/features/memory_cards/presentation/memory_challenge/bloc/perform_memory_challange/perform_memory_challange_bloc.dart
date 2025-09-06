@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
@@ -30,7 +31,7 @@ class PerformMemoryChallangeBloc
     emit(PerformMemoryChallangeChooseCard());
     await Future.delayed(_duration);
 
-    challange.init(event.cards);
+    challange.init(cards: event.cards, settings: event.settings);
     final card = challange.startChallange();
     if (card != null) {
       emit(PerformMemoryChallangeQuestion(card));

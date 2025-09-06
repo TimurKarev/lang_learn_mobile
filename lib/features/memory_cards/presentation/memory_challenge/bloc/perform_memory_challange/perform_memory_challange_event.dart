@@ -9,9 +9,13 @@ sealed class PerformMemoryChallangeEvent extends Equatable {
 
 final class PerformMemoryChallangeDataReadyEvent
     extends PerformMemoryChallangeEvent {
-  const PerformMemoryChallangeDataReadyEvent(this.cards);
+  const PerformMemoryChallangeDataReadyEvent({
+    required this.cards,
+    required this.settings,
+  });
 
   final List<MemoryCard> cards;
+  final FlashcardsSettings settings;
 }
 
 final class PerformMemoryChallangeAnswerEvent
