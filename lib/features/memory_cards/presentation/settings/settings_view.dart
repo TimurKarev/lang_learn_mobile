@@ -63,27 +63,6 @@ class SettingsView extends StatelessWidget {
               ),
             ),
           ),
-          const Spacer(),
-          BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
-            builder: (context, state) {
-              final bloc = context.read<SettingsBloc>();
-              return ElevatedButton(
-                onPressed: bloc.hasChanges
-                    ? () {
-                        if (state
-                            case final ModelHandlerLoaded<FlashcardsSettings>
-                                loadedState) {
-                          context.pop(loadedState.model);
-                        }
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: const Text('Save'),
-              );
-            },
-          ),
         ],
       ),
     );

@@ -9,7 +9,6 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memo
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/fetch_memory_challenge/memory_challenge_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_screen.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
 
 class MemoryChallengePage extends StatelessWidget {
@@ -36,7 +35,6 @@ class MemoryChallengePage extends StatelessWidget {
             create: (context) =>
                 PerformMemoryChallangeBloc(challange: FeedbackPerformer()),
           ),
-          BlocProvider(create: (context) => SettingsBloc()),
         ],
         child:
             BlocListener<

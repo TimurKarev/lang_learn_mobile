@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/settings_page.dart';
 
 /// Centralized route constants and navigation helpers
 class AppRoutes {
   // Route path constants
   static const String home = '/';
-  static const String challenge = '/challenge';
+  static const String dashboard = 'dashboard';
+  static const String challenge = 'challenge';
   static const String information = '/information';
   static const String flashcardHistory = 'flashcard-history';
-  static const String settings = '/settings';
+  static const String settings = 'settings';
 
   // Parameter keys
   static const String challengeIdParam = 'id';
@@ -23,6 +27,7 @@ class AppRoutes {
   // Full path templates
   static const String challengePath = '$challenge/:$challengeIdParam';
   static const String informationPath = '$information/:$challengeIdParam';
+  static const String dashboardPath = dashboard;
 
   /// Generate challenge path with ID
   static String challengeWithId(String challengeId) {
@@ -36,14 +41,14 @@ class AppRoutes {
 
   /// Navigation helper methods
   static void goToHome(BuildContext context) {
-    context.go(home);
+    context.go(dashboardPath);
   }
 
   static void goToChallenge(
     BuildContext context, {
     required String challengeId,
   }) {
-    context.go(challengeWithId(challengeId));
+    context.go('/$dashboard/$challenge/$challengeId');
   }
 
   static void goToInformation(
@@ -62,61 +67,79 @@ class AppRoutes {
     }
   }
 
-  static Future<FlashcardsSettings?> goToSettings(
-    BuildContext context, {
-    required FlashcardsSettings settings,
-  }) {
-    return context.push<FlashcardsSettings>(
-      AppRoutes.settings,
-      extra: {'settings': settings},
-    );
+  static Future<FlashcardsSettings?> goToSettings(BuildContext context) async {
+    if (GoRouterState.of(context).fullPath case final String fullPath) {
+      return context.push<FlashcardsSettings>('$fullPath/$settings');
+    }
+    return null;
   }
 
-  /// GoRouter configuration
   static final router = GoRouter(
+    initialLocation: '/$dashboard',
     routes: <RouteBase>[
-      GoRoute(
-        path: home,
-        builder: (BuildContext context, GoRouterState state) {
-          return const CardsDashboardPage();
+      ShellRoute(
+        builder: (BuildContext context, GoRouterState state, Widget child) {
+          return BlocProvider(
+            create: (context) => SettingsBloc()
+              ..add(
+                ModelHandlerSetModelEvent<FlashcardsSettings>(
+                  FlashcardsSettings.initial(),
+                ),
+              ),
+            child: child,
+          );
         },
         routes: [
           GoRoute(
-            path: challengePath,
+            path: '/$dashboard',
             builder: (BuildContext context, GoRouterState state) {
-              final challengeId = state.pathParameters[challengeIdParam];
-              return MemoryChallengePage(challengeId: challengeId);
+              return const CardsDashboardPage();
             },
             routes: [
               GoRoute(
-                path: flashcardHistory,
+                path: challengePath,
                 builder: (BuildContext context, GoRouterState state) {
-                  final extra = state.extra as Map<String, dynamic>?;
-                  final history =
-                      extra?['history'] as List<FlashcardFeedback?>?;
-                  return HistoryPage(history: history ?? []);
+                  final challengeId = state.pathParameters[challengeIdParam];
+                  return MemoryChallengePage(challengeId: challengeId);
+                },
+                routes: [
+                  GoRoute(
+                    path: flashcardHistory,
+                    builder: (BuildContext context, GoRouterState state) {
+                      final extra = state.extra as Map<String, dynamic>?;
+                      final history =
+                          extra?['history'] as List<FlashcardFeedback?>?;
+                      return HistoryPage(history: history ?? []);
+                    },
+                  ),
+                  GoRoute(
+                    path: settings,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const SettingsPage();
+                    },
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: settings,
+                builder: (BuildContext context, GoRouterState state) {
+                  return const SettingsPage();
                 },
               ),
             ],
           ),
+          GoRoute(
+            path: informationPath,
+            builder: (BuildContext context, GoRouterState state) {
+              final challengeId = state.pathParameters[challengeIdParam];
+              return InformationPage(challengeId: challengeId!);
+            },
+          ),
+          GoRoute(path: '/', redirect: (context, state) => '/$dashboard'),
         ],
-      ),
-      GoRoute(
-        path: informationPath,
-        builder: (BuildContext context, GoRouterState state) {
-          final challengeId = state.pathParameters[challengeIdParam];
-          return InformationPage(challengeId: challengeId!);
-        },
-      ),
-      GoRoute(
-        path: settings,
-        builder: (BuildContext context, GoRouterState state) {
-          final extra = state.extra as Map<String, dynamic>?;
-          final settings = extra?['settings'] as FlashcardsSettings?;
-
-          return SettingsPage(settings: settings);
-        },
       ),
     ],
   );
+
+  /// GoRouter configuration
 }

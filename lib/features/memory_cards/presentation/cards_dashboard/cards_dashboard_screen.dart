@@ -23,22 +23,8 @@ class CardsDashboardScreen extends StatelessWidget {
             builder: (context, state) {
               return IconButton(
                 icon: const Icon(Icons.settings),
-                onPressed: () async {
-                  if (state
-                      case final ModelHandlerLoaded<FlashcardsSettings>
-                          currentState) {
-                    final updatedSettings = await AppRoutes.goToSettings(
-                      context,
-                      settings: currentState.model,
-                    );
-                    if (updatedSettings != null && context.mounted) {
-                      context.read<SettingsBloc>().add(
-                        ModelHandlerSetModelEvent<FlashcardsSettings>(
-                          updatedSettings,
-                        ),
-                      );
-                    }
-                  }
+                onPressed: () {
+                  AppRoutes.goToSettings(context);
                 },
               );
             },
