@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:lang_learn_mobile/core/entities/languages.dart';
 
-class FlashcardsSettings {
+class FlashcardsSettings extends Equatable {
   final bool shufleCards;
   final bool repeatWrong;
   final Languages askLanguage;
@@ -17,4 +18,7 @@ class FlashcardsSettings {
         repeatWrong: false,
         askLanguage: Languages.kyrgyz,
       );
+
+  @override
+  List<Object?> get props => [shufleCards, repeatWrong, askLanguage];
 }

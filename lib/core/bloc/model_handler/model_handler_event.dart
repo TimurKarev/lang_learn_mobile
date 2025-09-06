@@ -16,7 +16,8 @@ final class ModelHandlerFetchEvent<P extends Object?>
 
 final class ModelHandlerSetModelEvent<M extends Object>
     extends ModelHandlerEvent {
-  const ModelHandlerSetModelEvent(this.model);
+  const ModelHandlerSetModelEvent(this.model, {this.needOnSetModel = true});
 
   final M model;
+  final bool needOnSetModel;
 }

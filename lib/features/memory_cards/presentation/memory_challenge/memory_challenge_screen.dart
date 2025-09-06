@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/common/memory_challenge_view.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/settings_bloc.dart';
 
 class MemoryChallengeScreen extends StatelessWidget {
   const MemoryChallengeScreen({super.key, required this.challengeId});
@@ -17,9 +18,12 @@ class MemoryChallengeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
-            icon: const Icon(Icons.info),
+            icon: const Icon(Icons.settings),
             onPressed: () {
-              context.read<SettingsBloc>().add(SetSomeValueEvent(true));
+              AppRoutes.goToSettings(
+                context,
+                settings: FlashcardsSettings.initial(),
+              );
             },
           ),
         ],

@@ -20,6 +20,8 @@ abstract class ModelHandlerBloc<M extends Object, P extends Object?>
 
   Future<Either<Failure, M>> fetchModel(P? params);
 
+  void onSetModel(M model) {}
+
   Future<void> _onFetch(
     ModelHandlerFetchEvent<P> event,
     Emitter<ModelHandlerState<M>> emit,
@@ -28,7 +30,10 @@ abstract class ModelHandlerBloc<M extends Object, P extends Object?>
     final result = await fetchModel(event.params);
 
     result.fold(
-      ifRight: (data) => emit(ModelHandlerLoaded<M>(model: data)),
+      ifRight: (data) {
+        emit(ModelHandlerLoaded<M>(model: data));
+        onSetModel(data);
+      },
       ifLeft: (failure) => emit(ModelHandlerError<M>(failure: failure)),
     );
   }
@@ -38,5 +43,8 @@ abstract class ModelHandlerBloc<M extends Object, P extends Object?>
     Emitter<ModelHandlerState<M>> emit,
   ) async {
     emit(ModelHandlerLoaded<M>(model: event.model));
+    if (event.needOnSetModel) {
+      onSetModel(event.model);
+    }
   }
 }

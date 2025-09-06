@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
+import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/bloc/card_list/card_list_bloc.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
 
 class CardsDashboardScreen extends StatelessWidget {
@@ -15,6 +18,32 @@ class CardsDashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Memory Cards'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
+            builder: (context, state) {
+              return IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () async {
+                  if (state
+                      case final ModelHandlerLoaded<FlashcardsSettings>
+                          currentState) {
+                    final updatedSettings = await AppRoutes.goToSettings(
+                      context,
+                      settings: currentState.model,
+                    );
+                    if (updatedSettings != null && context.mounted) {
+                      context.read<SettingsBloc>().add(
+                        ModelHandlerSetModelEvent<FlashcardsSettings>(
+                          updatedSettings,
+                        ),
+                      );
+                    }
+                  }
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<CardListBloc, FetchState<List<MemoryCardsPreview>>>(
         builder: (context, state) {
