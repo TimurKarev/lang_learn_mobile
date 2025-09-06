@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lang_learn_mobile/core/bloc/fetch_bloc/fetch_bloc.dart';
+import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/use_case/fetch_memory_cards_list.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
