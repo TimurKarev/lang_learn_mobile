@@ -32,8 +32,9 @@ class MemoryChallengePage extends StatelessWidget {
             )..add(FetchDataEvent<String>(params: id)),
           ),
           BlocProvider(
-            create: (context) =>
-                PerformMemoryChallangeBloc(challange: FeedbackPerformer()),
+            create: (context) => PerformMemoryChallangeBloc(
+              challange: FeedbackPerformer(challengeId: id),
+            ),
           ),
         ],
         child:

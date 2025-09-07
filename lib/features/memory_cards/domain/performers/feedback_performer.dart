@@ -5,7 +5,10 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_c
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
 class FeedbackPerformer implements MemoryChallangePerformer {
-  FeedbackPerformer() : history = [];
+  FeedbackPerformer({required this.challengeId}) : history = [];
+
+  @override
+  final String challengeId;
 
   @override
   final List<FlashcardFeedback?> history;

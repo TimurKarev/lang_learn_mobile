@@ -11,19 +11,22 @@ part 'perform_memory_challange_state.dart';
 
 class PerformMemoryChallangeBloc
     extends Bloc<PerformMemoryChallangeEvent, PerformMemoryChallangeState> {
-  PerformMemoryChallangeBloc({required this.challange})
-    : super(PerformMemoryChallangeInitial()) {
+  PerformMemoryChallangeBloc({required MemoryChallangePerformer challange})
+    : _challange = challange,
+      super(PerformMemoryChallangeInitial()) {
     on<PerformMemoryChallangeDataReadyEvent>(_onDataReady);
     on<PerformMemoryChallangeRestartEvent>(_onRestart);
     on<PerformMemoryChallangeAnswerEvent>(_onAnswer);
     on<PerformMemoryChallangeNextEvent>(_onNext);
   }
 
-  final MemoryChallangePerformer challange;
+  String get challengeId => _challange.challengeId;
+
+  final MemoryChallangePerformer _challange;
 
   static const _duration = Duration(milliseconds: 300);
 
-  List<FlashcardFeedback?> get history => challange.history;
+  List<FlashcardFeedback?> get history => _challange.history;
 
   Future<void> _onDataReady(
     PerformMemoryChallangeDataReadyEvent event,
@@ -32,12 +35,12 @@ class PerformMemoryChallangeBloc
     emit(PerformMemoryChallangeChooseCard());
     await Future.delayed(_duration);
 
-    challange.init(cards: event.cards, settings: event.settings);
+    _challange.init(cards: event.cards, settings: event.settings);
 
-    if (challange.startChallange() case final MemoryCard card) {
+    if (_challange.startChallange() case final MemoryCard card) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
-      emit(PerformMemoryChallangeFinished(history: challange.history));
+      emit(PerformMemoryChallangeFinished(history: _challange.history));
     }
   }
 
@@ -45,11 +48,11 @@ class PerformMemoryChallangeBloc
     PerformMemoryChallangeRestartEvent event,
     Emitter<PerformMemoryChallangeState> emit,
   ) async {
-    if (challange.restart(settings: event.settings)
+    if (_challange.restart(settings: event.settings)
         case final MemoryCard card) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
-      emit(PerformMemoryChallangeFinished(history: challange.history));
+      emit(PerformMemoryChallangeFinished(history: _challange.history));
     }
   }
 
@@ -67,11 +70,11 @@ class PerformMemoryChallangeBloc
     emit(PerformMemoryChallangeChooseCard());
     await Future.delayed(_duration);
 
-    final card = challange.getNextCard(feedback: event.feedback);
+    final card = _challange.getNextCard(feedback: event.feedback);
     if (card != null) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
-      emit(PerformMemoryChallangeFinished(history: challange.history));
+      emit(PerformMemoryChallangeFinished(history: _challange.history));
     }
   }
 }

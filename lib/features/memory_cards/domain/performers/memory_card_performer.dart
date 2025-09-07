@@ -4,7 +4,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 
 abstract interface class MemoryChallangePerformer {
-  const MemoryChallangePerformer();
+  String get challengeId;
 
   List<FlashcardFeedback?> get history;
 

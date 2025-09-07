@@ -82,139 +82,139 @@ const List<MemoryCard> numbersMemoryCards = [
     ),
     sWord: Literal(id: '10', word: 'Он', transcript: 'On', lang: 'Kyrgyz'),
   ),
-  // MemoryCard(
-  //   id: '20',
-  //   fWord: Literal(
-  //     id: '20',
-  //     word: 'Двадцать',
-  //     transcript: 'Dvadtsat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(
-  //     id: '20',
-  //     word: 'Жыйырма',
-  //     transcript: 'Jyyrma',
-  //     lang: 'Kyrgyz',
-  //   ),
-  // ),
-  // MemoryCard(
-  //   id: '30',
-  //   fWord: Literal(
-  //     id: '30',
-  //     word: 'Тридцать',
-  //     transcript: 'Tridtsat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(id: '30', word: 'Отуз', transcript: 'Otuz', lang: 'Kyrgyz'),
-  // ),
-  // MemoryCard(
-  //   id: '40',
-  //   fWord: Literal(
-  //     id: '40',
-  //     word: 'Сорок',
-  //     transcript: 'Sorok',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(id: '40', word: 'Кырк', transcript: 'Kyrk', lang: 'Kyrgyz'),
-  // ),
-  // MemoryCard(
-  //   id: '50',
-  //   fWord: Literal(
-  //     id: '50',
-  //     word: 'Пятьдесят',
-  //     transcript: 'Pyatdesyat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(id: '50', word: 'Элүү', transcript: 'Elüü', lang: 'Kyrgyz'),
-  // ),
-  // MemoryCard(
-  //   id: '60',
-  //   fWord: Literal(
-  //     id: '60',
-  //     word: 'Шестьдесят',
-  //     transcript: 'Shestdesyat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(
-  //     id: '60',
-  //     word: 'Алтымыш',
-  //     transcript: 'Altymysh',
-  //     lang: 'Kyrgyz',
-  //   ),
-  // ),
-  // MemoryCard(
-  //   id: '70',
-  //   fWord: Literal(
-  //     id: '70',
-  //     word: 'Семьдесят',
-  //     transcript: 'Semdesyat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(
-  //     id: '70',
-  //     word: 'Жетимиш',
-  //     transcript: 'Jetimish',
-  //     lang: 'Kyrgyz',
-  //   ),
-  // ),
-  // MemoryCard(
-  //   id: '80',
-  //   fWord: Literal(
-  //     id: '80',
-  //     word: 'Восемьдесят',
-  //     transcript: 'Vosemdesyat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(
-  //     id: '80',
-  //     word: 'Сексен',
-  //     transcript: 'Seksen',
-  //     lang: 'Kyrgyz',
-  //   ),
-  // ),
-  // MemoryCard(
-  //   id: '90',
-  //   fWord: Literal(
-  //     id: '90',
-  //     word: 'Девяносто',
-  //     transcript: 'Devyatdesyat',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(
-  //     id: '90',
-  //     word: 'Токсон',
-  //     transcript: 'Tokson',
-  //     lang: 'Kyrgyz',
-  //   ),
-  // ),
-  // MemoryCard(
-  //   id: '100',
-  //   fWord: Literal(id: '100', word: 'Сто', transcript: 'Sto', lang: 'Russian'),
-  //   sWord: Literal(id: '100', word: 'Жүз', transcript: 'Jüz', lang: 'Kyrgyz'),
-  // ),
-  // MemoryCard(
-  //   id: '1000',
-  //   fWord: Literal(
-  //     id: '1000',
-  //     word: 'Тысяча',
-  //     transcript: 'Tysyacha',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(id: '1000', word: 'Миң', transcript: 'Miŋ', lang: 'Kyrgyz'),
-  // ),
-  // MemoryCard(
-  //   id: '10000',
-  //   fWord: Literal(
-  //     id: '10000',
-  //     word: 'Десять тысяч',
-  //     transcript: 'Desyat tysyach',
-  //     lang: 'Russian',
-  //   ),
-  //   sWord: Literal(
-  //     id: '10000',
-  //     word: 'Он миң',
-  //     transcript: 'On miŋ',
-  //     lang: 'Kyrgyz',
-  //   ),
-  // ),
+  MemoryCard(
+    id: '20',
+    fWord: Literal(
+      id: '20',
+      word: 'Двадцать',
+      transcript: 'Dvadtsat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(
+      id: '20',
+      word: 'Жыйырма',
+      transcript: 'Jyyrma',
+      lang: 'Kyrgyz',
+    ),
+  ),
+  MemoryCard(
+    id: '30',
+    fWord: Literal(
+      id: '30',
+      word: 'Тридцать',
+      transcript: 'Tridtsat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(id: '30', word: 'Отуз', transcript: 'Otuz', lang: 'Kyrgyz'),
+  ),
+  MemoryCard(
+    id: '40',
+    fWord: Literal(
+      id: '40',
+      word: 'Сорок',
+      transcript: 'Sorok',
+      lang: 'Russian',
+    ),
+    sWord: Literal(id: '40', word: 'Кырк', transcript: 'Kyrk', lang: 'Kyrgyz'),
+  ),
+  MemoryCard(
+    id: '50',
+    fWord: Literal(
+      id: '50',
+      word: 'Пятьдесят',
+      transcript: 'Pyatdesyat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(id: '50', word: 'Элүү', transcript: 'Elüü', lang: 'Kyrgyz'),
+  ),
+  MemoryCard(
+    id: '60',
+    fWord: Literal(
+      id: '60',
+      word: 'Шестьдесят',
+      transcript: 'Shestdesyat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(
+      id: '60',
+      word: 'Алтымыш',
+      transcript: 'Altymysh',
+      lang: 'Kyrgyz',
+    ),
+  ),
+  MemoryCard(
+    id: '70',
+    fWord: Literal(
+      id: '70',
+      word: 'Семьдесят',
+      transcript: 'Semdesyat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(
+      id: '70',
+      word: 'Жетимиш',
+      transcript: 'Jetimish',
+      lang: 'Kyrgyz',
+    ),
+  ),
+  MemoryCard(
+    id: '80',
+    fWord: Literal(
+      id: '80',
+      word: 'Восемьдесят',
+      transcript: 'Vosemdesyat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(
+      id: '80',
+      word: 'Сексен',
+      transcript: 'Seksen',
+      lang: 'Kyrgyz',
+    ),
+  ),
+  MemoryCard(
+    id: '90',
+    fWord: Literal(
+      id: '90',
+      word: 'Девяносто',
+      transcript: 'Devyatdesyat',
+      lang: 'Russian',
+    ),
+    sWord: Literal(
+      id: '90',
+      word: 'Токсон',
+      transcript: 'Tokson',
+      lang: 'Kyrgyz',
+    ),
+  ),
+  MemoryCard(
+    id: '100',
+    fWord: Literal(id: '100', word: 'Сто', transcript: 'Sto', lang: 'Russian'),
+    sWord: Literal(id: '100', word: 'Жүз', transcript: 'Jüz', lang: 'Kyrgyz'),
+  ),
+  MemoryCard(
+    id: '1000',
+    fWord: Literal(
+      id: '1000',
+      word: 'Тысяча',
+      transcript: 'Tysyacha',
+      lang: 'Russian',
+    ),
+    sWord: Literal(id: '1000', word: 'Миң', transcript: 'Miŋ', lang: 'Kyrgyz'),
+  ),
+  MemoryCard(
+    id: '10000',
+    fWord: Literal(
+      id: '10000',
+      word: 'Десять тысяч',
+      transcript: 'Desyat tysyach',
+      lang: 'Russian',
+    ),
+    sWord: Literal(
+      id: '10000',
+      word: 'Он миң',
+      transcript: 'On miŋ',
+      lang: 'Kyrgyz',
+    ),
+  ),
 ];

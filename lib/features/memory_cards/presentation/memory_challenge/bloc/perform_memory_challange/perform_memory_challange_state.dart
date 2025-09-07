@@ -5,6 +5,10 @@ sealed class PerformMemoryChallangeState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  bool get isChallagePerforming =>
+      this is PerformMemoryChallangeQuestion ||
+      this is PerformMemoryChallangeAnswer;
 }
 
 final class PerformMemoryChallangeInitial extends PerformMemoryChallangeState {

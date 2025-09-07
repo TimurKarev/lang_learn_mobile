@@ -12,6 +12,7 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object?>
     on<ShuffleCardsChangesSettingsEvent>(_onShuffleCardsChange);
     on<RepeatWrongChangesSettingsEvent>(_onRepeatWrongChange);
     on<AskLanguageChangesSettingsEvent>(_onAskLanguageChange);
+    on<ApplySettingsEvent>(_onApplySettings);
   }
 
   @override
@@ -71,6 +72,17 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object?>
       throw UnimplementedError();
     }
   }
+
+  Future<void> _onApplySettings(
+    ApplySettingsEvent event,
+    Emitter<ModelHandlerState<FlashcardsSettings>> emit,
+  ) async {
+    if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
+      add(ModelHandlerSetModelEvent(state.model));
+    } else {
+      throw UnimplementedError();
+    }
+  }
 }
 
 class ShuffleCardsChangesSettingsEvent extends ModelHandlerEvent {
@@ -89,4 +101,8 @@ class AskLanguageChangesSettingsEvent extends ModelHandlerEvent {
   const AskLanguageChangesSettingsEvent(this.value);
 
   final Languages value;
+}
+
+class ApplySettingsEvent extends ModelHandlerEvent {
+  const ApplySettingsEvent();
 }

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key, required this.settings});
+  const SettingsView({
+    super.key,
+    required this.settings,
+    required this.onClose,
+  });
 
   final FlashcardsSettings settings;
+  final Function() onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -42,34 +46,37 @@ class SettingsView extends StatelessWidget {
           Text('Ask Language', style: Theme.of(context).textTheme.titleMedium),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: DropdownButton<Languages>(
-                value: settings.askLanguage,
-                onChanged: (value) {
-                  if (value != null) {
-                    context.read<SettingsBloc>().add(
-                      AskLanguageChangesSettingsEvent(value),
-                    );
-                  }
-                },
-                items: Languages.values.map((language) {
-                  return DropdownMenuItem(
-                    value: language,
-                    child: Text(language.name),
+            child: DropdownButton<Languages>(
+              itemHeight: 75,
+              isExpanded: true,
+              value: settings.askLanguage,
+              onChanged: (value) {
+                if (value != null) {
+                  context.read<SettingsBloc>().add(
+                    AskLanguageChangesSettingsEvent(value),
                   );
-                }).toList(),
-              ),
+                }
+              },
+              items: Languages.values.map((language) {
+                return DropdownMenuItem(
+                  alignment: AlignmentDirectional.center,
+                  value: language,
+                  child: Text(
+                    language.name,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                );
+              }).toList(),
             ),
           ),
           const Spacer(),
           BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
             builder: (context, state) {
               return ElevatedButton(
-                onPressed: () {
-                  context.pop(context.read<SettingsBloc>().hasChanges);
-                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                onPressed: onClose,
                 child: const Text('Close'),
               );
             },

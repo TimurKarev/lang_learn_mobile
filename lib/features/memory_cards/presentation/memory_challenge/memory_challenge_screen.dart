@@ -19,26 +19,29 @@ class MemoryChallengeScreen extends StatelessWidget {
         title: const Text('Memory Challenge'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
-          BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
+          BlocBuilder<PerformMemoryChallangeBloc, PerformMemoryChallangeState>(
             builder: (context, state) {
-              return IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () async {
-                  final result = await AppRoutes.goToSettings(context);
-                  if (result case final bool value
-                      when (value && context.mounted)) {
-                    if (context.read<SettingsBloc>().state
-                        case final ModelHandlerLoaded<FlashcardsSettings>
-                            state) {
-                      context.read<PerformMemoryChallangeBloc>().add(
-                        PerformMemoryChallangeRestartEvent(
-                          settings: state.model,
-                        ),
-                      );
+              if (state.isChallagePerforming) {
+                return IconButton(
+                  icon: const Icon(Icons.settings),
+                  onPressed: () async {
+                    final result = await AppRoutes.goToSettings(context);
+                    if (result case final bool value
+                        when (value && context.mounted)) {
+                      if (context.read<SettingsBloc>().state
+                          case final ModelHandlerLoaded<FlashcardsSettings>
+                              state) {
+                        context.read<PerformMemoryChallangeBloc>().add(
+                          PerformMemoryChallangeRestartEvent(
+                            settings: state.model,
+                          ),
+                        );
+                      }
                     }
-                  }
-                },
-              );
+                  },
+                );
+              }
+              return SizedBox.shrink();
             },
           ),
         ],

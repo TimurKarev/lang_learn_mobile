@@ -114,8 +114,10 @@ class _ButtonPanel extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ElevatedButton(
-          onPressed: () =>
-              AppRoutes.goToInformation(context, challengeId: cardId),
+          onPressed: () => AppRoutes.goToInformation(
+            context,
+            challengeId: context.read<PerformMemoryChallangeBloc>().challengeId,
+          ),
           child: SizedBox(
             width: double.infinity,
             child: Center(child: const Text('ShowVocabulary')),
