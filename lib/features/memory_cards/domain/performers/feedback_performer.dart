@@ -9,6 +9,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
 
   @override
   final List<FlashcardFeedback?> history;
+  List<MemoryCard>? _initialCards;
   List<MemoryCard>? _shuffledCards;
   FlashcardsSettings _settings = FlashcardsSettings.initial();
   int _currentIndex = 0;
@@ -19,6 +20,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
     required FlashcardsSettings settings,
   }) {
     _settings = settings;
+    _initialCards = List<MemoryCard>.from(cards);
     _shuffledCards = List<MemoryCard>.from(cards);
     if (_settings.shufleCards) {
       _shuffledCards?.shuffle();
@@ -27,8 +29,23 @@ class FeedbackPerformer implements MemoryChallangePerformer {
   }
 
   @override
+  MemoryCard? restart({required FlashcardsSettings settings}) {
+    if (_initialCards case final List<MemoryCard> cards when cards.isNotEmpty) {
+      _settings = settings;
+      _shuffledCards = List<MemoryCard>.from(cards);
+      if (_settings.shufleCards) {
+        _shuffledCards?.shuffle();
+      }
+      _currentIndex = 0;
+
+      return startChallange();
+    }
+
+    return null;
+  }
+
+  @override
   MemoryCard? startChallange() {
-    _currentIndex = 0;
     final cards = _shuffledCards;
     if (cards == null) {
       return null;
@@ -37,9 +54,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
     if (_currentIndex >= cards.length) {
       return null;
     }
-    return _settings.askLanguage == Languages.russian
-        ? cards[_currentIndex].revert()
-        : cards[_currentIndex];
+    return _getCard(cards[_currentIndex]);
   }
 
   @override
@@ -54,7 +69,9 @@ class FeedbackPerformer implements MemoryChallangePerformer {
     }
 
     final currentCard = cards[_currentIndex];
-    history.add(FlashcardFeedback(isCorrect: feedback, card: currentCard));
+    history.add(
+      FlashcardFeedback(isCorrect: feedback, card: _getCard(currentCard)),
+    );
 
     _currentIndex++;
 
@@ -62,14 +79,19 @@ class FeedbackPerformer implements MemoryChallangePerformer {
       return null;
     }
 
-    final nextCard = _settings.askLanguage == Languages.russian
-        ? cards[_currentIndex].revert()
-        : cards[_currentIndex];
+    final nextCard = _getCard(cards[_currentIndex]);
 
     if (_settings.repeatWrong && feedback == false) {
       _shuffledCards?.add(currentCard);
     }
 
     return nextCard;
+  }
+
+  MemoryCard _getCard(MemoryCard card) {
+    final newCard = _settings.askLanguage == Languages.kyrgyz
+        ? card.revert()
+        : card;
+    return newCard;
   }
 }

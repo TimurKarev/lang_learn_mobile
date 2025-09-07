@@ -8,12 +8,14 @@ abstract interface class MemoryChallangePerformer {
 
   List<FlashcardFeedback?> get history;
 
-  MemoryCard? startChallange();
-
   void init({
     required List<MemoryCard> cards,
     required FlashcardsSettings settings,
   });
+
+  MemoryCard? startChallange();
+
+  MemoryCard? restart({required FlashcardsSettings settings});
 
   MemoryCard? getNextCard({bool? feedback});
 }

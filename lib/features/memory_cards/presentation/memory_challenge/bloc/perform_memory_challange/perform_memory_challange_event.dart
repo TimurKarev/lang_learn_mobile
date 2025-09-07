@@ -18,6 +18,12 @@ final class PerformMemoryChallangeDataReadyEvent
   final FlashcardsSettings settings;
 }
 
+class PerformMemoryChallangeRestartEvent extends PerformMemoryChallangeEvent {
+  const PerformMemoryChallangeRestartEvent({required this.settings});
+
+  final FlashcardsSettings settings;
+}
+
 final class PerformMemoryChallangeAnswerEvent
     extends PerformMemoryChallangeEvent {
   const PerformMemoryChallangeAnswerEvent(this.card);

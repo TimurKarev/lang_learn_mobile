@@ -14,6 +14,7 @@ class PerformMemoryChallangeBloc
   PerformMemoryChallangeBloc({required this.challange})
     : super(PerformMemoryChallangeInitial()) {
     on<PerformMemoryChallangeDataReadyEvent>(_onDataReady);
+    on<PerformMemoryChallangeRestartEvent>(_onRestart);
     on<PerformMemoryChallangeAnswerEvent>(_onAnswer);
     on<PerformMemoryChallangeNextEvent>(_onNext);
   }
@@ -32,8 +33,20 @@ class PerformMemoryChallangeBloc
     await Future.delayed(_duration);
 
     challange.init(cards: event.cards, settings: event.settings);
-    final card = challange.startChallange();
-    if (card != null) {
+
+    if (challange.startChallange() case final MemoryCard card) {
+      emit(PerformMemoryChallangeQuestion(card));
+    } else {
+      emit(PerformMemoryChallangeFinished(history: challange.history));
+    }
+  }
+
+  Future<void> _onRestart(
+    PerformMemoryChallangeRestartEvent event,
+    Emitter<PerformMemoryChallangeState> emit,
+  ) async {
+    if (challange.restart(settings: event.settings)
+        case final MemoryCard card) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
       emit(PerformMemoryChallangeFinished(history: challange.history));

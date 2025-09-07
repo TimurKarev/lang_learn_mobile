@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/common/memory_challenge_view.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 
 class MemoryChallengeScreen extends StatelessWidget {
   const MemoryChallengeScreen({super.key, required this.challengeId});
@@ -16,10 +19,26 @@ class MemoryChallengeScreen extends StatelessWidget {
         title: const Text('Memory Challenge'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              AppRoutes.goToSettings(context);
+          BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
+            builder: (context, state) {
+              return IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () async {
+                  final result = await AppRoutes.goToSettings(context);
+                  if (result case final bool value
+                      when (value && context.mounted)) {
+                    if (context.read<SettingsBloc>().state
+                        case final ModelHandlerLoaded<FlashcardsSettings>
+                            state) {
+                      context.read<PerformMemoryChallangeBloc>().add(
+                        PerformMemoryChallangeRestartEvent(
+                          settings: state.model,
+                        ),
+                      );
+                    }
+                  }
+                },
+              );
             },
           ),
         ],

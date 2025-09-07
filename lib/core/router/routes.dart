@@ -67,11 +67,11 @@ class AppRoutes {
     }
   }
 
-  static Future<FlashcardsSettings?> goToSettings(BuildContext context) async {
+  static Future<bool?> goToSettings(BuildContext context) async {
     if (GoRouterState.of(context).fullPath case final String fullPath) {
-      return context.push<FlashcardsSettings>('$fullPath/$settings');
+      return context.push<bool>('$fullPath/$settings');
     }
-    return null;
+    return false;
   }
 
   static final router = GoRouter(

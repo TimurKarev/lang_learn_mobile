@@ -1,4 +1,6 @@
-class Literal {
+import 'package:equatable/equatable.dart';
+
+class Literal extends Equatable {
   final String id;
   final String word;
   final String transcript;
@@ -10,4 +12,7 @@ class Literal {
     required this.transcript,
     required this.lang,
   });
+
+  @override
+  List<Object?> get props => [id, word, transcript, lang];
 }
