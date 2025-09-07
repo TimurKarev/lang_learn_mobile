@@ -1,12 +1,17 @@
 part of 'fetch_bloc.dart';
 
-sealed class FetchEvent<T> extends Equatable {
+sealed class FetchEvent extends Equatable {
   const FetchEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-final class FetchDataEvent<T> extends FetchEvent<T> {
-  const FetchDataEvent();
+final class FetchDataEvent<P> extends FetchEvent {
+  const FetchDataEvent({this.params});
+
+  final P? params;
+
+  @override
+  List<Object?> get props => [params];
 }

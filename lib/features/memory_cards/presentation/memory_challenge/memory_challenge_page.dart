@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
-import 'package:lang_learn_mobile/features/memory_cards/data/use_case/fetch_memory_cards_for_challenge.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/feedback_performer.dart';
@@ -27,13 +26,10 @@ class MemoryChallengePage extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => FetchMemoryChallengeBloc(
-              FetchMemoryCardsForChallenge(
-                context.read<DiLocator>().get<MemoryCardsRepository>(
-                  mock: true,
-                ),
-                id,
+              repository: context.read<DiLocator>().get<MemoryCardsRepository>(
+                mock: true,
               ),
-            )..add(FetchDataEvent<List<MemoryCard>>()),
+            )..add(FetchDataEvent<String>(params: id)),
           ),
           BlocProvider(
             create: (context) =>

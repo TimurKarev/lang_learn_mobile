@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
-import 'package:lang_learn_mobile/features/memory_cards/data/use_case/fetch_memory_cards_list.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'bloc/card_list/card_list_bloc.dart';
@@ -17,8 +16,8 @@ class CardsDashboardPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => CardListBloc(
-            FetchMemoryCardsList(
-              context.read<DiLocator>().get<MemoryCardsRepository>(mock: true),
+            repository: context.read<DiLocator>().get<MemoryCardsRepository>(
+              mock: true,
             ),
           )..add(FetchDataEvent<List<MemoryCardsPreview>>()),
         ),
