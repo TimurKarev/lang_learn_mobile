@@ -36,6 +36,13 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartobservatory._tcp</string>
+		<string>_dartvmservice._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This app uses the local network to discover observatory service for debugging</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

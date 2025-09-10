@@ -62,36 +62,36 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
-    id: '15',
-    fWord: Literal(
-      id: '15',
-      word: 'Добрый вечер',
-      transcript: 'Dobryy vecher',
-      lang: 'Russian',
-    ),
-    sWord: Literal(
-      id: '15',
-      word: 'Кайырлы кеч',
-      transcript: 'Kayyrly kech',
-      lang: 'Kyrgyz',
-    ),
-  ),
-  MemoryCard(
-    id: '16',
-    fWord: Literal(
-      id: '16',
-      word: 'Доброе утро',
-      transcript: 'Dobroe utro',
-      lang: 'Russian',
-    ),
-    sWord: Literal(
-      id: '16',
-      word: 'Кайырлы таң',
-      transcript: 'Kayyrly taŋ',
-      lang: 'Kyrgyz',
-    ),
-  ),
+  // MemoryCard(
+  //   id: '15',
+  //   fWord: Literal(
+  //     id: '15',
+  //     word: 'Добрый вечер',
+  //     transcript: 'Dobryy vecher',
+  //     lang: 'Russian',
+  //   ),
+  //   sWord: Literal(
+  //     id: '15',
+  //     word: 'Кайырлы кеч',
+  //     transcript: 'Kayyrly kech',
+  //     lang: 'Kyrgyz',
+  //   ),
+  // ),
+  // MemoryCard(
+  //   id: '16',
+  //   fWord: Literal(
+  //     id: '16',
+  //     word: 'Доброе утро',
+  //     transcript: 'Dobroe utro',
+  //     lang: 'Russian',
+  //   ),
+  //   sWord: Literal(
+  //     id: '16',
+  //     word: 'Кайырлы таң',
+  //     transcript: 'Kayyrly taŋ',
+  //     lang: 'Kyrgyz',
+  //   ),
+  // ),
   MemoryCard(
     id: '17',
     fWord: Literal(
