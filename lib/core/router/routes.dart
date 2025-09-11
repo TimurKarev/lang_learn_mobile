@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
+import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
@@ -15,11 +17,11 @@ import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/se
 class AppRoutes {
   // Route path constants
   static const String home = '/';
-  static const String dashboard = 'dashboard';
+  static const String dashboard = '/dashboard';
   static const String challenge = 'challenge';
   static const String information = '/information';
   static const String flashcardHistory = 'flashcard-history';
-  static const String settings = 'settings';
+  static const String flashcardSettings = '/flashcard-settings';
 
   // Parameter keys
   static const String challengeIdParam = 'id';
@@ -48,7 +50,7 @@ class AppRoutes {
     BuildContext context, {
     required String challengeId,
   }) {
-    context.go('/$dashboard/$challenge/$challengeId');
+    context.go('$dashboard/$challenge/$challengeId');
   }
 
   static void goToInformation(
@@ -68,30 +70,26 @@ class AppRoutes {
   }
 
   static Future<bool?> goToSettings(BuildContext context) async {
-    if (GoRouterState.of(context).fullPath case final String fullPath) {
-      return context.push<bool>('$fullPath/$settings');
-    }
-    return false;
+    return context.push<bool>(flashcardSettings);
   }
 
   static final router = GoRouter(
-    initialLocation: '/$dashboard',
+    initialLocation: dashboard,
     routes: <RouteBase>[
       ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
           return BlocProvider(
-            create: (context) => SettingsBloc()
-              ..add(
-                ModelHandlerSetModelEvent<FlashcardsSettings>(
-                  FlashcardsSettings.initial(),
-                ),
-              ),
+            create: (context) => SettingsBloc(
+              context.read<DiLocator>().get<FlashcardSettingsRepository>(),
+            )..add(ModelHandlerFetchEvent<FlashcardsSettings>(
+              params: const FlashcardsSettings.initial(),
+            )),
             child: child,
           );
         },
         routes: [
           GoRoute(
-            path: '/$dashboard',
+            path: dashboard,
             builder: (BuildContext context, GoRouterState state) {
               return const CardsDashboardPage();
             },
@@ -112,19 +110,7 @@ class AppRoutes {
                       return HistoryPage(history: history ?? []);
                     },
                   ),
-                  GoRoute(
-                    path: settings,
-                    builder: (BuildContext context, GoRouterState state) {
-                      return const SettingsPage();
-                    },
-                  ),
                 ],
-              ),
-              GoRoute(
-                path: settings,
-                builder: (BuildContext context, GoRouterState state) {
-                  return const SettingsPage();
-                },
               ),
             ],
           ),
@@ -135,7 +121,13 @@ class AppRoutes {
               return InformationPage(challengeId: challengeId!);
             },
           ),
-          GoRoute(path: '/', redirect: (context, state) => '/$dashboard'),
+          GoRoute(
+            path: flashcardSettings,
+            builder: (BuildContext context, GoRouterState state) {
+              return const SettingsPage();
+            },
+          ),
+          GoRoute(path: '/', redirect: (context, state) => dashboard),
         ],
       ),
     ],

@@ -6,7 +6,7 @@ import 'package:lang_learn_mobile/core/falures/failure.dart';
 part 'model_handler_event.dart';
 part 'model_handler_state.dart';
 
-abstract class ModelHandlerBloc<M extends Object, P extends Object?>
+abstract class ModelHandlerBloc<M extends Object, P extends Object>
     extends Bloc<ModelHandlerEvent, ModelHandlerState<M>> {
   ModelHandlerBloc({M? initModel})
     : super(

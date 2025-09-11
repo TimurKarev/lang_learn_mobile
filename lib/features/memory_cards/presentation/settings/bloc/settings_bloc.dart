@@ -5,19 +5,32 @@ import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dar
 import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 
-class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object?>
-    with SettingsChangeTracker<FlashcardsSettings> {
-  SettingsBloc() : super() {
+part 'settings_event.dart';
+
+class SettingsBloc
+    extends ModelHandlerBloc<FlashcardsSettings, FlashcardsSettings>
+    with SettingsChangeTracker<FlashcardsSettings, FlashcardsSettings> {
+  SettingsBloc(this._repository) : super() {
     on<ShuffleCardsChangesSettingsEvent>(_onShuffleCardsChange);
     on<RepeatWrongChangesSettingsEvent>(_onRepeatWrongChange);
     on<AskLanguageChangesSettingsEvent>(_onAskLanguageChange);
     on<ApplySettingsEvent>(_onApplySettings);
+    on<CancelSettingsEvent>(_onCancelSettings);
   }
 
+  final FlashcardSettingsRepository _repository;
+
   @override
-  Future<Either<Failure, FlashcardsSettings>> fetchModel(Object? params) async {
-    return Left(Failure('Not implemented'));
+  Future<Either<Failure, FlashcardsSettings>> fetchModel(
+    FlashcardsSettings? params,
+  ) async {
+    if (params case final FlashcardsSettings settings) {
+      return _repository.getSettings(defaultSettings: settings);
+    } else {
+      return Left(Failure('Settings are required'));
+    }
   }
 
   @override
@@ -83,26 +96,15 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object?>
       throw UnimplementedError();
     }
   }
-}
 
-class ShuffleCardsChangesSettingsEvent extends ModelHandlerEvent {
-  const ShuffleCardsChangesSettingsEvent(this.value);
-
-  final bool value;
-}
-
-class RepeatWrongChangesSettingsEvent extends ModelHandlerEvent {
-  const RepeatWrongChangesSettingsEvent(this.value);
-
-  final bool value;
-}
-
-class AskLanguageChangesSettingsEvent extends ModelHandlerEvent {
-  const AskLanguageChangesSettingsEvent(this.value);
-
-  final Languages value;
-}
-
-class ApplySettingsEvent extends ModelHandlerEvent {
-  const ApplySettingsEvent();
+  Future<void> _onCancelSettings(
+    CancelSettingsEvent event,
+    Emitter<ModelHandlerState<FlashcardsSettings>> emit,
+  ) async {
+    if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
+      emit(state.copyWith(model: getInitialModel()));
+    } else {
+      throw UnimplementedError();
+    }
+  }
 }

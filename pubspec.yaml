@@ -20,8 +20,11 @@ dependencies:
   provider: ^6.1.5+1
 
   supabase_flutter: ^2.10.0
+  json_annotation: ^4.9.0
 
 dev_dependencies:
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.6
   flutter_test:
     sdk: flutter
 
