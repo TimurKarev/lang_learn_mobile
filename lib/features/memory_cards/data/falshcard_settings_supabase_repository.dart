@@ -12,8 +12,23 @@ class FalshcardSettingsSupabaseRepository
   final SupabaseClient _supabase;
 
   @override
-  Future<Either<Failure, void>> saveSettings(FlashcardsSettings settings) {
-    throw UnimplementedError();
+  Future<Either<Failure, void>> saveSettings(
+    FlashcardsSettings settings,
+  ) async {
+    final userId = _supabase.auth.currentUser?.id;
+    if (userId == null) throw Exception('User not authenticated');
+
+    try {
+      await _supabase.from('flashcard_settings').upsert({
+        'user_id': userId,
+        'is_shuffle': settings.isShufleCards,
+        'is_repeat_wrong_card': settings.isRepeatWrong,
+        'ask_language': settings.askLanguage.name,
+      });
+      return Right(null);
+    } catch (e) {
+      return Left(Failure('Failed to save settings'));
+    }
   }
 
   @override

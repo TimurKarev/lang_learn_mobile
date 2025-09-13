@@ -26,7 +26,7 @@ class SettingsView extends StatelessWidget {
           const SizedBox(height: 20),
           SwitchListTile(
             title: const Text('Shuffle Cards'),
-            value: settings.shufleCards,
+            value: settings.isShufleCards,
             onChanged: (value) {
               context.read<SettingsBloc>().add(
                 ShuffleCardsChangesSettingsEvent(value),
@@ -35,7 +35,7 @@ class SettingsView extends StatelessWidget {
           ),
           SwitchListTile(
             title: const Text('Repeat Wrong Answers'),
-            value: settings.repeatWrong,
+            value: settings.isRepeatWrong,
             onChanged: (value) {
               context.read<SettingsBloc>().add(
                 RepeatWrongChangesSettingsEvent(value),

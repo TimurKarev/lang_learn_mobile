@@ -9,15 +9,15 @@ part of 'falshcard_settings_dto.dart';
 FalshcardSettingsDto _$FalshcardSettingsDtoFromJson(
   Map<String, dynamic> json,
 ) => FalshcardSettingsDto(
-  shufleCards: json['shufleCards'] as bool,
-  repeatWrong: json['repeatWrong'] as bool,
-  askLanguage: json['askLanguage'] as String,
+  isShufle: json['is_shuffle'] as bool,
+  isRepeatWrongCard: json['is_repeat_wrong_card'] as bool,
+  askLanguage: json['ask_language'] as String,
 );
 
 Map<String, dynamic> _$FalshcardSettingsDtoToJson(
   FalshcardSettingsDto instance,
 ) => <String, dynamic>{
-  'shufleCards': instance.shufleCards,
-  'repeatWrong': instance.repeatWrong,
-  'askLanguage': instance.askLanguage,
+  'is_shuffle': instance.isShufle,
+  'is_repeat_wrong_card': instance.isRepeatWrongCard,
+  'ask_language': instance.askLanguage,
 };

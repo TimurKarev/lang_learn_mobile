@@ -4,25 +4,25 @@ import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/falshcard_settings_dto.dart';
 
 class FlashcardsSettings extends Equatable {
-  final bool shufleCards;
-  final bool repeatWrong;
+  final bool isShufleCards;
+  final bool isRepeatWrong;
   final Languages askLanguage;
 
   const FlashcardsSettings({
-    required this.shufleCards,
-    required this.repeatWrong,
+    required this.isShufleCards,
+    required this.isRepeatWrong,
     required this.askLanguage,
   });
 
   const FlashcardsSettings.initial()
     : this(
-        shufleCards: false,
-        repeatWrong: true,
+        isShufleCards: false,
+        isRepeatWrong: true,
         askLanguage: Languages.russian,
       );
 
   @override
-  List<Object?> get props => [shufleCards, repeatWrong, askLanguage];
+  List<Object?> get props => [isShufleCards, isRepeatWrong, askLanguage];
 }
 
 class FlashcardsSettingsMapper
@@ -30,8 +30,8 @@ class FlashcardsSettingsMapper
   @override
   FlashcardsSettings mapToEntity(FalshcardSettingsDto dto) {
     return FlashcardsSettings(
-      shufleCards: dto.shufleCards,
-      repeatWrong: dto.repeatWrong,
+      isShufleCards: dto.isShufle,
+      isRepeatWrong: dto.isRepeatWrongCard,
       askLanguage: Languages.getByName(dto.askLanguage),
     );
   }
@@ -39,8 +39,8 @@ class FlashcardsSettingsMapper
   @override
   FalshcardSettingsDto mapToDto(FlashcardsSettings entity) {
     return FalshcardSettingsDto(
-      shufleCards: entity.shufleCards,
-      repeatWrong: entity.repeatWrong,
+      isShufle: entity.isShufleCards,
+      isRepeatWrongCard: entity.isRepeatWrong,
       askLanguage: entity.askLanguage.name,
     );
   }

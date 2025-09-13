@@ -25,7 +25,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
     _settings = settings;
     _initialCards = List<MemoryCard>.from(cards);
     _shuffledCards = List<MemoryCard>.from(cards);
-    if (_settings.shufleCards) {
+    if (_settings.isShufleCards) {
       _shuffledCards?.shuffle();
     }
     _currentIndex = 0;
@@ -36,7 +36,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
     if (_initialCards case final List<MemoryCard> cards when cards.isNotEmpty) {
       _settings = settings;
       _shuffledCards = List<MemoryCard>.from(cards);
-      if (_settings.shufleCards) {
+      if (_settings.isShufleCards) {
         _shuffledCards?.shuffle();
       }
       _currentIndex = 0;
@@ -84,7 +84,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
 
     final nextCard = _getCard(cards[_currentIndex]);
 
-    if (_settings.repeatWrong && feedback == false) {
+    if (_settings.isRepeatWrong && feedback == false) {
       _shuffledCards?.add(currentCard);
     }
 

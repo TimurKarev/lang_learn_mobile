@@ -5,8 +5,8 @@ part 'falshcard_settings_dto.g.dart';
 @JsonSerializable()
 class FalshcardSettingsDto {
   FalshcardSettingsDto({
-    required this.shufleCards,
-    required this.repeatWrong,
+    required this.isShufle,
+    required this.isRepeatWrongCard,
     required this.askLanguage,
   });
 
@@ -15,7 +15,10 @@ class FalshcardSettingsDto {
 
   Map<String, dynamic> toJson() => _$FalshcardSettingsDtoToJson(this);
 
-  final bool shufleCards;
-  final bool repeatWrong;
+  @JsonKey(name: 'is_shuffle')
+  final bool isShufle;
+  @JsonKey(name: 'is_repeat_wrong_card')
+  final bool isRepeatWrongCard;
+  @JsonKey(name: 'ask_language')
   final String askLanguage;
 }

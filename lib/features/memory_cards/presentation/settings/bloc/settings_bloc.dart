@@ -44,8 +44,8 @@ class SettingsBloc
   ) async {
     if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
       final model = FlashcardsSettings(
-        shufleCards: event.value,
-        repeatWrong: state.model.repeatWrong,
+        isShufleCards: event.value,
+        isRepeatWrong: state.model.isRepeatWrong,
         askLanguage: state.model.askLanguage,
       );
       emit(state.copyWith(model: model));
@@ -60,8 +60,8 @@ class SettingsBloc
   ) async {
     if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
       final model = FlashcardsSettings(
-        shufleCards: state.model.shufleCards,
-        repeatWrong: event.value,
+        isShufleCards: state.model.isShufleCards,
+        isRepeatWrong: event.value,
         askLanguage: state.model.askLanguage,
       );
       emit(state.copyWith(model: model));
@@ -76,8 +76,8 @@ class SettingsBloc
   ) async {
     if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
       final model = FlashcardsSettings(
-        shufleCards: state.model.shufleCards,
-        repeatWrong: state.model.repeatWrong,
+        isShufleCards: state.model.isShufleCards,
+        isRepeatWrong: state.model.isRepeatWrong,
         askLanguage: event.value,
       );
       emit(state.copyWith(model: model));
@@ -91,6 +91,9 @@ class SettingsBloc
     Emitter<ModelHandlerState<FlashcardsSettings>> emit,
   ) async {
     if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
+      if (state.model != getInitialModel()) {
+        await _repository.saveSettings(state.model);
+      }
       add(ModelHandlerSetModelEvent(state.model));
     } else {
       throw UnimplementedError();
