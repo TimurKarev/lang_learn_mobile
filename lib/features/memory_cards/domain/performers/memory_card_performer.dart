@@ -1,7 +1,7 @@
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart'
     show FlashcardFeedback;
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
 abstract interface class MemoryChallangePerformer {
   String get challengeId;
@@ -9,13 +9,13 @@ abstract interface class MemoryChallangePerformer {
   List<FlashcardFeedback?> get history;
 
   void init({
-    required List<MemoryCard> cards,
+    required List<Flashcard> cards,
     required FlashcardsSettings settings,
   });
 
-  MemoryCard? startChallange();
+  Flashcard? startChallange();
 
-  MemoryCard? restart({required FlashcardsSettings settings});
+  Flashcard? restart({required FlashcardsSettings settings});
 
-  MemoryCard? getNextCard({bool? feedback});
+  Flashcard? getNextCard({bool? feedback});
 }

@@ -1,7 +1,7 @@
 import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
 class FeedbackPerformer implements MemoryChallangePerformer {
@@ -12,19 +12,19 @@ class FeedbackPerformer implements MemoryChallangePerformer {
 
   @override
   final List<FlashcardFeedback?> history;
-  List<MemoryCard>? _initialCards;
-  List<MemoryCard>? _shuffledCards;
+  List<Flashcard>? _initialCards;
+  List<Flashcard>? _shuffledCards;
   FlashcardsSettings _settings = FlashcardsSettings.initial();
   int _currentIndex = 0;
 
   @override
   void init({
-    required List<MemoryCard> cards,
+    required List<Flashcard> cards,
     required FlashcardsSettings settings,
   }) {
     _settings = settings;
-    _initialCards = List<MemoryCard>.from(cards);
-    _shuffledCards = List<MemoryCard>.from(cards);
+    _initialCards = List<Flashcard>.from(cards);
+    _shuffledCards = List<Flashcard>.from(cards);
     if (_settings.isShufleCards) {
       _shuffledCards?.shuffle();
     }
@@ -32,10 +32,10 @@ class FeedbackPerformer implements MemoryChallangePerformer {
   }
 
   @override
-  MemoryCard? restart({required FlashcardsSettings settings}) {
-    if (_initialCards case final List<MemoryCard> cards when cards.isNotEmpty) {
+  Flashcard? restart({required FlashcardsSettings settings}) {
+    if (_initialCards case final List<Flashcard> cards when cards.isNotEmpty) {
       _settings = settings;
-      _shuffledCards = List<MemoryCard>.from(cards);
+      _shuffledCards = List<Flashcard>.from(cards);
       if (_settings.isShufleCards) {
         _shuffledCards?.shuffle();
       }
@@ -48,7 +48,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
   }
 
   @override
-  MemoryCard? startChallange() {
+  Flashcard? startChallange() {
     final cards = _shuffledCards;
     if (cards == null) {
       return null;
@@ -61,7 +61,7 @@ class FeedbackPerformer implements MemoryChallangePerformer {
   }
 
   @override
-  MemoryCard? getNextCard({bool? feedback}) {
+  Flashcard? getNextCard({bool? feedback}) {
     final cards = _shuffledCards;
     if (cards == null) {
       return null;
@@ -91,8 +91,8 @@ class FeedbackPerformer implements MemoryChallangePerformer {
     return nextCard;
   }
 
-  MemoryCard _getCard(MemoryCard card) {
-    final newCard = _settings.askLanguage == Languages.kyrgyz
+  Flashcard _getCard(Flashcard card) {
+    final newCard = _settings.askLanguage == Languages.ky
         ? card.revert()
         : card;
     return newCard;

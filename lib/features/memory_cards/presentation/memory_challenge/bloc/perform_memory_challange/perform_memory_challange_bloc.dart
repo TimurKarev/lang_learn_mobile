@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
 part 'perform_memory_challange_event.dart';
@@ -37,7 +37,7 @@ class PerformMemoryChallangeBloc
 
     _challange.init(cards: event.cards, settings: event.settings);
 
-    if (_challange.startChallange() case final MemoryCard card) {
+    if (_challange.startChallange() case final Flashcard card) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
       emit(PerformMemoryChallangeFinished(history: _challange.history));
@@ -49,7 +49,7 @@ class PerformMemoryChallangeBloc
     Emitter<PerformMemoryChallangeState> emit,
   ) async {
     if (_challange.restart(settings: event.settings)
-        case final MemoryCard card) {
+        case final Flashcard card) {
       emit(PerformMemoryChallangeQuestion(card));
     } else {
       emit(PerformMemoryChallangeFinished(history: _challange.history));

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
 class MemoryCardWidget extends StatefulWidget {
   const MemoryCardWidget({
@@ -12,7 +12,7 @@ class MemoryCardWidget extends StatefulWidget {
     this.padding = EdgeInsets.zero,
   });
 
-  final MemoryCard card;
+  final Flashcard card;
   final VoidCallback? onCardFlipped;
   final VoidCallback? onPressedAfterFlipped;
 

@@ -4,7 +4,7 @@ import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/feedback_performer.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/fetch_memory_challenge/memory_challenge_bloc.dart';
@@ -38,17 +38,12 @@ class MemoryChallengePage extends StatelessWidget {
           ),
         ],
         child:
-            BlocListener<
-              FetchMemoryChallengeBloc,
-              FetchState<List<MemoryCard>>
-            >(
+            BlocListener<FetchMemoryChallengeBloc, FetchState<List<Flashcard>>>(
               listenWhen: (previous, current) =>
-                  previous is! FetchLoaded<List<MemoryCard>> &&
-                  current is FetchLoaded<List<MemoryCard>>,
+                  previous is! FetchLoaded<List<Flashcard>> &&
+                  current is FetchLoaded<List<Flashcard>>,
               listener: (context, state) {
-                if (state case FetchLoaded<List<MemoryCard>>(
-                  data: final data,
-                )) {
+                if (state case FetchLoaded<List<Flashcard>>(data: final data)) {
                   context.read<PerformMemoryChallangeBloc>().add(
                     PerformMemoryChallangeDataReadyEvent(
                       cards: data,

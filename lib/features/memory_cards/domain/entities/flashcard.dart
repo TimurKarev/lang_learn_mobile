@@ -1,20 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 
-class MemoryCard extends Equatable {
+class Flashcard extends Equatable {
   final String id;
 
   final Literal fWord;
   final Literal sWord;
 
-  const MemoryCard({
-    required this.id,
-    required this.fWord,
-    required this.sWord,
-  });
+  const Flashcard({required this.id, required this.fWord, required this.sWord});
 
-  MemoryCard revert() {
-    return MemoryCard(id: id, fWord: sWord, sWord: fWord);
+  Flashcard revert() {
+    return Flashcard(id: id, fWord: sWord, sWord: fWord);
   }
 
   @override

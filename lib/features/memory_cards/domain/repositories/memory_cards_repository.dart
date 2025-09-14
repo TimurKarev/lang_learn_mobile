@@ -1,6 +1,7 @@
 import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/vocabulary.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/greetings_cards.dart';
@@ -12,7 +13,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/verb
 
 abstract class MemoryCardsRepository {
   Future<Either<Failure, List<MemoryCardsPreview>>> getMemoryCardsList();
-  Future<Either<Failure, List<MemoryCard>>> getMemoryCardsForChallenge(
+  Future<Either<Failure, List<Flashcard>>> getMemoryCardsForChallenge(
     String challengeId,
   );
   Future<Either<Failure, Vocabulary>> getInformation(String challengeId);
@@ -30,37 +31,39 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
         id: '1',
         title: 'Цифры',
         description: 'Учим кыргызские цифры',
+        theme: ChallengeThemes.number,
       ),
-      MemoryCardsPreview(
-        id: '2',
-        title: 'Приветствия и вежливость',
-        description: 'Основные фразы вежливости на кыргызском',
-      ),
-      MemoryCardsPreview(
-        id: '3',
-        title: 'Местоимения',
-        description: 'Личные местоимения в кыргызском языке',
-      ),
-      MemoryCardsPreview(
-        id: '4',
-        title: 'Бытовые слова',
-        description: 'Слова для повседневной жизни',
-      ),
-      MemoryCardsPreview(
-        id: '5',
-        title: 'Глаголы',
-        description: 'Основные глаголы кыргызского языка',
-      ),
+      // MemoryCardsPreview(
+      //   id: '2',
+      //   title: 'Приветствия и вежливость',
+      //   description: 'Основные фразы вежливости на кыргызском',
+      // ),
+      // MemoryCardsPreview(
+      //   id: '3',
+      //   title: 'Местоимения',
+      //   description: 'Личные местоимения в кыргызском языке',
+      // ),
+      // MemoryCardsPreview(
+      //   id: '4',
+      //   title: 'Бытовые слова',
+      //   description: 'Слова для повседневной жизни',
+      // ),
+      // MemoryCardsPreview(
+      //   id: '5',
+      //   title: 'Глаголы',
+      //   description: 'Основные глаголы кыргызского языка',
+      // ),
       MemoryCardsPreview(
         id: '6',
         title: 'Вопросы и повседневные фразы',
         description: 'Вопросительные слова и фразы',
+        theme: ChallengeThemes.household,
       ),
     ]);
   }
 
   @override
-  Future<Either<Failure, List<MemoryCard>>> getMemoryCardsForChallenge(
+  Future<Either<Failure, List<Flashcard>>> getMemoryCardsForChallenge(
     String challengeId,
   ) async {
     await Future.delayed(_duration);

@@ -1,13 +1,13 @@
 import 'package:lang_learn_mobile/core/entities/litera.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
-const List<MemoryCard> householdMemoryCards = [
-  MemoryCard(
+const List<Flashcard> householdMemoryCards = [
+  Flashcard(
     id: '29',
     fWord: Literal(id: '29', word: 'Дом', transcript: 'Dom', lang: 'Russian'),
     sWord: Literal(id: '29', word: 'Үй', transcript: 'Üy', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '30',
     fWord: Literal(id: '30', word: 'Еда', transcript: 'Eda', lang: 'Russian'),
     sWord: Literal(
@@ -17,22 +17,22 @@ const List<MemoryCard> householdMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '31',
     fWord: Literal(id: '31', word: 'Вода', transcript: 'Voda', lang: 'Russian'),
     sWord: Literal(id: '31', word: 'Суу', transcript: 'Suu', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '32',
     fWord: Literal(id: '32', word: 'Чай', transcript: 'Chay', lang: 'Russian'),
     sWord: Literal(id: '32', word: 'Чай', transcript: 'Chay', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '33',
     fWord: Literal(id: '33', word: 'Хлеб', transcript: 'Hleb', lang: 'Russian'),
     sWord: Literal(id: '33', word: 'Нан', transcript: 'Nan', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '34',
     fWord: Literal(
       id: '34',
@@ -42,7 +42,7 @@ const List<MemoryCard> householdMemoryCards = [
     ),
     sWord: Literal(id: '34', word: 'Эшик', transcript: 'Eshik', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '35',
     fWord: Literal(id: '35', word: 'Окно', transcript: 'Okno', lang: 'Russian'),
     sWord: Literal(
@@ -52,7 +52,7 @@ const List<MemoryCard> householdMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '36',
     fWord: Literal(id: '36', word: 'Стол', transcript: 'Stol', lang: 'Russian'),
     sWord: Literal(
@@ -62,7 +62,7 @@ const List<MemoryCard> householdMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '37',
     fWord: Literal(id: '37', word: 'Стул', transcript: 'Stul', lang: 'Russian'),
     sWord: Literal(
@@ -72,7 +72,7 @@ const List<MemoryCard> householdMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '38',
     fWord: Literal(
       id: '38',
@@ -87,7 +87,7 @@ const List<MemoryCard> householdMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '39',
     fWord: Literal(
       id: '39',
@@ -97,7 +97,7 @@ const List<MemoryCard> householdMemoryCards = [
     ),
     sWord: Literal(id: '39', word: 'Жол', transcript: 'Jol', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '40',
     fWord: Literal(
       id: '40',

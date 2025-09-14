@@ -1,8 +1,8 @@
 import 'package:lang_learn_mobile/core/entities/litera.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
-const List<MemoryCard> greetingsMemoryCards = [
-  MemoryCard(
+const List<Flashcard> greetingsMemoryCards = [
+  Flashcard(
     id: '11',
     fWord: Literal(
       id: '11',
@@ -17,7 +17,7 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '12',
     fWord: Literal(
       id: '12',
@@ -32,7 +32,7 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '13',
     fWord: Literal(
       id: '13',
@@ -47,7 +47,7 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '14',
     fWord: Literal(
       id: '14',
@@ -92,7 +92,7 @@ const List<MemoryCard> greetingsMemoryCards = [
   //     lang: 'Kyrgyz',
   //   ),
   // ),
-  MemoryCard(
+  Flashcard(
     id: '17',
     fWord: Literal(
       id: '17',
@@ -107,7 +107,7 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '18',
     fWord: Literal(
       id: '18',
@@ -122,7 +122,7 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '19',
     fWord: Literal(
       id: '19',
@@ -137,7 +137,7 @@ const List<MemoryCard> greetingsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '20',
     fWord: Literal(
       id: '20',

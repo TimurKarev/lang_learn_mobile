@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
 class VocabularyTile extends StatelessWidget {
   const VocabularyTile({super.key, required this.memoryCard});
 
-  final MemoryCard memoryCard;
+  final Flashcard memoryCard;
 
   @override
   Widget build(BuildContext context) {

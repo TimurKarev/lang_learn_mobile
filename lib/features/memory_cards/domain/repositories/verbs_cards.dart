@@ -1,8 +1,8 @@
 import 'package:lang_learn_mobile/core/entities/litera.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
-const List<MemoryCard> verbsMemoryCards = [
-  MemoryCard(
+const List<Flashcard> verbsMemoryCards = [
+  Flashcard(
     id: '41',
     fWord: Literal(
       id: '41',
@@ -17,7 +17,7 @@ const List<MemoryCard> verbsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '42',
     fWord: Literal(
       id: '42',
@@ -32,7 +32,7 @@ const List<MemoryCard> verbsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '43',
     fWord: Literal(
       id: '43',
@@ -42,12 +42,12 @@ const List<MemoryCard> verbsMemoryCards = [
     ),
     sWord: Literal(id: '43', word: 'Жеүү', transcript: 'Jeüü', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '44',
     fWord: Literal(id: '44', word: 'Пить', transcript: 'Pit', lang: 'Russian'),
     sWord: Literal(id: '44', word: 'Ичүү', transcript: 'Ichüü', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '45',
     fWord: Literal(
       id: '45',
@@ -62,7 +62,7 @@ const List<MemoryCard> verbsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '46',
     fWord: Literal(
       id: '46',
@@ -77,7 +77,7 @@ const List<MemoryCard> verbsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '47',
     fWord: Literal(
       id: '47',
@@ -87,7 +87,7 @@ const List<MemoryCard> verbsMemoryCards = [
     ),
     sWord: Literal(id: '47', word: 'Угуу', transcript: 'Uguu', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '48',
     fWord: Literal(
       id: '48',
@@ -102,7 +102,7 @@ const List<MemoryCard> verbsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '49',
     fWord: Literal(
       id: '49',
@@ -112,7 +112,7 @@ const List<MemoryCard> verbsMemoryCards = [
     ),
     sWord: Literal(id: '49', word: 'Окуу', transcript: 'Okuu', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '50',
     fWord: Literal(
       id: '50',

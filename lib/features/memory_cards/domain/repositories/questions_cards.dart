@@ -1,8 +1,8 @@
 import 'package:lang_learn_mobile/core/entities/litera.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_card.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
-const List<MemoryCard> questionsMemoryCards = [
-  MemoryCard(
+const List<Flashcard> questionsMemoryCards = [
+  Flashcard(
     id: '51',
     fWord: Literal(id: '51', word: 'Где', transcript: 'Gde', lang: 'Russian'),
     sWord: Literal(
@@ -12,7 +12,7 @@ const List<MemoryCard> questionsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '52',
     fWord: Literal(
       id: '52',
@@ -27,7 +27,7 @@ const List<MemoryCard> questionsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '53',
     fWord: Literal(
       id: '53',
@@ -42,7 +42,7 @@ const List<MemoryCard> questionsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '54',
     fWord: Literal(
       id: '54',
@@ -57,7 +57,7 @@ const List<MemoryCard> questionsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '55',
     fWord: Literal(
       id: '55',
@@ -72,7 +72,7 @@ const List<MemoryCard> questionsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '56',
     fWord: Literal(
       id: '56',
@@ -87,12 +87,12 @@ const List<MemoryCard> questionsMemoryCards = [
       lang: 'Kyrgyz',
     ),
   ),
-  MemoryCard(
+  Flashcard(
     id: '57',
     fWord: Literal(id: '57', word: 'Это', transcript: 'Eto', lang: 'Russian'),
     sWord: Literal(id: '57', word: 'Бул', transcript: 'Bul', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '58',
     fWord: Literal(
       id: '58',
@@ -102,12 +102,12 @@ const List<MemoryCard> questionsMemoryCards = [
     ),
     sWord: Literal(id: '58', word: 'Тиги', transcript: 'Tigi', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '59',
     fWord: Literal(id: '59', word: 'Нет', transcript: 'Net', lang: 'Russian'),
     sWord: Literal(id: '59', word: 'Жок', transcript: 'Jok', lang: 'Kyrgyz'),
   ),
-  MemoryCard(
+  Flashcard(
     id: '60',
     fWord: Literal(id: '60', word: 'Да', transcript: 'Da', lang: 'Russian'),
     sWord: Literal(id: '60', word: 'Ооба', transcript: 'Ooba', lang: 'Kyrgyz'),

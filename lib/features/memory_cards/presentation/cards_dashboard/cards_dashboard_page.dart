@@ -16,9 +16,7 @@ class CardsDashboardPage extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => CardListBloc(
-            repository: context.read<DiLocator>().get<MemoryCardsRepository>(
-              mock: true,
-            ),
+            repository: context.read<DiLocator>().get<MemoryCardsRepository>(),
           )..add(FetchDataEvent<List<MemoryCardsPreview>>()),
         ),
       ],

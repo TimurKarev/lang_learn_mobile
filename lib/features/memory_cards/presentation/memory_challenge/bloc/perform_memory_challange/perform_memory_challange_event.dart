@@ -14,7 +14,7 @@ final class PerformMemoryChallangeDataReadyEvent
     required this.settings,
   });
 
-  final List<MemoryCard> cards;
+  final List<Flashcard> cards;
   final FlashcardsSettings settings;
 }
 
@@ -28,7 +28,7 @@ final class PerformMemoryChallangeAnswerEvent
     extends PerformMemoryChallangeEvent {
   const PerformMemoryChallangeAnswerEvent(this.card);
 
-  final MemoryCard card;
+  final Flashcard card;
 }
 
 final class PerformMemoryChallangeNextEvent

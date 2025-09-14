@@ -18,7 +18,7 @@ class FlashcardsSettings extends Equatable {
     : this(
         isShufleCards: false,
         isRepeatWrong: true,
-        askLanguage: Languages.russian,
+        askLanguage: Languages.ru,
       );
 
   @override

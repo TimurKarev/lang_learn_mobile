@@ -1,10 +1,10 @@
 enum Languages {
-  kyrgyz,
-  russian;
+  ky,
+  ru;
 
   static Languages getByName(
     String name, {
-    Languages defaultValue = Languages.kyrgyz,
+    Languages defaultValue = Languages.ky,
   }) {
     final index = Languages.values.indexWhere(
       (element) => element.name == name,

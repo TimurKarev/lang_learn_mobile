@@ -35,7 +35,7 @@ final class PerformMemoryChallangeQuestion
     extends PerformMemoryChallangeLoaded {
   const PerformMemoryChallangeQuestion(this.card);
 
-  final MemoryCard card;
+  final Flashcard card;
 
   @override
   List<Object> get props => [card];
@@ -44,7 +44,7 @@ final class PerformMemoryChallangeQuestion
 final class PerformMemoryChallangeAnswer extends PerformMemoryChallangeLoaded {
   const PerformMemoryChallangeAnswer(this.card);
 
-  final MemoryCard card;
+  final Flashcard card;
 
   @override
   List<Object> get props => [card];

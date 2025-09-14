@@ -1,5 +1,6 @@
 import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/falshcard_settings_supabase_repository.dart';
+import 'package:lang_learn_mobile/features/memory_cards/data/memory_cards_supabase_repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -20,8 +21,7 @@ class DiLocator {
       if (mock) {
         newObject = MemoryCardsRepositoryMock();
       } else {
-        throw Exception('Mock not implemented');
-        //newObject = MemoryCardsRepositoryImpl();
+        newObject = MemoryCardsSupabaseRepository(Supabase.instance.client);
       }
       if (keepAlive) {
         _objectContainer.add(newObject);
