@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/common/memory_challenge_view.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 
 class MemoryChallengeScreen extends StatelessWidget {
-  const MemoryChallengeScreen({super.key, required this.challengeId});
+  const MemoryChallengeScreen({super.key, required this.challengeTheme});
 
-  final String challengeId;
+  final ChallengeThemes challengeTheme;
 
   @override
   Widget build(BuildContext context) {

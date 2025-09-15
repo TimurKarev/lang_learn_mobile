@@ -1,18 +1,22 @@
 import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/falures/failure.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 
-class FetchMemoryChallengeBloc extends FetchBloc<List<Flashcard>, String> {
+class FetchMemoryChallengeBloc
+    extends FetchBloc<List<Flashcard>, ChallengeThemes> {
   FetchMemoryChallengeBloc({required MemoryCardsRepository repository})
     : _repository = repository;
 
   final MemoryCardsRepository _repository;
 
   @override
-  Future<Either<Failure, List<Flashcard>>> fetchModel(String? params) async {
-    if (params case final String challengeId) {
+  Future<Either<Failure, List<Flashcard>>> fetchModel(
+    ChallengeThemes? params,
+  ) async {
+    if (params case final ChallengeThemes challengeId) {
       final result = await _repository.getMemoryCardsForChallenge(challengeId);
       return result.fold(
         ifLeft: (failure) => Left(failure),

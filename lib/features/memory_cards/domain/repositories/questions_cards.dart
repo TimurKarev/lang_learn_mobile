@@ -1,15 +1,21 @@
+import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
 const List<Flashcard> questionsMemoryCards = [
   Flashcard(
     id: '51',
-    fWord: Literal(id: '51', word: 'Где', transcript: 'Gde', lang: 'Russian'),
+    fWord: Literal(
+      id: '51',
+      word: 'Где',
+      transcript: 'Gde',
+      lang: Languages.ru,
+    ),
     sWord: Literal(
       id: '51',
       word: 'Кайда',
       transcript: 'Kayda',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -18,13 +24,13 @@ const List<Flashcard> questionsMemoryCards = [
       id: '52',
       word: 'Когда',
       transcript: 'Kogda',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '52',
       word: 'Качан',
       transcript: 'Kachan',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -33,13 +39,13 @@ const List<Flashcard> questionsMemoryCards = [
       id: '53',
       word: 'Сколько',
       transcript: 'Skolko',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '53',
       word: 'Канча',
       transcript: 'Kancha',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -48,13 +54,13 @@ const List<Flashcard> questionsMemoryCards = [
       id: '54',
       word: 'Какой/какая',
       transcript: 'Kakoy/kakaya',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '54',
       word: 'Кандай',
       transcript: 'Kanday',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -63,13 +69,13 @@ const List<Flashcard> questionsMemoryCards = [
       id: '55',
       word: 'Почему',
       transcript: 'Pochemu',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '55',
       word: 'Эмнеге',
       transcript: 'Emnege',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -78,19 +84,29 @@ const List<Flashcard> questionsMemoryCards = [
       id: '56',
       word: 'Который',
       transcript: 'Kotoriy',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '56',
       word: 'Кайсы',
       transcript: 'Kaysy',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
     id: '57',
-    fWord: Literal(id: '57', word: 'Это', transcript: 'Eto', lang: 'Russian'),
-    sWord: Literal(id: '57', word: 'Бул', transcript: 'Bul', lang: 'Kyrgyz'),
+    fWord: Literal(
+      id: '57',
+      word: 'Это',
+      transcript: 'Eto',
+      lang: Languages.ru,
+    ),
+    sWord: Literal(
+      id: '57',
+      word: 'Бул',
+      transcript: 'Bul',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '58',
@@ -98,18 +114,38 @@ const List<Flashcard> questionsMemoryCards = [
       id: '58',
       word: 'Тот/та',
       transcript: 'Tot/ta',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
-    sWord: Literal(id: '58', word: 'Тиги', transcript: 'Tigi', lang: 'Kyrgyz'),
+    sWord: Literal(
+      id: '58',
+      word: 'Тиги',
+      transcript: 'Tigi',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '59',
-    fWord: Literal(id: '59', word: 'Нет', transcript: 'Net', lang: 'Russian'),
-    sWord: Literal(id: '59', word: 'Жок', transcript: 'Jok', lang: 'Kyrgyz'),
+    fWord: Literal(
+      id: '59',
+      word: 'Нет',
+      transcript: 'Net',
+      lang: Languages.ru,
+    ),
+    sWord: Literal(
+      id: '59',
+      word: 'Жок',
+      transcript: 'Jok',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '60',
-    fWord: Literal(id: '60', word: 'Да', transcript: 'Da', lang: 'Russian'),
-    sWord: Literal(id: '60', word: 'Ооба', transcript: 'Ooba', lang: 'Kyrgyz'),
+    fWord: Literal(id: '60', word: 'Да', transcript: 'Da', lang: Languages.ru),
+    sWord: Literal(
+      id: '60',
+      word: 'Ооба',
+      transcript: 'Ooba',
+      lang: Languages.ky,
+    ),
   ),
 ];

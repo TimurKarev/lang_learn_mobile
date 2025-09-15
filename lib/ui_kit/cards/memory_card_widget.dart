@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
 class MemoryCardWidget extends StatefulWidget {
@@ -128,7 +129,7 @@ class _QuestionBody extends StatelessWidget {
   });
 
   final String question;
-  final String lang;
+  final Languages lang;
   final String transcript;
 
   @override
@@ -137,7 +138,7 @@ class _QuestionBody extends StatelessWidget {
       children: [
         const Spacer(),
         Text(
-          lang,
+          lang.name,
           style: Theme.of(context).textTheme.titleMedium,
           textAlign: TextAlign.center,
         ),
@@ -169,10 +170,10 @@ class _AnswerBody extends StatelessWidget {
   });
 
   final String question;
-  final String questionlang;
+  final Languages questionlang;
   final String answerTranscript;
   final String answer;
-  final String answerLang;
+  final Languages answerLang;
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +181,7 @@ class _AnswerBody extends StatelessWidget {
       children: [
         const Spacer(),
         Text(
-          answerLang,
+          answerLang.name,
           style: Theme.of(context).textTheme.titleMedium,
           textAlign: TextAlign.center,
         ),
@@ -204,7 +205,7 @@ class _AnswerBody extends StatelessWidget {
           endIndent: 32,
         ),
         Text(
-          questionlang,
+          questionlang.name,
           style: Theme.of(context).textTheme.titleSmall,
           textAlign: TextAlign.center,
         ),

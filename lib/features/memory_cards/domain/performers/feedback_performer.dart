@@ -1,14 +1,15 @@
 import 'package:lang_learn_mobile/core/entities/languages.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
 
 class FeedbackPerformer implements MemoryChallangePerformer {
-  FeedbackPerformer({required this.challengeId}) : history = [];
+  FeedbackPerformer({required this.challengeTheme}) : history = [];
 
   @override
-  final String challengeId;
+  final ChallengeThemes challengeTheme;
 
   @override
   final List<FlashcardFeedback?> history;

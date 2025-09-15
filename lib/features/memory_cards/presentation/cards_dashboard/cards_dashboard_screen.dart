@@ -64,11 +64,11 @@ class CardsDashboardScreen extends StatelessWidget {
                             description: card.description,
                             onTap: () => AppRoutes.goToChallenge(
                               context,
-                              challengeId: card.id,
+                              challengeTheme: card.theme,
                             ),
                             onInfoTap: () => AppRoutes.goToInformation(
                               context,
-                              challengeId: card.id,
+                              challengeTheme: card.theme,
                             ),
                           ),
                         );

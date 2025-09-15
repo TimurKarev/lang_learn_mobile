@@ -1,3 +1,4 @@
+import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
@@ -8,13 +9,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '11',
       word: 'Привет',
       transcript: 'Privet',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '11',
       word: 'Салам',
       transcript: 'Salam',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -23,13 +24,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '12',
       word: 'Здравствуйте',
       transcript: 'Zdravstvuyte',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '12',
       word: 'Саламатсызбы',
       transcript: 'Salamatsyzby',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -38,13 +39,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '13',
       word: 'Как дела?',
       transcript: 'Kak dela?',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '13',
       word: 'Жакшыбы',
       transcript: 'Jakshyby',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -53,13 +54,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '14',
       word: 'Спасибо',
       transcript: 'Spasibo',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '14',
       word: 'Рахмат',
       transcript: 'Rahmat',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   // MemoryCard(
@@ -98,13 +99,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '17',
       word: 'Хорошо',
       transcript: 'Horosho',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '17',
       word: 'Жакшы',
       transcript: 'Jakshy',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -113,13 +114,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '18',
       word: 'До свидания',
       transcript: 'Do svidaniya',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '18',
       word: 'Кош болуңуз',
       transcript: 'Kosh boluŋuz',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -128,13 +129,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '19',
       word: 'Пожалуйста',
       transcript: 'Pozhaluysta',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '19',
       word: 'Сураныч',
       transcript: 'Suranych',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -143,13 +144,13 @@ const List<Flashcard> greetingsMemoryCards = [
       id: '20',
       word: 'Извините',
       transcript: 'Izvinite',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '20',
       word: 'Кечиресиз',
       transcript: 'Kechiresiz',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
 ];

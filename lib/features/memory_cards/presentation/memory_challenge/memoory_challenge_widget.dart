@@ -116,7 +116,9 @@ class _ButtonPanel extends StatelessWidget {
         ElevatedButton(
           onPressed: () => AppRoutes.goToInformation(
             context,
-            challengeId: context.read<PerformMemoryChallangeBloc>().challengeId,
+            challengeTheme: context
+                .read<PerformMemoryChallangeBloc>()
+                .challengeTheme,
           ),
           child: SizedBox(
             width: double.infinity,

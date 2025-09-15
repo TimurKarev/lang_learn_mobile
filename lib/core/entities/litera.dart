@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:lang_learn_mobile/core/entities/languages.dart';
 
 class Literal extends Equatable {
   final String id;
   final String word;
   final String transcript;
-  final String lang;
+  final Languages lang;
 
   const Literal({
     required this.id,

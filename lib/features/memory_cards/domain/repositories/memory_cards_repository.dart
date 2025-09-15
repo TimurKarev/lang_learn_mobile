@@ -14,7 +14,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/verb
 abstract class MemoryCardsRepository {
   Future<Either<Failure, List<MemoryCardsPreview>>> getMemoryCardsList();
   Future<Either<Failure, List<Flashcard>>> getMemoryCardsForChallenge(
-    String challengeId,
+    ChallengeThemes theme,
   );
   Future<Either<Failure, Vocabulary>> getInformation(String challengeId);
 }
@@ -64,23 +64,23 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
 
   @override
   Future<Either<Failure, List<Flashcard>>> getMemoryCardsForChallenge(
-    String challengeId,
+    ChallengeThemes theme,
   ) async {
     await Future.delayed(_duration);
 
-    switch (challengeId) {
-      case '1':
+    switch (theme) {
+      case ChallengeThemes.number:
         return Right(numbersMemoryCards);
-      case '2':
-        return Right(greetingsMemoryCards);
-      case '3':
-        return Right(pronounsMemoryCards);
-      case '4':
+      // case ChallengeThemes.greeting:
+      //   return Right(greetingsMemoryCards);
+      // case ChallengeThemes.pronoun:
+      //   return Right(pronounsMemoryCards);
+      case ChallengeThemes.household:
         return Right(householdMemoryCards);
-      case '5':
-        return Right(verbsMemoryCards);
-      case '6':
-        return Right(questionsMemoryCards);
+      // case ChallengeThemes.verb:
+      //   return Right(verbsMemoryCards);
+      // case ChallengeThemes.question:
+      //   return Right(questionsMemoryCards);
       default:
         return Right([]);
     }

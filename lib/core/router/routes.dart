@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
@@ -19,27 +20,16 @@ class AppRoutes {
   static const String home = '/';
   static const String dashboard = '/dashboard';
   static const String challenge = 'challenge';
-  static const String information = '/information';
+  static const String information = 'information';
   static const String flashcardHistory = 'flashcard-history';
   static const String flashcardSettings = '/flashcard-settings';
 
   // Parameter keys
-  static const String challengeIdParam = 'id';
+  static const String challengeThemeParam = 'chlangeTheme';
 
   // Full path templates
-  static const String challengePath = '$challenge/:$challengeIdParam';
-  static const String informationPath = '$information/:$challengeIdParam';
+  static const String informationPath = '$information/:$challengeThemeParam';
   static const String dashboardPath = dashboard;
-
-  /// Generate challenge path with ID
-  static String challengeWithId(String challengeId) {
-    return '$challenge/$challengeId';
-  }
-
-  /// Generate information path with ID
-  static String informationWithId(String challengeId) {
-    return '$information/$challengeId';
-  }
 
   /// Navigation helper methods
   static void goToHome(BuildContext context) {
@@ -48,16 +38,24 @@ class AppRoutes {
 
   static void goToChallenge(
     BuildContext context, {
-    required String challengeId,
+    required ChallengeThemes challengeTheme,
   }) {
-    context.go('$dashboard/$challenge/$challengeId');
+    context.go(
+      '$dashboard/$challenge',
+      extra: {'challengeTheme': challengeTheme},
+    );
   }
 
   static void goToInformation(
     BuildContext context, {
-    required String challengeId,
+    required ChallengeThemes challengeTheme,
   }) {
-    context.push(informationWithId(challengeId));
+    if (GoRouterState.of(context).fullPath case final String fullPath) {
+      context.push(
+        '$fullPath/$information',
+        extra: {'challengeTheme': challengeTheme},
+      );
+    }
   }
 
   static void goToFlashcardHistory(
@@ -79,11 +77,14 @@ class AppRoutes {
       ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
           return BlocProvider(
-            create: (context) => SettingsBloc(
-              context.read<DiLocator>().get<FlashcardSettingsRepository>(),
-            )..add(ModelHandlerFetchEvent<FlashcardsSettings>(
-              params: const FlashcardsSettings.initial(),
-            )),
+            create: (context) =>
+                SettingsBloc(
+                  context.read<DiLocator>().get<FlashcardSettingsRepository>(),
+                )..add(
+                  ModelHandlerFetchEvent<FlashcardsSettings>(
+                    params: const FlashcardsSettings.initial(),
+                  ),
+                ),
             child: child,
           );
         },
@@ -95,10 +96,12 @@ class AppRoutes {
             },
             routes: [
               GoRoute(
-                path: challengePath,
+                path: challenge,
                 builder: (BuildContext context, GoRouterState state) {
-                  final challengeId = state.pathParameters[challengeIdParam];
-                  return MemoryChallengePage(challengeId: challengeId);
+                  final extra = state.extra as Map<String, dynamic>?;
+                  final challengeTheme =
+                      extra?['challengeTheme'] as ChallengeThemes?;
+                  return MemoryChallengePage(challengeTheme: challengeTheme);
                 },
                 routes: [
                   GoRoute(
@@ -117,7 +120,7 @@ class AppRoutes {
           GoRoute(
             path: informationPath,
             builder: (BuildContext context, GoRouterState state) {
-              final challengeId = state.pathParameters[challengeIdParam];
+              final challengeId = state.pathParameters[challengeThemeParam];
               return InformationPage(challengeId: challengeId!);
             },
           ),

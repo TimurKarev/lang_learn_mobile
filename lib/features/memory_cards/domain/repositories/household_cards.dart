@@ -1,36 +1,77 @@
+import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 
 const List<Flashcard> householdMemoryCards = [
   Flashcard(
     id: '29',
-    fWord: Literal(id: '29', word: 'Дом', transcript: 'Dom', lang: 'Russian'),
-    sWord: Literal(id: '29', word: 'Үй', transcript: 'Üy', lang: 'Kyrgyz'),
+    fWord: Literal(
+      id: '29',
+      word: 'Дом',
+      transcript: 'Dom',
+      lang: Languages.ru,
+    ),
+    sWord: Literal(id: '29', word: 'Үй', transcript: 'Üy', lang: Languages.ky),
   ),
   Flashcard(
     id: '30',
-    fWord: Literal(id: '30', word: 'Еда', transcript: 'Eda', lang: 'Russian'),
+    fWord: Literal(
+      id: '30',
+      word: 'Еда',
+      transcript: 'Eda',
+      lang: Languages.ru,
+    ),
     sWord: Literal(
       id: '30',
       word: 'Тамак',
       transcript: 'Tamag',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
     id: '31',
-    fWord: Literal(id: '31', word: 'Вода', transcript: 'Voda', lang: 'Russian'),
-    sWord: Literal(id: '31', word: 'Суу', transcript: 'Suu', lang: 'Kyrgyz'),
+    fWord: Literal(
+      id: '31',
+      word: 'Вода',
+      transcript: 'Voda',
+      lang: Languages.ru,
+    ),
+    sWord: Literal(
+      id: '31',
+      word: 'Суу',
+      transcript: 'Suu',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '32',
-    fWord: Literal(id: '32', word: 'Чай', transcript: 'Chay', lang: 'Russian'),
-    sWord: Literal(id: '32', word: 'Чай', transcript: 'Chay', lang: 'Kyrgyz'),
+    fWord: Literal(
+      id: '32',
+      word: 'Чай',
+      transcript: 'Chay',
+      lang: Languages.ru,
+    ),
+    sWord: Literal(
+      id: '32',
+      word: 'Чай',
+      transcript: 'Chay',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '33',
-    fWord: Literal(id: '33', word: 'Хлеб', transcript: 'Hleb', lang: 'Russian'),
-    sWord: Literal(id: '33', word: 'Нан', transcript: 'Nan', lang: 'Kyrgyz'),
+    fWord: Literal(
+      id: '33',
+      word: 'Хлеб',
+      transcript: 'Hleb',
+      lang: Languages.ru,
+    ),
+    sWord: Literal(
+      id: '33',
+      word: 'Нан',
+      transcript: 'Nan',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '34',
@@ -38,38 +79,58 @@ const List<Flashcard> householdMemoryCards = [
       id: '34',
       word: 'Дверь',
       transcript: 'Dver',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
-    sWord: Literal(id: '34', word: 'Эшик', transcript: 'Eshik', lang: 'Kyrgyz'),
+    sWord: Literal(
+      id: '34',
+      word: 'Эшик',
+      transcript: 'Eshik',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '35',
-    fWord: Literal(id: '35', word: 'Окно', transcript: 'Okno', lang: 'Russian'),
+    fWord: Literal(
+      id: '35',
+      word: 'Окно',
+      transcript: 'Okno',
+      lang: Languages.ru,
+    ),
     sWord: Literal(
       id: '35',
       word: 'Терезе',
       transcript: 'Tereze',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
     id: '36',
-    fWord: Literal(id: '36', word: 'Стол', transcript: 'Stol', lang: 'Russian'),
+    fWord: Literal(
+      id: '36',
+      word: 'Стол',
+      transcript: 'Stol',
+      lang: Languages.ru,
+    ),
     sWord: Literal(
       id: '36',
       word: 'Дасторкон',
       transcript: 'Dastorkon',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
     id: '37',
-    fWord: Literal(id: '37', word: 'Стул', transcript: 'Stul', lang: 'Russian'),
+    fWord: Literal(
+      id: '37',
+      word: 'Стул',
+      transcript: 'Stul',
+      lang: Languages.ru,
+    ),
     sWord: Literal(
       id: '37',
       word: 'Отургуч',
       transcript: 'Oturguch',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -78,13 +139,13 @@ const List<Flashcard> householdMemoryCards = [
       id: '38',
       word: 'Книга',
       transcript: 'Kniga',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '38',
       word: 'Китеп',
       transcript: 'Kitep',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
   Flashcard(
@@ -93,9 +154,14 @@ const List<Flashcard> householdMemoryCards = [
       id: '39',
       word: 'Дорога',
       transcript: 'Doroga',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
-    sWord: Literal(id: '39', word: 'Жол', transcript: 'Jol', lang: 'Kyrgyz'),
+    sWord: Literal(
+      id: '39',
+      word: 'Жол',
+      transcript: 'Jol',
+      lang: Languages.ky,
+    ),
   ),
   Flashcard(
     id: '40',
@@ -103,13 +169,13 @@ const List<Flashcard> householdMemoryCards = [
       id: '40',
       word: 'Рынок',
       transcript: 'Rynok',
-      lang: 'Russian',
+      lang: Languages.ru,
     ),
     sWord: Literal(
       id: '40',
       word: 'Базар',
       transcript: 'Bazar',
-      lang: 'Kyrgyz',
+      lang: Languages.ky,
     ),
   ),
 ];
