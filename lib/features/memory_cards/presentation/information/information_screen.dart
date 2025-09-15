@@ -19,7 +19,9 @@ class InformationScreen extends StatelessWidget {
         child: BlocBuilder<InformationBloc, FetchState<Vocabulary>>(
           builder: (context, state) {
             return switch (state) {
-              FetchInitial() => const Center(child: Text('Initial state')),
+              FetchInitial() => const Center(
+                child: CircularProgressIndicator(),
+              ),
               FetchLoading<Vocabulary>() => const Center(
                 child: CircularProgressIndicator(),
               ),

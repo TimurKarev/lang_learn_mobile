@@ -3,20 +3,14 @@ import 'package:lang_learn_mobile/core/falures/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/vocabulary.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/greetings_cards.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/household_cards.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/numbers_cards.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/pronouns_cards.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/questions_cards.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/verbs_cards.dart';
 
 abstract class MemoryCardsRepository {
   Future<Either<Failure, List<MemoryCardsPreview>>> getMemoryCardsList();
   Future<Either<Failure, List<Flashcard>>> getMemoryCardsForChallenge(
     ChallengeThemes theme,
   );
-  Future<Either<Failure, Vocabulary>> getInformation(String challengeId);
 }
 
 class MemoryCardsRepositoryMock implements MemoryCardsRepository {
@@ -83,28 +77,6 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
       //   return Right(questionsMemoryCards);
       default:
         return Right([]);
-    }
-  }
-
-  @override
-  Future<Either<Failure, Vocabulary>> getInformation(String challengeId) async {
-    await Future.delayed(_duration);
-
-    switch (challengeId) {
-      case '1':
-        return Right(Vocabulary(memoryCards: numbersMemoryCards));
-      case '2':
-        return Right(Vocabulary(memoryCards: greetingsMemoryCards));
-      case '3':
-        return Right(Vocabulary(memoryCards: pronounsMemoryCards));
-      case '4':
-        return Right(Vocabulary(memoryCards: householdMemoryCards));
-      case '5':
-        return Right(Vocabulary(memoryCards: verbsMemoryCards));
-      case '6':
-        return Right(Vocabulary(memoryCards: questionsMemoryCards));
-      default:
-        return Right(Vocabulary(memoryCards: []));
     }
   }
 }

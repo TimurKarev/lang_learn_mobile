@@ -5,7 +5,6 @@ import 'package:lang_learn_mobile/features/memory_cards/data/dto/memory_cards_pr
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/vocabulary.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -88,24 +87,5 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
         .select('id')
         .eq('free_mode_theme', theme);
     return (response as List).map((json) => json['id'] as String).toList();
-  }
-
-  @override
-  Future<Either<Failure, Vocabulary>> getInformation(String challengeId) async {
-    try {
-      // TODO: Uncomment and implement when ready
-      // final response = await _supabase
-      //     .from('vocabularies')
-      //     .select()
-      //     .eq('challenge_id', challengeId)
-      //     .single();
-
-      // TODO: Implement VocabularyDto and mapper
-      return Left(Failure('Not implemented'));
-    } on PostgrestException catch (e) {
-      return Left(Failure('Failed to fetch vocabulary: ${e.message}'));
-    } catch (e) {
-      return Left(Failure('An unexpected error occurred: $e'));
-    }
   }
 }

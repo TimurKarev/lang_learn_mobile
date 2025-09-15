@@ -20,20 +20,15 @@ class AppRoutes {
   static const String home = '/';
   static const String dashboard = '/dashboard';
   static const String challenge = 'challenge';
-  static const String information = 'information';
-  static const String flashcardHistory = 'flashcard-history';
+  static const String information = '/information';
   static const String flashcardSettings = '/flashcard-settings';
+  static const String flashcardHistory = 'flashcard-history';
 
   // Parameter keys
-  static const String challengeThemeParam = 'chlangeTheme';
-
-  // Full path templates
-  static const String informationPath = '$information/:$challengeThemeParam';
-  static const String dashboardPath = dashboard;
 
   /// Navigation helper methods
   static void goToHome(BuildContext context) {
-    context.go(dashboardPath);
+    context.go(dashboard);
   }
 
   static void goToChallenge(
@@ -50,12 +45,11 @@ class AppRoutes {
     BuildContext context, {
     required ChallengeThemes challengeTheme,
   }) {
-    if (GoRouterState.of(context).fullPath case final String fullPath) {
-      context.push(
-        '$fullPath/$information',
-        extra: {'challengeTheme': challengeTheme},
-      );
-    }
+    context.push(information, extra: {'challengeTheme': challengeTheme});
+  }
+
+  static Future<bool?> goToSettings(BuildContext context) async {
+    return context.push<bool>(flashcardSettings);
   }
 
   static void goToFlashcardHistory(
@@ -65,10 +59,6 @@ class AppRoutes {
     if (GoRouterState.of(context).fullPath case final String fullPath) {
       context.push('$fullPath/$flashcardHistory', extra: {'history': history});
     }
-  }
-
-  static Future<bool?> goToSettings(BuildContext context) async {
-    return context.push<bool>(flashcardSettings);
   }
 
   static final router = GoRouter(
@@ -118,10 +108,12 @@ class AppRoutes {
             ],
           ),
           GoRoute(
-            path: informationPath,
+            path: information,
             builder: (BuildContext context, GoRouterState state) {
-              final challengeId = state.pathParameters[challengeThemeParam];
-              return InformationPage(challengeId: challengeId!);
+              final extra = state.extra as Map<String, dynamic>?;
+              final challengeTheme =
+                  extra?['challengeTheme'] as ChallengeThemes?;
+              return InformationPage(challengeTheme: challengeTheme);
             },
           ),
           GoRoute(
