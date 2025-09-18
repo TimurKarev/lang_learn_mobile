@@ -7,12 +7,17 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challeng
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/bloc/auth_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/settings_page.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
+import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
+import 'package:lang_learn_mobile/features/home/presentation/home_page.dart';
+import 'package:lang_learn_mobile/splash_page.dart';
 
 /// Centralized route constants and navigation helpers
 class AppRoutes {
@@ -61,9 +66,33 @@ class AppRoutes {
     }
   }
 
-  static final router = GoRouter(
-    initialLocation: dashboard,
+  static router(Listenable listenable) => GoRouter(
+    refreshListenable: listenable,
+    initialLocation: '/splash',
+    redirect: (context, state) {
+      final location = state.fullPath;
+      final user = context.read<AuthBloc>().state;
+
+      if (location == '/splash' ||
+          location == '/login' ||
+          location == '/onboarding') {
+        return null;
+      }
+
+      if (user is UnauthenticatedUser) {
+        return '/login';
+      }
+
+      return null;
+    },
     routes: <RouteBase>[
+      GoRoute(path: '/splash', builder: (context, state) => const SplashPage()),
+      GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
+      GoRoute(
+        path: '/onboarding',
+        builder: (context, state) => const OnboardingPage(),
+      ),
+      GoRoute(path: '/home', builder: (context, state) => const HomePage()),
       ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
           return BlocProvider(

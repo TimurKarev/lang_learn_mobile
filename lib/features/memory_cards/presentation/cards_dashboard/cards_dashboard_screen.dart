@@ -8,6 +8,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_c
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/bloc/card_list/card_list_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CardsDashboardScreen extends StatelessWidget {
   const CardsDashboardScreen({super.key});
@@ -74,6 +75,12 @@ class CardsDashboardScreen extends StatelessWidget {
                         );
                       },
                     ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Supabase.instance.client.auth.signOut();
+                    },
+                    child: const Text('Sign out'),
                   ),
                 ],
               ),

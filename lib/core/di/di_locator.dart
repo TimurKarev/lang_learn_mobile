@@ -4,6 +4,7 @@ import 'package:lang_learn_mobile/features/memory_cards/data/memory_cards_supaba
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:lang_learn_mobile/features/onboarding/domain/repositories/onboarding_repository.dart';
 
 class DiLocator {
   const DiLocator(this._objectContainer);
@@ -42,6 +43,19 @@ class DiLocator {
         _objectContainer.add(newObject);
       }
       return newObject as T;
+    }
+
+    if (T == OnboardingRepository) {
+      final OnboardingRepository onboardingRepo;
+      if (mock) {
+        onboardingRepo = MockOnboardingRepository();
+      } else {
+        throw Exception('Real implementation not implemented');
+      }
+      if (keepAlive) {
+        _objectContainer.add(onboardingRepo);
+      }
+      return onboardingRepo as T;
     }
 
     throw Exception('Object not found');
