@@ -16,13 +16,20 @@ class LoginPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('Login')),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () => context.read<AuthBloc>().add(
-              const AuthSignInAnonymouslyEvent(),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(),
+            SizedBox(height: 16),
+            Center(
+              child: ElevatedButton(
+                onPressed: () => context.read<AuthBloc>().add(
+                  const AuthSignInAnonymouslyEvent(),
+                ),
+                child: const Text('Login Anonymously'),
+              ),
             ),
-            child: const Text('Login Anonymously'),
-          ),
+          ],
         ),
       ),
     );
