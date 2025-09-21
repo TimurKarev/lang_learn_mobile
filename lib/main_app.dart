@@ -4,39 +4,49 @@ import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
 import 'package:lang_learn_mobile/core/theme/app_theme.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/bloc/auth_bloc.dart';
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  late final AuthBloc _authBloc;
+  late final GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+    _authBloc = AuthBloc()..add(AuthInitialEvent());
+    _router = AppRoutes.router(_authBloc);
+  }
+
+  @override
+  void dispose() {
+    _authBloc.close();
+    _router.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => DiLocator(ObjectContainer()),
-      child: BlocProvider(
-        lazy: false,
-        create: (context) => AuthBloc()..add(AuthInitialEvent()),
-        child: Builder(
-          builder: (context) {
-            return _MainApp();
-          },
+      child: BlocProvider.value(
+        value: _authBloc,
+        child: MaterialApp.router(
+          title: 'Flutter Demo',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.light,
+          routerConfig: _router,
         ),
       ),
     );
   }
 }
 
-class _MainApp extends StatelessWidget {
-  const _MainApp();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Flutter Demo',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      routerConfig: AppRoutes.router(context.read<AuthBloc>()),
-    );
-  }
-}
