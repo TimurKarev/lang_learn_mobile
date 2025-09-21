@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/core/theme/app_theme.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/bloc/auth_bloc.dart';
 
 class MainApp extends StatelessWidget {
@@ -32,9 +33,9 @@ class _MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
       routerConfig: AppRoutes.router(context.read<AuthBloc>()),
     );
   }

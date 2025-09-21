@@ -7,6 +7,7 @@ import 'package:lang_learn_mobile/features/splash/presentation/bloc/splash_bloc.
 import 'package:lang_learn_mobile/features/splash/presentation/bloc/splash_event.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/bloc/splash_state.dart';
 import 'package:lang_learn_mobile/features/onboarding/domain/repositories/onboarding_repository.dart';
+import 'package:lang_learn_mobile/features/splash/presentation/splash_screen.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -22,8 +23,9 @@ class SplashPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<SplashBloc, SplashState>(
-            listener: (context, state) {
+            listener: (context, state) async {
               if (state is SplashCheckComplete) {
+                await Future.delayed(const Duration(seconds: 1));
                 if (state.isFirst) {
                   context.go('/onboarding');
                 } else {
@@ -40,27 +42,7 @@ class SplashPage extends StatelessWidget {
             },
           ),
         ],
-        child: Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.language,
-                  size: 100,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Lang Learn Mobile',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 20),
-                const CircularProgressIndicator(),
-              ],
-            ),
-          ),
-        ),
+        child: const SplashScreen(),
       ),
     );
   }

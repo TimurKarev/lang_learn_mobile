@@ -17,7 +17,7 @@ import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/se
 import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
 import 'package:lang_learn_mobile/features/home/presentation/home_page.dart';
-import 'package:lang_learn_mobile/splash_page.dart';
+import 'package:lang_learn_mobile/features/splash/presentation/splash_page.dart';
 
 /// Centralized route constants and navigation helpers
 class AppRoutes {

@@ -21,6 +21,7 @@ dependencies:
 
   supabase_flutter: ^2.10.0
   json_annotation: ^4.9.0
+  flutter_svg: ^2.2.1
 
 dev_dependencies:
   json_serializable: ^6.7.1
@@ -34,6 +35,9 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/svg/puma.svg
 
 flutter_launcher_icons:
   android: "launcher_icon"
