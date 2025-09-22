@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lang_learn_mobile/core/theme/palette.dart';
+import 'package:lang_learn_mobile/core/theme/tili_palette.dart';
 
 // Simple static theme class - no DI bullshit needed
-class AppTheme {
+class TiliTheme {
   // Your font family
   static const String fontFamily = 'Nunito Sans';
 
@@ -14,21 +14,21 @@ class AppTheme {
     // Color scheme using your palette colors
     colorScheme: const ColorScheme.light(
       // Your primary branding color
-      primary: AppPalette.primaryOchre,
+      primary: TiliPalette.primaryOchre,
 
       // Your two main accent colors
-      secondary: AppPalette.deepOrangeAccent,
-      tertiary: AppPalette.mutedTealAccent,
+      secondary: TiliPalette.deepOrangeAccent,
+      tertiary: TiliPalette.mutedTealAccent,
       // Backgrounds and surfaces
-      surface: AppPalette.offWhiteBackground,
+      surface: TiliPalette.offWhiteBackground,
       // Text colors that are legible on your main surfaces
-      onPrimary: AppPalette.textIconBlack,
-      onSecondary: AppPalette.offWhiteBackground,
-      onTertiary: AppPalette.offWhiteBackground,
-      onSurface: AppPalette.textIconBlack,
+      onPrimary: TiliPalette.textIconBlack,
+      onSecondary: TiliPalette.offWhiteBackground,
+      onTertiary: TiliPalette.offWhiteBackground,
+      onSurface: TiliPalette.textIconBlack,
       // Other important system colors
-      error: AppPalette.deepOrangeAccent,
-      onError: AppPalette.offWhiteBackground,
+      error: TiliPalette.deepOrangeAccent,
+      onError: TiliPalette.offWhiteBackground,
     ),
 
     // Typography with your 4 font types
@@ -38,7 +38,7 @@ class AppTheme {
     // Text Button Theme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: AppPalette.primaryOchre,
+        foregroundColor: TiliPalette.primaryOchre,
         textStyle: _textTheme.labelMedium,
       ),
     ),
@@ -46,8 +46,8 @@ class AppTheme {
     // Elevated Button Theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppPalette.deepOrangeAccent,
-        foregroundColor: AppPalette.white,
+        backgroundColor: TiliPalette.deepOrangeAccent,
+        foregroundColor: TiliPalette.white,
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         textStyle: _textTheme.labelMedium,
@@ -57,8 +57,8 @@ class AppTheme {
     // Outlined Button Theme (Secondary Buttons)
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppPalette.mutedTealAccent,
-        side: const BorderSide(color: AppPalette.mutedTealAccent, width: 2),
+        foregroundColor: TiliPalette.mutedTealAccent,
+        side: const BorderSide(color: TiliPalette.mutedTealAccent, width: 2),
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         textStyle: _textTheme.labelMedium,
@@ -69,11 +69,11 @@ class AppTheme {
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         backgroundColor: Colors.transparent,
-        foregroundColor: AppPalette.mutedTealAccent,
-        side: const BorderSide(color: AppPalette.mutedTealAccent, width: 2),
+        foregroundColor: TiliPalette.mutedTealAccent,
+        side: const BorderSide(color: TiliPalette.mutedTealAccent, width: 2),
         shape: const CircleBorder(),
-        disabledBackgroundColor: AppPalette.lightGrayNeutral,
-        disabledForegroundColor: AppPalette.lightGrayNeutral,
+        disabledBackgroundColor: TiliPalette.lightGrayNeutral,
+        disabledForegroundColor: TiliPalette.lightGrayNeutral,
         padding: const EdgeInsets.all(12),
       ),
     ),
@@ -81,45 +81,46 @@ class AppTheme {
     // Input Decoration Theme (for TextFields)
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppPalette.grayMedium,
+      fillColor: TiliPalette.grayLight,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppPalette.grayLight, width: 1),
+        borderSide: const BorderSide(color: TiliPalette.grayMedium, width: 1),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppPalette.grayLight, width: 1),
+        borderSide: const BorderSide(color: TiliPalette.grayMedium, width: 1),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppPalette.mutedTealAccent,
-          width: 2,
-        ),
+        borderSide: const BorderSide(color: TiliPalette.grayMedium, width: 1),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: TiliPalette.grayMedium, width: 1),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(
-          color: AppPalette.deepOrangeAccent,
+          color: TiliPalette.deepOrangeAccent,
           width: 1,
         ),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(
-          color: AppPalette.deepOrangeAccent,
+          color: TiliPalette.deepOrangeAccent,
           width: 2,
         ),
       ),
       hintStyle: _textTheme.bodyMedium?.copyWith(
-        color: AppPalette.lightGrayNeutral,
+        color: TiliPalette.lightGrayNeutral,
       ),
       labelStyle: _textTheme.bodyMedium?.copyWith(
-        color: AppPalette.textIconBlack,
+        color: TiliPalette.textIconBlack,
       ),
       errorStyle: _textTheme.labelSmall?.copyWith(
-        color: AppPalette.deepOrangeAccent,
+        color: TiliPalette.deepOrangeAccent,
       ),
     ),
     //

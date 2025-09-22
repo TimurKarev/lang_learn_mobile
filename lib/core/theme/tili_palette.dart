@@ -1,8 +1,8 @@
 // Your exact color palette
 import 'package:flutter/material.dart';
 
-class AppPalette {
-  AppPalette._();
+class TiliPalette {
+  TiliPalette._();
   // Primary Ochre: #C8A25F (Main background and card color for warm content)
   static const Color primaryOchre = Color(0xFFC8A25F);
 
@@ -20,10 +20,13 @@ class AppPalette {
 
   // Light Gray Neutral: #D9D9D9 (Dividers, disabled states)
   static const Color lightGrayNeutral = Color(0xFFD9D9D9);
+  static const Color veryLightGrayNeutral = Color(0x4dD9D9D9);
 
   static const Color white = Color(0xFFFFFFFF);
 
   static const Color grayLight = Color(0xFFF8F6F0);
   static const Color grayMedium = Color(0xFFD9D9D9);
   static const Color grayDark = Color(0xFF2A2A2A);
+
+  static const Color grayishBlue = Color(0xFFADAEBC);
 }
