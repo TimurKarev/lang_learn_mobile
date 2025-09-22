@@ -23,7 +23,7 @@ class TiliTheme {
       surface: TiliPalette.offWhiteBackground,
       // Text colors that are legible on your main surfaces
       onPrimary: TiliPalette.textIconBlack,
-      onSecondary: TiliPalette.offWhiteBackground,
+      onSecondary: TiliPalette.grayMedium,
       onTertiary: TiliPalette.offWhiteBackground,
       onSurface: TiliPalette.textIconBlack,
       // Other important system colors
@@ -124,6 +124,7 @@ class TiliTheme {
       ),
     ),
     //
+    dividerTheme: const DividerThemeData(color: TiliPalette.grayMedium),
   );
 
   static TextTheme get _textTheme => const TextTheme(

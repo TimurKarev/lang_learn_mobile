@@ -15,6 +15,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TiliTextField(
+      hintText: 'Enter your password',
       obscureText: _obscureText,
       suffixIcon: _obscureText ? Icons.visibility_off : Icons.visibility,
       onSuffixIconTap: () {
