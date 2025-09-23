@@ -7,7 +7,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challeng
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
@@ -68,7 +68,7 @@ class AppRoutes {
 
   static GoRouter router(Listenable listenable) {
     debugPrint('Router initialized with listenable: $listenable');
-    
+
     return GoRouter(
       refreshListenable: listenable,
       initialLocation: '/splash',
@@ -77,7 +77,7 @@ class AppRoutes {
         debugPrint('Redirect called with location: ${state.uri}');
         final user = context.read<AuthBloc>().state;
         final location = state.uri.path;
-        
+
         debugPrint('Current auth state: $user');
         debugPrint('Current location: $location');
 
@@ -91,7 +91,8 @@ class AppRoutes {
         }
 
         // If user is not authenticated, only allow them to access login or onboarding.
-        final isGoingToPublicRoute = location == '/login' || location == '/onboarding';
+        final isGoingToPublicRoute =
+            location == '/login' || location == '/onboarding';
         if (user is UnauthenticatedUser && !isGoingToPublicRoute) {
           // The SplashBloc should have already decided between login and onboarding.
           // This redirect is a fallback for other cases.
@@ -105,28 +106,25 @@ class AppRoutes {
           path: '/splash',
           builder: (context, state) => const SplashPage(),
         ),
-        GoRoute(
-          path: '/login',
-          builder: (context, state) => const LoginPage(),
-        ),
+        GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
         GoRoute(
           path: '/onboarding',
           builder: (context, state) => const OnboardingPage(),
         ),
-        GoRoute(
-          path: '/home',
-          builder: (context, state) => const HomePage(),
-        ),
+        GoRoute(path: '/home', builder: (context, state) => const HomePage()),
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) {
             return BlocProvider(
-              create: (context) => SettingsBloc(
-                context.read<DiLocator>().get<FlashcardSettingsRepository>(),
-              )..add(
-                ModelHandlerFetchEvent<FlashcardsSettings>(
-                  params: const FlashcardsSettings.initial(),
-                ),
-              ),
+              create: (context) =>
+                  SettingsBloc(
+                    context
+                        .read<DiLocator>()
+                        .get<FlashcardSettingsRepository>(),
+                  )..add(
+                    ModelHandlerFetchEvent<FlashcardsSettings>(
+                      params: const FlashcardsSettings.initial(),
+                    ),
+                  ),
               child: child,
             );
           },
@@ -174,10 +172,7 @@ class AppRoutes {
                 return const SettingsPage();
               },
             ),
-            GoRoute(
-              path: '/',
-              redirect: (context, state) => dashboard,
-            ),
+            GoRoute(path: '/', redirect: (context, state) => dashboard),
           ],
         ),
       ],

@@ -5,7 +5,7 @@ import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
 import 'package:lang_learn_mobile/core/theme/tilit_theme.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});

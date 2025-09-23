@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/bloc/splash_bloc.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/bloc/splash_event.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/bloc/splash_state.dart';
