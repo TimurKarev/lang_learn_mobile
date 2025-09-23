@@ -9,7 +9,7 @@ class MockOnboardingRepository implements OnboardingRepository {
   @override
   Future<bool> isFirstLaunch() async {
     // Always return true for testing first launch flow
-    return true;
+    return false;
   }
 
   @override

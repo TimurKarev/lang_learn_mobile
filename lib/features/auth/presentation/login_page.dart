@@ -31,25 +31,19 @@ class LoginPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Welcome Back',
+                    'Войти в приложение',
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineLarge,
+                    style: theme.textTheme.headlineMedium,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Sign in to continue learning',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 32),
                   Text('Email', style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
                   TiliTextField(hintText: 'Enter your email'),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Text('Password', style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
                   const PasswordTextField(),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 32),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -60,12 +54,11 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: TiliPalette.deepOrangeAccent,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -91,7 +84,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
                   Row(
                     children: [
                       Expanded(child: Divider()),
@@ -107,7 +100,7 @@ class LoginPage extends StatelessWidget {
                       Expanded(child: Divider()),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
                   if (Platform.isIOS)
                     LoginWithButton(
                       variant: LoginWithButtonVariant.apple,

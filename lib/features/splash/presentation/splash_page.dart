@@ -26,6 +26,7 @@ class SplashPage extends StatelessWidget {
             listener: (context, state) async {
               if (state is SplashCheckComplete) {
                 await Future.delayed(const Duration(seconds: 1));
+                if (!context.mounted) return;
                 if (state.isFirst) {
                   context.go('/onboarding');
                 } else {
