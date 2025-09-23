@@ -1,20 +1,23 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 // TODO: create repo and return app ProjectUser from here
 class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
-  AuthBloc() : super(UnauthenticatedUser()) {
+  AuthBloc({required AuthRepository authRepository})
+    : _authRepository = authRepository,
+      super(UnauthenticatedUser()) {
     on<AuthInitialEvent>(_onAuthInitialEvent);
     on<AuthSignInAnonymouslyEvent>(_onSignInAnonymously);
-    on<AuthLogoutEvent>(_onLogout);
+    on<AuthSignInWithGoogleEvent>(_onSignInWithGoogle);
+    on<AuthSingoutEvent>(_onLogout);
   }
 
-  GoTrueClient get _supabase => Supabase.instance.client.auth;
+  final AuthRepository _authRepository;
 
   @override
   void emit(ProjectUser state) {
@@ -27,14 +30,9 @@ class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
     AuthInitialEvent event,
     Emitter<ProjectUser> emit,
   ) async {
-    await emit.forEach(
-      _supabase.onAuthStateChange,
-      onData: (data) {
-        if (data.session?.user case final User user) {
-          return AuthenticatedUser(id: user.id);
-        }
-        return UnauthenticatedUser();
-      },
+    await emit.forEach<ProjectUser>(
+      _authRepository.authStateChange(),
+      onData: (data) => data,
     );
   }
 
@@ -43,21 +41,27 @@ class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
     Emitter<ProjectUser> emit,
   ) async {
     try {
-      final response = await _supabase.signInAnonymously();
-      if (response.user != null) {
-        emit(AuthenticatedUser(id: response.user!.id));
-      } else {
-        emit(UnauthenticatedUser());
-      }
+      await _authRepository.signInAnonymously();
+    } catch (e) {
+      emit(UnauthenticatedUser());
+    }
+  }
+
+  Future<void> _onSignInWithGoogle(
+    AuthSignInWithGoogleEvent event,
+    Emitter<ProjectUser> emit,
+  ) async {
+    try {
+      await _authRepository.signInWithGoogle();
     } catch (e) {
       emit(UnauthenticatedUser());
     }
   }
 
   Future<void> _onLogout(
-    AuthLogoutEvent event,
+    AuthSingoutEvent event,
     Emitter<ProjectUser> emit,
   ) async {
-    await _supabase.signOut();
+    await _authRepository.signOut();
   }
 }

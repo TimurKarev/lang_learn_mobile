@@ -99,7 +99,9 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 16),
                   LoginWithButton(
                     variant: LoginWithButtonVariant.google,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthBloc>().add(AuthSignInWithGoogleEvent());
+                    },
                   ),
                   const SizedBox(height: 16),
                   LoginWithButton(

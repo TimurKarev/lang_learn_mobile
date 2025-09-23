@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lang_learn_mobile/ui_kit/svg/svg_path.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

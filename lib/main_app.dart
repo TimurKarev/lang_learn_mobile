@@ -5,6 +5,7 @@ import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/core/router/routes.dart';
 import 'package:lang_learn_mobile/core/theme/tilit_theme.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 
 class MainApp extends StatefulWidget {
@@ -17,11 +18,14 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   late final AuthBloc _authBloc;
   late final GoRouter _router;
+  late final DiLocator _diLocator;
 
   @override
   void initState() {
     super.initState();
-    _authBloc = AuthBloc()..add(AuthInitialEvent());
+    _diLocator = DiLocator(ObjectContainer());
+    _authBloc = AuthBloc(authRepository: _diLocator.get<AuthRepository>())
+      ..add(AuthInitialEvent());
     _router = AppRoutes.router(_authBloc);
   }
 
@@ -34,8 +38,8 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => DiLocator(ObjectContainer()),
+    return RepositoryProvider.value(
+      value: _diLocator,
       child: BlocProvider.value(
         value: _authBloc,
         child: MaterialApp.router(

@@ -15,6 +15,10 @@ class AuthSignInAnonymouslyEvent extends AuthEvent {
   const AuthSignInAnonymouslyEvent();
 }
 
-class AuthLogoutEvent extends AuthEvent {
-  const AuthLogoutEvent();
+class AuthSignInWithGoogleEvent extends AuthEvent {
+  const AuthSignInWithGoogleEvent();
+}
+
+class AuthSingoutEvent extends AuthEvent {
+  const AuthSingoutEvent();
 }
