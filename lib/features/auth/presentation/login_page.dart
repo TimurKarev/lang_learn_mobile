@@ -38,25 +38,22 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 32),
                   Text('Email', style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
-                  TiliTextField(hintText: 'Enter your email'),
+                  TiliTextField(hintText: 'Enter your email', enabled: false),
                   const SizedBox(height: 16),
                   Text('Password', style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
-                  const PasswordTextField(),
+                  PasswordTextField(enabled: false),
                   const SizedBox(height: 32),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: TiliPalette.deepOrangeAccent),
-                      ),
+                      onPressed: null,
+                      child: const Text('Forgot Password?'),
                     ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: TiliPalette.deepOrangeAccent,
                       shape: RoundedRectangleBorder(
@@ -73,15 +70,7 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text("Don't have an account? "),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ),
+                      TextButton(onPressed: null, child: Text('Sign Up')),
                     ],
                   ),
                   const SizedBox(height: 32),
@@ -105,6 +94,7 @@ class LoginPage extends StatelessWidget {
                     LoginWithButton(
                       variant: LoginWithButtonVariant.apple,
                       onPressed: () {},
+                      enabled: false,
                     ),
                   const SizedBox(height: 16),
                   LoginWithButton(
@@ -115,6 +105,7 @@ class LoginPage extends StatelessWidget {
                   LoginWithButton(
                     variant: LoginWithButtonVariant.facebook,
                     onPressed: () {},
+                    enabled: false,
                   ),
                 ],
               ),

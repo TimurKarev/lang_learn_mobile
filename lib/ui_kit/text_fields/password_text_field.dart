@@ -3,7 +3,9 @@ import 'package:lang_learn_mobile/ui_kit/text_fields/tili_text_field.dart'
     show TiliTextField;
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({super.key});
+  const PasswordTextField({super.key, required this.enabled});
+
+  final bool enabled;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -23,6 +25,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           _obscureText = !_obscureText;
         });
       },
+      enabled: widget.enabled,
     );
   }
 }

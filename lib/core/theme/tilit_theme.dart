@@ -40,6 +40,7 @@ class TiliTheme {
       style: TextButton.styleFrom(
         foregroundColor: TiliPalette.primaryOchre,
         textStyle: _textTheme.labelMedium,
+        disabledForegroundColor: TiliPalette.lightGrayNeutral,
       ),
     ),
 
