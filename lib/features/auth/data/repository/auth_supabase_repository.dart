@@ -5,6 +5,7 @@ import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart
     show ProjectUser, AuthenticatedUser, UnauthenticatedUser;
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // TODO: correct flow
 class AuthSupabaseRepository implements AuthRepository {
@@ -26,10 +27,12 @@ class AuthSupabaseRepository implements AuthRepository {
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
-      await googleSignIn.initialize(
-        serverClientId:
-            '545203080565-ln6rn4h0arv01giktaan9r1qkn7bf6dg.apps.googleusercontent.com',
-      );
+      final serverClientId = dotenv.env['GOOGLE_SERVER_CLIENT_ID'];
+      if (serverClientId == null) {
+        return Left(Failure('Google server client ID not found'));
+      }
+
+      await googleSignIn.initialize(serverClientId: serverClientId);
 
       // Start the lightweight authentication process
       await googleSignIn.attemptLightweightAuthentication();
@@ -51,9 +54,14 @@ class AuthSupabaseRepository implements AuthRepository {
       // Get authentication tokens
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
+      final idToken = googleAuth.idToken;
+      if (idToken == null) {
+        return Left(Failure('ID token not found'));
+      }
+
       final result = await _supabase.signInWithIdToken(
         provider: OAuthProvider.google,
-        idToken: googleAuth.idToken!,
+        idToken: idToken,
       );
 
       if (result.session?.user case final User user) {
