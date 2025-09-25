@@ -7,6 +7,7 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 // TODO: create repo and return app ProjectUser from here
+// TODO: create error scaffold messenger
 class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
   AuthBloc({required AuthRepository authRepository})
     : _authRepository = authRepository,

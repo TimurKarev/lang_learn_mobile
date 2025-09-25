@@ -28,11 +28,18 @@ class AuthSupabaseRepository implements AuthRepository {
       final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
       final serverClientId = dotenv.env['GOOGLE_SERVER_CLIENT_ID'];
+      final iosServerClientId = dotenv.env['IOS_GOOGLE_SERVER_CLIENT_ID'];
       if (serverClientId == null) {
         return Left(Failure('Google server client ID not found'));
       }
+      if (iosServerClientId == null) {
+        return Left(Failure('iOS Google server client ID not found'));
+      }
 
-      await googleSignIn.initialize(serverClientId: serverClientId);
+      await googleSignIn.initialize(
+        serverClientId: serverClientId,
+        clientId: iosServerClientId,
+      );
 
       // Start the lightweight authentication process
       await googleSignIn.attemptLightweightAuthentication();
