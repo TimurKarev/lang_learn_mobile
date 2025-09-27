@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                   Text('Password', style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
                   PasswordTextField(enabled: false),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 8),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                       child: const Text('Forgot Password?'),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: null,
                     style: ElevatedButton.styleFrom(
@@ -82,7 +82,7 @@ class LoginPage extends StatelessWidget {
                         child: Text(
                           'or',
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSecondary,
+                            color: Theme.of(context).colorScheme.surfaceDim,
                           ),
                         ),
                       ),

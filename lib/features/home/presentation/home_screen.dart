@@ -31,18 +31,20 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: SingleChildScrollView(
-          primary: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ProgressCard(),
-              LearningPathSection(padding: const EdgeInsets.only(top: 24)),
-              ChallangesSection(padding: const EdgeInsets.only(top: 24)),
-              OfflineSection(padding: const EdgeInsets.only(top: 24)),
-            ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: SingleChildScrollView(
+            primary: true,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ProgressCard(),
+                LearningPathSection(padding: const EdgeInsets.only(top: 24)),
+                ChallangesSection(padding: const EdgeInsets.only(top: 24)),
+                OfflineSection(padding: const EdgeInsets.only(top: 24)),
+              ],
+            ),
           ),
         ),
       ),

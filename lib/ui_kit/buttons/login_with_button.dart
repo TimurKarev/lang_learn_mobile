@@ -32,11 +32,11 @@ class LoginWithButton extends StatelessWidget {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         backgroundColor: TiliPalette.white,
-        foregroundColor: TiliPalette.grayDark,
+        foregroundColor: TiliPalette.black,
         iconColor: switch (variant) {
           LoginWithButtonVariant.google => Theme.of(
             context,
-          ).colorScheme.onPrimary,
+          ).colorScheme.onSurface,
           LoginWithButtonVariant.apple => Theme.of(
             context,
           ).colorScheme.onPrimary,

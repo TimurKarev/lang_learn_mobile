@@ -32,7 +32,6 @@ class TiliTheme {
       surfaceContainerHigh: TiliPalette.lightOrche,
       outline: TiliPalette.lightGrayDark,
       outlineVariant: TiliPalette.lightGrayMedium,
-      //onPrimary: TiliPalette.lightBlack,
       onTertiary: TiliPalette.offWhiteBackground,
       onSurface: TiliPalette.black,
       onSurfaceVariant: TiliPalette.lightBlack,
@@ -128,6 +127,10 @@ class TiliTheme {
       ),
     ),
     dividerTheme: const DividerThemeData(color: TiliPalette.grayMedium),
+    dialogTheme: DialogThemeData(
+      backgroundColor: TiliPalette.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    ),
   );
 
   static TextTheme get _textTheme => const TextTheme(
