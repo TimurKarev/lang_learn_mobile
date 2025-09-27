@@ -59,7 +59,7 @@ class _TiliTextFieldState extends State<TiliTextField> {
   Widget build(BuildContext context) {
     return TextField(
       autocorrect: false,
-      cursorColor: TiliPalette.mutedTealAccent,
+      cursorColor: TiliPalette.mutedTeal,
       controller: _controller,
       obscureText: _obscureText,
       decoration: InputDecoration(
@@ -69,15 +69,15 @@ class _TiliTextFieldState extends State<TiliTextField> {
                 child: Icon(widget.suffixIcon),
               )
             : null,
-        suffixIconColor: TiliPalette.lightGrayNeutral,
+        suffixIconColor: TiliPalette.veryLightGrayMedium,
         hintText: widget.hintText,
         filled: true,
         fillColor: widget.enabled
             ? TiliPalette.grayLight
-            : TiliPalette.veryLightGrayNeutral,
+            : TiliPalette.veryLightGrayMedium,
         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
           color: widget.enabled
-              ? TiliPalette.lightGrayNeutral
+              ? TiliPalette.veryLightGrayMedium
               : TiliPalette.grayishBlue,
         ),
       ),

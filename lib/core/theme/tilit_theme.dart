@@ -14,25 +14,28 @@ class TiliTheme {
     // Color scheme using your palette colors
     colorScheme: const ColorScheme.light(
       // Your primary branding color
-      primary: TiliPalette.primaryOchre,
+      primary: TiliPalette.ochre,
+      primaryContainer: TiliPalette.ochreLight,
 
       // Your two main accent colors
-      secondary: TiliPalette.deepOrangeAccent,
-      tertiary: TiliPalette.mutedTealAccent,
-      // Backgrounds and surfaces
+      secondary: TiliPalette.deepOrange,
+      tertiary: TiliPalette.mutedTeal,
+      tertiaryContainer: TiliPalette.veryLightMutedTeal,
+      onTertiaryContainer: TiliPalette.lightMutedTeal,
       surface: TiliPalette.offWhiteBackground,
       surfaceDim: TiliPalette.grayMedium,
       surfaceContainer: TiliPalette.grayLight,
       surfaceContainerLowest: TiliPalette.white,
       surfaceContainerHigh: TiliPalette.lightOrche,
-      // Text colors that are legible on your main surfaces
+      outline: TiliPalette.lightGrayDark,
+      outlineVariant: TiliPalette.lightGrayMedium,
       onPrimary: TiliPalette.lightBlack,
       onSecondary: TiliPalette.grayMedium,
       onTertiary: TiliPalette.offWhiteBackground,
       onSurface: TiliPalette.black,
       onSurfaceVariant: TiliPalette.lightBlack,
       // Other important system colors
-      error: TiliPalette.deepOrangeAccent,
+      error: TiliPalette.deepOrange,
       onError: TiliPalette.offWhiteBackground,
     ),
 
@@ -43,26 +46,27 @@ class TiliTheme {
       color: TiliPalette.white,
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      margin: EdgeInsets.zero,
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
       linearTrackColor: TiliPalette.grayLight,
-      color: TiliPalette.primaryOchre,
+      color: TiliPalette.ochre,
       borderRadius: BorderRadiusGeometry.circular(9999),
       linearMinHeight: 8,
     ),
     // Text Button Theme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: TiliPalette.primaryOchre,
+        foregroundColor: TiliPalette.ochre,
         textStyle: _textTheme.labelMedium,
-        disabledForegroundColor: TiliPalette.lightGrayNeutral,
+        disabledForegroundColor: TiliPalette.grayMedium,
       ),
     ),
 
     // Elevated Button Theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: TiliPalette.deepOrangeAccent,
+        backgroundColor: TiliPalette.deepOrange,
         foregroundColor: TiliPalette.white,
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -73,8 +77,8 @@ class TiliTheme {
     // Outlined Button Theme (Secondary Buttons)
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: TiliPalette.mutedTealAccent,
-        side: const BorderSide(color: TiliPalette.mutedTealAccent, width: 2),
+        foregroundColor: TiliPalette.mutedTeal,
+        side: const BorderSide(color: TiliPalette.mutedTeal, width: 2),
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         textStyle: _textTheme.labelMedium,
@@ -85,11 +89,11 @@ class TiliTheme {
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         backgroundColor: Colors.transparent,
-        foregroundColor: TiliPalette.mutedTealAccent,
-        side: const BorderSide(color: TiliPalette.mutedTealAccent, width: 2),
+        foregroundColor: TiliPalette.mutedTeal,
+        side: const BorderSide(color: TiliPalette.mutedTeal, width: 2),
         shape: const CircleBorder(),
-        disabledBackgroundColor: TiliPalette.lightGrayNeutral,
-        disabledForegroundColor: TiliPalette.lightGrayNeutral,
+        disabledBackgroundColor: TiliPalette.grayMedium,
+        disabledForegroundColor: TiliPalette.grayMedium,
         padding: const EdgeInsets.all(12),
       ),
     ),
@@ -117,26 +121,18 @@ class TiliTheme {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: TiliPalette.deepOrangeAccent,
-          width: 1,
-        ),
+        borderSide: const BorderSide(color: TiliPalette.deepOrange, width: 1),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: TiliPalette.deepOrangeAccent,
-          width: 2,
-        ),
+        borderSide: const BorderSide(color: TiliPalette.deepOrange, width: 2),
       ),
-      hintStyle: _textTheme.bodyMedium?.copyWith(
-        color: TiliPalette.lightGrayNeutral,
-      ),
+      hintStyle: _textTheme.bodyMedium?.copyWith(color: TiliPalette.grayMedium),
       labelStyle: _textTheme.bodyMedium?.copyWith(
         color: TiliPalette.lightBlack,
       ),
       errorStyle: _textTheme.labelSmall?.copyWith(
-        color: TiliPalette.deepOrangeAccent,
+        color: TiliPalette.deepOrange,
       ),
     ),
     //
