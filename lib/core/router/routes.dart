@@ -32,7 +32,7 @@ class AppRoutes {
   // Parameter keys
 
   /// Navigation helper methods
-  static void goToHome(BuildContext context) {
+  static void goToVocablaryChallangePage(BuildContext context) {
     context.go(dashboard);
   }
 

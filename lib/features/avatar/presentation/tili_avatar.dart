@@ -6,8 +6,9 @@ class TiliAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       radius: 24,
-      child: const Icon(Icons.person, color: Colors.black),
+      child: Icon(Icons.person, color: Theme.of(context).colorScheme.onPrimary),
     );
   }
 }

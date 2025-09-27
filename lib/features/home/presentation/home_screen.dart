@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lang_learn_mobile/features/avatar/presentation/tili_avatar.dart'
     show TiliAvatar;
+import 'package:lang_learn_mobile/features/home/presentation/sections/challanges_section.dart';
 import 'package:lang_learn_mobile/features/home/presentation/sections/learning_path_section.dart';
+import 'package:lang_learn_mobile/features/home/presentation/sections/offline_section.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/progress_card/progress_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -38,6 +40,8 @@ class HomeScreen extends StatelessWidget {
             children: [
               ProgressCard(),
               LearningPathSection(padding: const EdgeInsets.only(top: 24)),
+              ChallangesSection(padding: const EdgeInsets.only(top: 24)),
+              OfflineSection(padding: const EdgeInsets.only(top: 24)),
             ],
           ),
         ),

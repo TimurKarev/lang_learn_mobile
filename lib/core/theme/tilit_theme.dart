@@ -19,6 +19,9 @@ class TiliTheme {
 
       // Your two main accent colors
       secondary: TiliPalette.deepOrange,
+      onSecondary: TiliPalette.white,
+      onPrimary: TiliPalette.white,
+
       tertiary: TiliPalette.mutedTeal,
       tertiaryContainer: TiliPalette.veryLightMutedTeal,
       onTertiaryContainer: TiliPalette.lightMutedTeal,
@@ -29,19 +32,17 @@ class TiliTheme {
       surfaceContainerHigh: TiliPalette.lightOrche,
       outline: TiliPalette.lightGrayDark,
       outlineVariant: TiliPalette.lightGrayMedium,
-      onPrimary: TiliPalette.lightBlack,
-      onSecondary: TiliPalette.grayMedium,
+      //onPrimary: TiliPalette.lightBlack,
       onTertiary: TiliPalette.offWhiteBackground,
       onSurface: TiliPalette.black,
       onSurfaceVariant: TiliPalette.lightBlack,
-      // Other important system colors
       error: TiliPalette.deepOrange,
       onError: TiliPalette.offWhiteBackground,
     ),
-
-    // Typography with your 4 font types
     textTheme: _textTheme,
-    //
+    listTileTheme: ListTileThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    ),
     cardTheme: CardThemeData(
       color: TiliPalette.white,
       elevation: 1,
@@ -54,7 +55,6 @@ class TiliTheme {
       borderRadius: BorderRadiusGeometry.circular(9999),
       linearMinHeight: 8,
     ),
-    // Text Button Theme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: TiliPalette.ochre,
@@ -62,8 +62,6 @@ class TiliTheme {
         disabledForegroundColor: TiliPalette.grayMedium,
       ),
     ),
-
-    // Elevated Button Theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: TiliPalette.deepOrange,
@@ -73,8 +71,6 @@ class TiliTheme {
         textStyle: _textTheme.labelMedium,
       ),
     ),
-
-    // Outlined Button Theme (Secondary Buttons)
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: TiliPalette.mutedTeal,
@@ -84,8 +80,6 @@ class TiliTheme {
         textStyle: _textTheme.labelMedium,
       ),
     ),
-
-    // Icon Button Theme
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         backgroundColor: Colors.transparent,
@@ -97,8 +91,6 @@ class TiliTheme {
         padding: const EdgeInsets.all(12),
       ),
     ),
-
-    // Input Decoration Theme (for TextFields)
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: TiliPalette.grayLight,
@@ -135,7 +127,6 @@ class TiliTheme {
         color: TiliPalette.deepOrange,
       ),
     ),
-    //
     dividerTheme: const DividerThemeData(color: TiliPalette.grayMedium),
   );
 
@@ -146,7 +137,6 @@ class TiliTheme {
       fontWeight: FontWeight.bold,
       color: TiliPalette.lightBlack,
     ),
-    // Medium heading text
     headlineMedium: TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
