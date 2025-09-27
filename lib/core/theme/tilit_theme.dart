@@ -21,11 +21,16 @@ class TiliTheme {
       tertiary: TiliPalette.mutedTealAccent,
       // Backgrounds and surfaces
       surface: TiliPalette.offWhiteBackground,
+      surfaceDim: TiliPalette.grayMedium,
+      surfaceContainer: TiliPalette.grayLight,
+      surfaceContainerLowest: TiliPalette.white,
+      surfaceContainerHigh: TiliPalette.lightOrche,
       // Text colors that are legible on your main surfaces
-      onPrimary: TiliPalette.textIconBlack,
+      onPrimary: TiliPalette.lightBlack,
       onSecondary: TiliPalette.grayMedium,
       onTertiary: TiliPalette.offWhiteBackground,
-      onSurface: TiliPalette.textIconBlack,
+      onSurface: TiliPalette.black,
+      onSurfaceVariant: TiliPalette.lightBlack,
       // Other important system colors
       error: TiliPalette.deepOrangeAccent,
       onError: TiliPalette.offWhiteBackground,
@@ -34,7 +39,17 @@ class TiliTheme {
     // Typography with your 4 font types
     textTheme: _textTheme,
     //
-
+    cardTheme: CardThemeData(
+      color: TiliPalette.white,
+      elevation: 1,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      linearTrackColor: TiliPalette.grayLight,
+      color: TiliPalette.primaryOchre,
+      borderRadius: BorderRadiusGeometry.circular(9999),
+      linearMinHeight: 8,
+    ),
     // Text Button Theme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
@@ -118,7 +133,7 @@ class TiliTheme {
         color: TiliPalette.lightGrayNeutral,
       ),
       labelStyle: _textTheme.bodyMedium?.copyWith(
-        color: TiliPalette.textIconBlack,
+        color: TiliPalette.lightBlack,
       ),
       errorStyle: _textTheme.labelSmall?.copyWith(
         color: TiliPalette.deepOrangeAccent,
@@ -130,14 +145,31 @@ class TiliTheme {
 
   static TextTheme get _textTheme => const TextTheme(
     // Display/Large heading text
-    headlineLarge: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+    headlineLarge: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.bold,
+      color: TiliPalette.lightBlack,
+    ),
     // Medium heading text
-    headlineMedium: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    headlineSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    headlineMedium: TextStyle(
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+      color: TiliPalette.lightBlack,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: TiliPalette.lightBlack,
+    ),
+    bodyLarge: TextStyle(fontSize: 18, color: TiliPalette.lightBlack),
     // Body text
-    bodyMedium: TextStyle(fontSize: 16),
+    bodyMedium: TextStyle(fontSize: 16, color: TiliPalette.lightBlack),
     // Label/Button text
-    labelMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+    labelMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: TiliPalette.lightBlack,
+    ),
   );
 
   // Dark theme - ready for when you need it

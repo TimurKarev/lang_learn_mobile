@@ -53,11 +53,6 @@ class AuthSupabaseRepository implements AuthRepository {
         return Left(Failure('Google sign in error: $e'));
       }
 
-      // Check if we have a user after authentication
-      if (googleUser == null) {
-        return Left(Failure('Authentication failed'));
-      }
-
       // Get authentication tokens
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
