@@ -75,7 +75,6 @@ class LessonCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(color: _getBorderColor(context), width: _borderWidth),
       ),
-      elevation: 0,
       color: _getBackgroundColor(context),
       child: SizedBox(
         width: 120,

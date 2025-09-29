@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lang_learn_mobile/core/router/routes.dart';
 import 'package:lang_learn_mobile/ui_kit/tiles/icon_tile.dart';
 
 class OfflineSection extends StatelessWidget {

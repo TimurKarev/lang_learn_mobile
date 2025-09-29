@@ -49,9 +49,9 @@ class MemoryChallengePage extends StatelessWidget {
                     PerformMemoryChallangeDataReadyEvent(
                       cards: data,
                       settings:
-                          (context.read<SettingsBloc>().state
-                                  as ModelHandlerLoaded<FlashcardsSettings>?)
-                              ?.model ??
+                          // (context.read<SettingsBloc>().state
+                          //         as ModelHandlerLoaded<FlashcardsSettings>?)
+                          //     ?.model ??
                           FlashcardsSettings.initial(),
                     ),
                   );

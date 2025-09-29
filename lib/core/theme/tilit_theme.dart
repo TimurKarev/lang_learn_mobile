@@ -44,7 +44,7 @@ class TiliTheme {
     ),
     cardTheme: CardThemeData(
       color: TiliPalette.white,
-      elevation: 1,
+      elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.zero,
     ),
@@ -82,12 +82,12 @@ class TiliTheme {
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         backgroundColor: Colors.transparent,
-        foregroundColor: TiliPalette.mutedTeal,
-        side: const BorderSide(color: TiliPalette.mutedTeal, width: 2),
-        shape: const CircleBorder(),
+        foregroundColor: TiliPalette.lightBlack,
+        // side: const BorderSide(color: TiliPalette.mutedTeal, width: 2),
+        // shape: const CircleBorder(),
         disabledBackgroundColor: TiliPalette.grayMedium,
         disabledForegroundColor: TiliPalette.grayMedium,
-        padding: const EdgeInsets.all(12),
+        //padding: const EdgeInsets.all(12),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -130,6 +130,10 @@ class TiliTheme {
     dialogTheme: DialogThemeData(
       backgroundColor: TiliPalette.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    ),
+    appBarTheme: AppBarTheme(
+      foregroundColor: TiliPalette.lightBlack,
+      titleTextStyle: _textTheme.headlineSmall,
     ),
   );
 
