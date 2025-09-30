@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
-import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
-import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/settings_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
@@ -124,70 +119,47 @@ class AppRoutes {
           path: '/home',
           builder: (context, state) => const HomePage(),
           routes: [
-            ShellRoute(
-              builder:
-                  (BuildContext context, GoRouterState state, Widget child) {
-                    return BlocProvider(
-                      create: (context) =>
-                          SettingsBloc(
-                            context
-                                .read<DiLocator>()
-                                .get<FlashcardSettingsRepository>(),
-                          )..add(
-                            ModelHandlerFetchEvent<FlashcardsSettings>(
-                              params: const FlashcardsSettings.initial(),
-                            ),
-                          ),
-                      child: child,
-                    );
-                  },
+            GoRoute(
+              path: dashboard,
+              builder: (BuildContext context, GoRouterState state) {
+                return const CardsDashboardPage();
+              },
               routes: [
                 GoRoute(
-                  path: dashboard,
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const CardsDashboardPage();
-                  },
-                  routes: [
-                    GoRoute(
-                      path: challenge,
-                      builder: (BuildContext context, GoRouterState state) {
-                        final extra = state.extra as Map<String, dynamic>?;
-                        final challengeTheme =
-                            extra?['challengeTheme'] as ChallengeThemes?;
-                        return MemoryChallengePage(
-                          challengeTheme: challengeTheme,
-                        );
-                      },
-                      routes: [
-                        GoRoute(
-                          path: flashcardHistory,
-                          builder: (BuildContext context, GoRouterState state) {
-                            final extra = state.extra as Map<String, dynamic>?;
-                            final history =
-                                extra?['history'] as List<FlashcardFeedback?>?;
-                            return HistoryPage(history: history ?? []);
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                GoRoute(
-                  path: information,
+                  path: challenge,
                   builder: (BuildContext context, GoRouterState state) {
                     final extra = state.extra as Map<String, dynamic>?;
                     final challengeTheme =
                         extra?['challengeTheme'] as ChallengeThemes?;
-                    return InformationPage(challengeTheme: challengeTheme);
+                    return MemoryChallengePage(challengeTheme: challengeTheme);
                   },
+                  routes: [
+                    GoRoute(
+                      path: flashcardHistory,
+                      builder: (BuildContext context, GoRouterState state) {
+                        final extra = state.extra as Map<String, dynamic>?;
+                        final history =
+                            extra?['history'] as List<FlashcardFeedback?>?;
+                        return HistoryPage(history: history ?? []);
+                      },
+                    ),
+                    GoRoute(
+                      path: information,
+                      builder: (BuildContext context, GoRouterState state) {
+                        final extra = state.extra as Map<String, dynamic>?;
+                        final challengeTheme =
+                            extra?['challengeTheme'] as ChallengeThemes?;
+                        return InformationPage(challengeTheme: challengeTheme);
+                      },
+                    ),
+                    GoRoute(
+                      path: flashcardSettings,
+                      builder: (BuildContext context, GoRouterState state) {
+                        return const SettingsPage();
+                      },
+                    ),
+                  ],
                 ),
-                GoRoute(
-                  path: flashcardSettings,
-                  builder: (BuildContext context, GoRouterState state) {
-                    return const SettingsPage();
-                  },
-                ),
-                //GoRoute(path: '/', redirect: (context, state) => dashboard),
               ],
             ),
           ],
