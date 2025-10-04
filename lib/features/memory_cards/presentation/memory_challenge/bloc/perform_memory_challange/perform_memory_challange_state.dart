@@ -4,7 +4,7 @@ sealed class PerformMemoryChallangeState extends Equatable {
   const PerformMemoryChallangeState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 
   bool get isChallagePerforming =>
       this is PerformMemoryChallangeQuestion ||
@@ -20,6 +20,9 @@ final class PerformMemoryChallangeLoading extends PerformMemoryChallangeState {
 
   final List<Flashcard>? cards;
   final FlashcardsSettings? settings;
+
+  @override
+  List<Object?> get props => [cards, settings];
 }
 
 final class PerformMemoryChallangeError extends PerformMemoryChallangeState {

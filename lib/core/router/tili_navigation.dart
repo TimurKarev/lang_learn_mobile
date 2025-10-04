@@ -14,10 +14,7 @@ class TiliNavigation {
     BuildContext context, {
     required ChallengeThemes challengeTheme,
   }) {
-    context.pushNamed(
-      Paths.vocabularyChallenge.name,
-      extra: {'challengeTheme': challengeTheme},
-    );
+    context.pushNamed(Paths.vocabularyChallenge.name, extra: challengeTheme);
   }
 
   void pushVocabularyInformation(
@@ -26,7 +23,7 @@ class TiliNavigation {
   }) {
     context.pushNamed(
       Paths.vocabularyChallengeInformation.name,
-      extra: {'challengeTheme': challengeTheme},
+      extra: challengeTheme,
     );
   }
 
@@ -44,9 +41,6 @@ class TiliNavigation {
     BuildContext context, {
     required List<FlashcardFeedback?> history,
   }) {
-    context.pushNamed(
-      Paths.vocabularyChallengeHistory.name,
-      extra: {'history': history},
-    );
+    context.pushNamed(Paths.vocabularyChallengeHistory.name, extra: history);
   }
 }

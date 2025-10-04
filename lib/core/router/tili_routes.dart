@@ -85,9 +85,7 @@ class TiliRoutes {
                   path: Paths.vocabularyChallenge.path,
                   name: Paths.vocabularyChallenge.name,
                   builder: (BuildContext context, GoRouterState state) {
-                    final extra = state.extra as Map<String, dynamic>?;
-                    final challengeTheme =
-                        extra?['challengeTheme'] as ChallengeThemes?;
+                    final challengeTheme = state.extra as ChallengeThemes?;
                     return MemoryChallengePage(challengeTheme: challengeTheme);
                   },
                   routes: [
@@ -95,9 +93,8 @@ class TiliRoutes {
                       path: Paths.vocabularyChallengeHistory.path,
                       name: Paths.vocabularyChallengeHistory.name,
                       builder: (BuildContext context, GoRouterState state) {
-                        final extra = state.extra as Map<String, dynamic>?;
                         final history =
-                            extra?['history'] as List<FlashcardFeedback?>?;
+                            state.extra as List<FlashcardFeedback?>?;
                         return HistoryPage(history: history ?? []);
                       },
                     ),
@@ -105,9 +102,7 @@ class TiliRoutes {
                       path: Paths.vocabularyChallengeInformation.path,
                       name: Paths.vocabularyChallengeInformation.name,
                       builder: (BuildContext context, GoRouterState state) {
-                        final extra = state.extra as Map<String, dynamic>?;
-                        final challengeTheme =
-                            extra?['challengeTheme'] as ChallengeThemes?;
+                        final challengeTheme = state.extra as ChallengeThemes?;
                         return InformationPage(challengeTheme: challengeTheme);
                       },
                     ),
