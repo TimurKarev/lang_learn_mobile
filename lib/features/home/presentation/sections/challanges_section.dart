@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/core/router/tili_navigation.dart';
 import 'package:lang_learn_mobile/ui_kit/tiles/icon_tile.dart';
+import 'package:provider/provider.dart';
 
 class ChallangesSection extends StatelessWidget {
   const ChallangesSection({super.key, this.padding});
@@ -23,7 +24,8 @@ class ChallangesSection extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           IconTile(
-            onTap: () => AppRoutes.goToVocablaryChallangePage(context),
+            onTap: () =>
+                context.read<TiliNavigation>().goToVocablaryDashboard(context),
             icon: FontAwesomeIcons.book,
             title: 'Словарь',
             backgroundColor: Theme.of(context).colorScheme.secondary,

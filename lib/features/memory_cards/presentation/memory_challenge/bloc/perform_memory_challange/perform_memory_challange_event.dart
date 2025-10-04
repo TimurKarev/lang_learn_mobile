@@ -7,6 +7,20 @@ sealed class PerformMemoryChallangeEvent extends Equatable {
   List<Object> get props => [];
 }
 
+final class PerformMemoryChallangeCardsReadyEvent
+    extends PerformMemoryChallangeEvent {
+  const PerformMemoryChallangeCardsReadyEvent({required this.cards});
+
+  final List<Flashcard> cards;
+}
+
+final class PerformMemoryChallangeSettingsReadyEvent
+    extends PerformMemoryChallangeEvent {
+  const PerformMemoryChallangeSettingsReadyEvent({required this.settings});
+
+  final FlashcardsSettings settings;
+}
+
 final class PerformMemoryChallangeDataReadyEvent
     extends PerformMemoryChallangeEvent {
   const PerformMemoryChallangeDataReadyEvent({

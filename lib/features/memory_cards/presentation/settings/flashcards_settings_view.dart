@@ -5,8 +5,8 @@ import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 
-class SettingsView extends StatelessWidget {
-  const SettingsView({
+class FlashcardsSettingsView extends StatelessWidget {
+  const FlashcardsSettingsView({
     super.key,
     required this.settings,
     required this.onClose,

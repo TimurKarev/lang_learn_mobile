@@ -16,7 +16,7 @@ class SettingsBloc
     on<ShuffleCardsChangesSettingsEvent>(_onShuffleCardsChange);
     on<RepeatWrongChangesSettingsEvent>(_onRepeatWrongChange);
     on<AskLanguageChangesSettingsEvent>(_onAskLanguageChange);
-    on<ApplySettingsEvent>(_onApplySettings);
+    // on<ApplySettingsEvent>(_onApplySettings);
     on<CancelSettingsEvent>(_onCancelSettings);
   }
 
@@ -34,7 +34,8 @@ class SettingsBloc
   }
 
   @override
-  void onSetModel(FlashcardsSettings model) {
+  Future<void> onSetModel(FlashcardsSettings model) async {
+    await _repository.saveSettings(model);
     setInitialModel(model);
   }
 
@@ -86,19 +87,19 @@ class SettingsBloc
     }
   }
 
-  Future<void> _onApplySettings(
-    ApplySettingsEvent event,
-    Emitter<ModelHandlerState<FlashcardsSettings>> emit,
-  ) async {
-    if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
-      if (state.model != getInitialModel()) {
-        await _repository.saveSettings(state.model);
-      }
-      add(ModelHandlerSetModelEvent(state.model));
-    } else {
-      throw UnimplementedError();
-    }
-  }
+  // Future<void> _onApplySettings(
+  //   ApplySettingsEvent event,
+  //   Emitter<ModelHandlerState<FlashcardsSettings>> emit,
+  // ) async {
+  //   if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
+  //     if (state.model != getInitialModel()) {
+  //       await _repository.saveSettings(state.model);
+  //     }
+  //     add(ModelHandlerSetModelEvent(state.model));
+  //   } else {
+  //     throw UnimplementedError();
+  //   }
+  // }
 
   Future<void> _onCancelSettings(
     CancelSettingsEvent event,

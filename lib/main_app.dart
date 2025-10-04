@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/core/di/object_container.dart';
-import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/core/router/tili_navigation.dart';
+import 'package:lang_learn_mobile/core/router/tili_routes.dart';
 import 'package:lang_learn_mobile/core/theme/tilit_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
@@ -26,7 +27,7 @@ class _MainAppState extends State<MainApp> {
     _diLocator = DiLocator(ObjectContainer());
     _authBloc = AuthBloc(authRepository: _diLocator.get<AuthRepository>())
       ..add(AuthInitialEvent());
-    _router = AppRoutes.router(_authBloc);
+    _router = TiliRoutes.router(_authBloc);
   }
 
   @override
@@ -38,8 +39,11 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _diLocator,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(create: (_) => TiliNavigation()),
+        RepositoryProvider.value(value: _diLocator),
+      ],
       child: BlocProvider.value(
         value: _authBloc,
         child: MaterialApp.router(

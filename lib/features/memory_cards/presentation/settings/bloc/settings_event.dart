@@ -18,9 +18,9 @@ class AskLanguageChangesSettingsEvent extends ModelHandlerEvent {
   final Languages value;
 }
 
-class ApplySettingsEvent extends ModelHandlerEvent {
-  const ApplySettingsEvent();
-}
+// class ApplySettingsEvent extends ModelHandlerEvent {
+//   const ApplySettingsEvent();
+// }
 
 class CancelSettingsEvent extends ModelHandlerEvent {
   const CancelSettingsEvent();

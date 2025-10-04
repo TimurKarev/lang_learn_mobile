@@ -1,81 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/router/paths.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/cards_dashboard_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/history/history_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/information_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/settings_page.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/flashcards_settings_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
 import 'package:lang_learn_mobile/features/home/presentation/home_page.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/splash_page.dart';
 
 /// Centralized route constants and navigation helpers
-class AppRoutes {
-  // Route path constants
-  static const String home = '/';
-  static const String dashboard = 'dashboard';
-  static const String challenge = 'challenge';
-  static const String information = 'information';
-  static const String flashcardSettings = '/flashcard-settings';
-  static const String flashcardHistory = 'flashcard-history';
-
-  // Parameter keys
-
-  /// Navigation helper methods
-  static void goToVocablaryChallangePage(BuildContext context) {
-    if (GoRouterState.of(context).fullPath case final String fullPath) {
-      context.push('$fullPath/$dashboard');
-    }
-  }
-
-  static void goToChallenge(
-    BuildContext context, {
-    required ChallengeThemes challengeTheme,
-  }) {
-    if (GoRouterState.of(context).fullPath case final String fullPath) {
-      context.push(
-        '$fullPath/$challenge',
-        extra: {'challengeTheme': challengeTheme},
-      );
-    }
-  }
-
-  static void goToInformation(
-    BuildContext context, {
-    required ChallengeThemes challengeTheme,
-  }) {
-    if (GoRouterState.of(context).fullPath case final String fullPath) {
-      context.push(
-        '$fullPath/$information',
-        extra: {'challengeTheme': challengeTheme},
-      );
-    }
-  }
-
-  static Future<bool?> goToSettings(BuildContext context) async {
-    return context.push<bool>(flashcardSettings);
-  }
-
-  static void goToFlashcardHistory(
-    BuildContext context, {
-    required List<FlashcardFeedback?> history,
-  }) {
-    if (GoRouterState.of(context).fullPath case final String fullPath) {
-      context.push('$fullPath/$flashcardHistory', extra: {'history': history});
-    }
-  }
-
+class TiliRoutes {
   static GoRouter router(Listenable listenable) {
-    debugPrint('Router initialized with listenable: $listenable');
-
     return GoRouter(
       refreshListenable: listenable,
-      initialLocation: '/splash',
+      initialLocation: Paths.splash.path,
       debugLogDiagnostics: true,
       redirect: (BuildContext context, GoRouterState state) {
         debugPrint('Redirect called with location: ${state.uri}');
@@ -107,26 +53,37 @@ class AppRoutes {
       },
       routes: <RouteBase>[
         GoRoute(
-          path: '/splash',
+          path: Paths.splash.path,
+          name: Paths.splash.name,
           builder: (context, state) => const SplashPage(),
+          routes: [
+            GoRoute(
+              path: Paths.login.path,
+              name: Paths.login.name,
+              builder: (context, state) => const LoginPage(),
+            ),
+            GoRoute(
+              path: Paths.onboarding.path,
+              name: Paths.onboarding.name,
+              builder: (context, state) => const OnboardingPage(),
+            ),
+          ],
         ),
-        GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
         GoRoute(
-          path: '/onboarding',
-          builder: (context, state) => const OnboardingPage(),
-        ),
-        GoRoute(
-          path: '/home',
+          path: Paths.home.path,
+          name: Paths.home.name,
           builder: (context, state) => const HomePage(),
           routes: [
             GoRoute(
-              path: dashboard,
+              path: Paths.vocabularyDashboard.path,
+              name: Paths.vocabularyDashboard.name,
               builder: (BuildContext context, GoRouterState state) {
                 return const CardsDashboardPage();
               },
               routes: [
                 GoRoute(
-                  path: challenge,
+                  path: Paths.vocabularyChallenge.path,
+                  name: Paths.vocabularyChallenge.name,
                   builder: (BuildContext context, GoRouterState state) {
                     final extra = state.extra as Map<String, dynamic>?;
                     final challengeTheme =
@@ -135,7 +92,8 @@ class AppRoutes {
                   },
                   routes: [
                     GoRoute(
-                      path: flashcardHistory,
+                      path: Paths.vocabularyChallengeHistory.path,
+                      name: Paths.vocabularyChallengeHistory.name,
                       builder: (BuildContext context, GoRouterState state) {
                         final extra = state.extra as Map<String, dynamic>?;
                         final history =
@@ -144,7 +102,8 @@ class AppRoutes {
                       },
                     ),
                     GoRoute(
-                      path: information,
+                      path: Paths.vocabularyChallengeInformation.path,
+                      name: Paths.vocabularyChallengeInformation.name,
                       builder: (BuildContext context, GoRouterState state) {
                         final extra = state.extra as Map<String, dynamic>?;
                         final challengeTheme =
@@ -153,9 +112,11 @@ class AppRoutes {
                       },
                     ),
                     GoRoute(
-                      path: flashcardSettings,
+                      path: Paths.vocabularyChallengeSettings.path,
+                      name: Paths.vocabularyChallengeSettings.name,
                       builder: (BuildContext context, GoRouterState state) {
-                        return const SettingsPage();
+                        final settings = state.extra as FlashcardsSettings?;
+                        return FlashcardsSettingsPage(settings: settings);
                       },
                     ),
                   ],

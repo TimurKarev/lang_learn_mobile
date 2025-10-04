@@ -15,6 +15,8 @@ class PerformMemoryChallangeBloc
   PerformMemoryChallangeBloc({required MemoryChallangePerformer challange})
     : _challange = challange,
       super(PerformMemoryChallangeInitial()) {
+    on<PerformMemoryChallangeCardsReadyEvent>(_onCardsReady);
+    on<PerformMemoryChallangeSettingsReadyEvent>(_onSettingsReady);
     on<PerformMemoryChallangeDataReadyEvent>(_onDataReady);
     on<PerformMemoryChallangeRestartEvent>(_onRestart);
     on<PerformMemoryChallangeAnswerEvent>(_onAnswer);
@@ -28,6 +30,46 @@ class PerformMemoryChallangeBloc
   static const _duration = Duration(milliseconds: 300);
 
   List<FlashcardFeedback?> get history => _challange.history;
+
+  Future<void> _onCardsReady(
+    PerformMemoryChallangeCardsReadyEvent event,
+    Emitter<PerformMemoryChallangeState> emit,
+  ) async {
+    if (state case final PerformMemoryChallangeLoading loadingState) {
+      if (loadingState.settings != null) {
+        add(
+          PerformMemoryChallangeDataReadyEvent(
+            cards: event.cards,
+            settings: loadingState.settings!,
+          ),
+        );
+      } else {
+        emit(PerformMemoryChallangeLoading(cards: event.cards));
+      }
+    } else {
+      emit(PerformMemoryChallangeLoading(cards: event.cards));
+    }
+  }
+
+  Future<void> _onSettingsReady(
+    PerformMemoryChallangeSettingsReadyEvent event,
+    Emitter<PerformMemoryChallangeState> emit,
+  ) async {
+    if (state case final PerformMemoryChallangeLoading loadingState) {
+      if (loadingState.cards != null) {
+        add(
+          PerformMemoryChallangeDataReadyEvent(
+            cards: loadingState.cards!,
+            settings: event.settings,
+          ),
+        );
+      } else {
+        emit(PerformMemoryChallangeLoading(settings: event.settings));
+      }
+    } else {
+      emit(PerformMemoryChallangeLoading(settings: event.settings));
+    }
+  }
 
   Future<void> _onDataReady(
     PerformMemoryChallangeDataReadyEvent event,

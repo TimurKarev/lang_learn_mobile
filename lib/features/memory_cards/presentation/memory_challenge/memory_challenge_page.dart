@@ -7,6 +7,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challeng
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/feedback_performer.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/fetch_memory_challenge/memory_challenge_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
@@ -37,8 +38,19 @@ class MemoryChallengePage extends StatelessWidget {
               challange: FeedbackPerformer(challengeTheme: theme),
             ),
           ),
+          BlocProvider(
+            create: (context) =>
+                SettingsBloc(
+                  context.read<DiLocator>().get<FlashcardSettingsRepository>(),
+                )..add(
+                  ModelHandlerFetchEvent<FlashcardsSettings>(
+                    params: FlashcardsSettings.initial(),
+                  ),
+                ),
+          ),
         ],
-        child:
+        child: MultiBlocListener(
+          listeners: [
             BlocListener<FetchMemoryChallengeBloc, FetchState<List<Flashcard>>>(
               listenWhen: (previous, current) =>
                   previous is! FetchLoaded<List<Flashcard>> &&
@@ -46,19 +58,28 @@ class MemoryChallengePage extends StatelessWidget {
               listener: (context, state) {
                 if (state case FetchLoaded<List<Flashcard>>(data: final data)) {
                   context.read<PerformMemoryChallangeBloc>().add(
-                    PerformMemoryChallangeDataReadyEvent(
-                      cards: data,
-                      settings:
-                          // (context.read<SettingsBloc>().state
-                          //         as ModelHandlerLoaded<FlashcardsSettings>?)
-                          //     ?.model ??
-                          FlashcardsSettings.initial(),
-                    ),
+                    PerformMemoryChallangeCardsReadyEvent(cards: data),
                   );
                 }
               },
-              child: MemoryChallengeScreen(challengeTheme: theme),
             ),
+            BlocListener<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
+              listenWhen: (previous, current) =>
+                  previous is! ModelHandlerLoaded<FlashcardsSettings> &&
+                  current is ModelHandlerLoaded<FlashcardsSettings>,
+              listener: (context, state) {
+                if (state case ModelHandlerLoaded<FlashcardsSettings>(
+                  model: final model,
+                )) {
+                  context.read<PerformMemoryChallangeBloc>().add(
+                    PerformMemoryChallangeSettingsReadyEvent(settings: model),
+                  );
+                }
+              },
+            ),
+          ],
+          child: MemoryChallengeScreen(challengeTheme: theme),
+        ),
       );
     } else {
       return const ErrorScreen(

@@ -15,6 +15,13 @@ final class PerformMemoryChallangeInitial extends PerformMemoryChallangeState {
   const PerformMemoryChallangeInitial();
 }
 
+final class PerformMemoryChallangeLoading extends PerformMemoryChallangeState {
+  const PerformMemoryChallangeLoading({this.cards, this.settings});
+
+  final List<Flashcard>? cards;
+  final FlashcardsSettings? settings;
+}
+
 final class PerformMemoryChallangeError extends PerformMemoryChallangeState {
   const PerformMemoryChallangeError(this.failure);
 

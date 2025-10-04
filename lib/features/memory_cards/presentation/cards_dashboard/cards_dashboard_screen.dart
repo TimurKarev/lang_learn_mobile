@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
-import 'package:lang_learn_mobile/core/router/routes.dart';
+import 'package:lang_learn_mobile/core/router/tili_navigation.dart';
 import 'package:lang_learn_mobile/features/avatar/presentation/tili_avatar.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/bloc/card_list/card_list_bloc.dart';
@@ -17,7 +17,6 @@ class CardsDashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memory Cards'),
-        // TODO: why it is not working
         leading: IconButton(
           icon: const Icon(Icons.chevron_left, size: 36),
           onPressed: () => Navigator.pop(context),
@@ -44,7 +43,7 @@ class CardsDashboardScreen extends StatelessWidget {
                       width: width,
                       title: data[i].title,
                       theme: data[i].theme,
-                      onTap: () => AppRoutes.goToChallenge(
+                      onTap: () => context.read<TiliNavigation>().goToChallenge(
                         context,
                         challengeTheme: data[i].theme,
                       ),
