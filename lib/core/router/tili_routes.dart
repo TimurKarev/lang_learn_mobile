@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/router/codecs/challenge_theme_codec.dart';
 import 'package:lang_learn_mobile/core/router/paths.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
@@ -23,6 +24,7 @@ class TiliRoutes {
       refreshListenable: listenable,
       initialLocation: Paths.splash.path,
       debugLogDiagnostics: true,
+      extraCodec: const ChallengeThemesCodec(),
       redirect: (BuildContext context, GoRouterState state) {
         debugPrint('Redirect called with location: ${state.uri}');
         final user = context.read<AuthBloc>().state;
