@@ -18,7 +18,6 @@ class MemoryChallengeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memory Challenge'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           BlocBuilder<PerformMemoryChallangeBloc, PerformMemoryChallangeState>(
             builder: (context, state) {

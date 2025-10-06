@@ -12,6 +12,16 @@ class MemoryChallengeWidget extends StatelessWidget {
   final Flashcard? card;
   final bool isAnswered;
 
+  static ButtonStyle _buttonStyle(BuildContext context) => IconButton.styleFrom(
+    iconSize: 36,
+    minimumSize: const Size(64, 64),
+    foregroundColor: Theme.of(context).colorScheme.outline,
+    side: BorderSide(
+      color: Theme.of(context).colorScheme.outlineVariant,
+      width: 2,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final card = this.card;
@@ -25,11 +35,11 @@ class MemoryChallengeWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.all(24.0),
       child: Column(
         children: [
           Flexible(
-            flex: 3,
+            flex: 4,
             child: MemoryCardWidget(
               key: ValueKey(card.id),
               padding: const EdgeInsets.only(top: 8.0),
@@ -41,6 +51,35 @@ class MemoryChallengeWidget extends StatelessWidget {
               },
             ),
           ),
+          const SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                style: _buttonStyle(context),
+                onPressed: () {
+                  context.read<TiliNavigation>().goToFlashcardHistory(
+                    context,
+                    history: context.read<PerformMemoryChallangeBloc>().history,
+                  );
+                },
+                icon: const Icon(Icons.history),
+              ),
+              const SizedBox(width: 16),
+              IconButton(
+                style: _buttonStyle(context),
+                onPressed: () =>
+                    context.read<TiliNavigation>().pushVocabularyInformation(
+                      context,
+                      challengeTheme: context
+                          .read<PerformMemoryChallangeBloc>()
+                          .challengeTheme,
+                    ),
+                icon: const Icon(Icons.info),
+              ),
+            ],
+          ),
+          const Spacer(),
           _ButtonPanel(isAnswered: isAnswered, cardId: card.id),
         ],
       ),
@@ -63,10 +102,14 @@ class _ButtonPanel extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: ElevatedButton(
+                child: OutlinedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.error,
-                    foregroundColor: Theme.of(context).colorScheme.onError,
+                    side: isAnswered
+                        ? null
+                        : BorderSide(
+                            color: Theme.of(context).colorScheme.outline,
+                            width: 2,
+                          ),
                   ),
 
                   onPressed: isAnswered
@@ -83,7 +126,6 @@ class _ButtonPanel extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
                     foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   ),
                   onPressed: isAnswered
@@ -99,34 +141,6 @@ class _ButtonPanel extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () {
-            context.read<TiliNavigation>().goToFlashcardHistory(
-              context,
-              history: context.read<PerformMemoryChallangeBloc>().history,
-            );
-          },
-          child: SizedBox(
-            width: double.infinity,
-            child: Center(child: const Text('ShowHistory')),
-          ),
-        ),
-        const SizedBox(height: 8),
-        ElevatedButton(
-          onPressed: () =>
-              context.read<TiliNavigation>().pushVocabularyInformation(
-                context,
-                challengeTheme: context
-                    .read<PerformMemoryChallangeBloc>()
-                    .challengeTheme,
-              ),
-          child: SizedBox(
-            width: double.infinity,
-            child: Center(child: const Text('ShowVocabulary')),
-          ),
-        ),
-        const SizedBox(height: 32),
       ],
     );
   }

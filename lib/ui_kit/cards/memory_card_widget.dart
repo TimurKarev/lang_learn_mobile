@@ -89,9 +89,18 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
                 child: SizedBox(
                   width: double.infinity,
                   child: Card(
+                    elevation: isShowingBack ? 0 : 4,
+                    shape: isShowingBack
+                        ? RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          )
+                        : null,
                     color: isShowingBack
                         ? Theme.of(context).colorScheme.primaryContainer
-                        : Theme.of(context).colorScheme.secondaryContainer,
+                        : Theme.of(context).colorScheme.surfaceContainerLowest,
                     child: Transform(
                       transform: Matrix4.identity()
                         ..scale(isShowingBack ? -1.0 : 1.0, 1.0, 1.0),
@@ -136,25 +145,22 @@ class _QuestionBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Spacer(),
+        const SizedBox(height: 36),
         Text(
-          lang.name,
-          style: Theme.of(context).textTheme.titleMedium,
+          lang.displayRussianName,
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: Theme.of(context).colorScheme.outline,
+          ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         Text(
           question,
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
-        Text(
-          '/$transcript/',
-          style: Theme.of(context).textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        const Spacer(flex: 2),
       ],
     );
   }
@@ -181,38 +187,46 @@ class _AnswerBody extends StatelessWidget {
       children: [
         const Spacer(),
         Text(
-          answerLang.name,
-          style: Theme.of(context).textTheme.titleMedium,
+          answerLang.displayRussianName,
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: Theme.of(context).colorScheme.outline,
+          ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         Text(
           answer,
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         Text(
           '/$answerTranscript/',
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
           textAlign: TextAlign.center,
         ),
-        const Divider(
-          color: Colors.black,
+        Divider(
           thickness: 1,
           height: 64,
           indent: 32,
           endIndent: 32,
+          color: Theme.of(context).colorScheme.primary,
         ),
         Text(
-          questionlang.name,
-          style: Theme.of(context).textTheme.titleSmall,
+          questionlang.displayRussianName,
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: Theme.of(context).colorScheme.outline,
+          ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
         Text(
           question,
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.headlineMedium,
           textAlign: TextAlign.center,
         ),
         const Spacer(flex: 3),
