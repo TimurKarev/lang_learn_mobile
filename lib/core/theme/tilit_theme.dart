@@ -38,6 +38,22 @@ class TiliTheme {
       error: TiliPalette.deepOrange,
       onError: TiliPalette.offWhiteBackground,
     ),
+    switchTheme: SwitchThemeData(
+      trackColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return TiliPalette.deepOrange;
+        }
+        return TiliPalette.lightGrayMedium;
+      }),
+      trackOutlineColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return TiliPalette.deepOrange;
+        }
+        return TiliPalette.veryLightGrayMedium;
+      }),
+
+      thumbColor: WidgetStateProperty.all(TiliPalette.white),
+    ),
     textTheme: _textTheme,
     listTileTheme: ListTileThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -67,7 +83,7 @@ class TiliTheme {
         foregroundColor: TiliPalette.white,
         minimumSize: const Size(double.infinity, 48),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: _textTheme.labelMedium,
+        textStyle: _textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(

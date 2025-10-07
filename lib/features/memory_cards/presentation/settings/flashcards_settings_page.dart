@@ -48,21 +48,26 @@ class FlashcardsSettingsPage extends StatelessWidget {
           }
           return bloc;
         },
-        child: Scaffold(
-          appBar: AppBar(title: const Text('Flashcard Settings')),
-          body: SafeArea(
-            child:
-                BlocBuilder<
-                  SettingsBloc,
-                  ModelHandlerState<FlashcardsSettings>
-                >(
-                  builder: (context, state) {
+        child: BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Flashcard Settings'),
+                leading: GestureDetector(
+                  child: Icon(Icons.chevron_left, size: 36),
+                  onTap: () => _onClose(context),
+                ),
+              ),
+              body: SafeArea(
+                child: Builder(
+                  builder: (context) {
                     if (state
                         case final ModelHandlerLoaded<FlashcardsSettings>
                             state) {
                       return FlashcardsSettingsView(
                         settings: state.model,
                         onClose: () => _onClose(context),
+                        hasChanges: context.read<SettingsBloc>().hasChanges,
                       );
                     } else if (state
                         case final ModelHandlerError<FlashcardsSettings>
@@ -73,7 +78,9 @@ class FlashcardsSettingsPage extends StatelessWidget {
                     }
                   },
                 ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
