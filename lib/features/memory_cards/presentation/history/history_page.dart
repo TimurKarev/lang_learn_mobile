@@ -9,9 +9,6 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('History')),
-      body: SafeArea(child: HistoryView(history: history)),
-    );
+    return HistoryView(history: history);
   }
 }
