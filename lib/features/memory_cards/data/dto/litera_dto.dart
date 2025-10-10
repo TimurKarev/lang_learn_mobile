@@ -1,11 +1,7 @@
 import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/core/mappers/dto_mapper.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'litera_dto.g.dart';
-
-@JsonSerializable(createToJson: false)
 class LiteralDto implements DtoMapper<Literal> {
   final String id;
   final String word;
@@ -18,9 +14,6 @@ class LiteralDto implements DtoMapper<Literal> {
     required this.transcript,
     required this.lang,
   });
-
-  factory LiteralDto.fromJson(Map<String, dynamic> json) =>
-      _$LiteralDtoFromJson(json);
 
   @override
   Literal toEntity() {
