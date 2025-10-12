@@ -58,6 +58,14 @@ class ChallangeCard extends StatelessWidget {
         return FontAwesomeIcons.seven;
       case ChallengeThemes.household:
         return FontAwesomeIcons.house;
+      case ChallengeThemes.verbs:
+        return FontAwesomeIcons.play;
+      case ChallengeThemes.pronouns:
+        return FontAwesomeIcons.user;
+      case ChallengeThemes.questions:
+        return FontAwesomeIcons.question;
+      case ChallengeThemes.people:
+        return FontAwesomeIcons.users;
       case ChallengeThemes.unknown:
         return FontAwesomeIcons.book;
     }

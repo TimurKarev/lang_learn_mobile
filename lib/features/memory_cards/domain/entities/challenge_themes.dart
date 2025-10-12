@@ -1,6 +1,10 @@
 enum ChallengeThemes {
   number,
   household,
+  verbs,
+  pronouns,
+  questions,
+  people,
   unknown;
 
   static ChallengeThemes getByName(

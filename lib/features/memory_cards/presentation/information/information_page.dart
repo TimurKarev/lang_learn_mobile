@@ -24,9 +24,7 @@ class InformationPage extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => InformationBloc(
-        repository: context.read<DiLocator>().get<MemoryCardsRepository>(
-          mock: true,
-        ),
+        repository: context.read<DiLocator>().get<MemoryCardsRepository>(),
       )..add(FetchDataEvent<ChallengeThemes>(params: challengeTheme)),
       child: const InformationScreen(),
     );
