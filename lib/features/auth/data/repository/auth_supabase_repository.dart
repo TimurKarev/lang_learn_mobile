@@ -1,5 +1,5 @@
 import 'package:dart_either/dart_either.dart';
-import 'package:lang_learn_mobile/core/falures/failure.dart';
+import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart'
     show ProjectUser, AuthenticatedUser, UnauthenticatedUser;
@@ -19,7 +19,14 @@ class AuthSupabaseRepository implements AuthRepository {
     if (result.session?.user case final User user) {
       return Right(AuthenticatedUser(id: user.id));
     }
-    return Left(Failure('User not found'));
+    return Left(
+      Failure(
+        message: 'Aunonimus auth failed',
+        technicalMessage: 'Aunonimus auth failed',
+        type: FailureType.authFailed,
+        stackTrace: StackTrace.current,
+      ),
+    );
   }
 
   @override
@@ -30,10 +37,24 @@ class AuthSupabaseRepository implements AuthRepository {
       final serverClientId = dotenv.env['GOOGLE_SERVER_CLIENT_ID'];
       final iosServerClientId = dotenv.env['IOS_GOOGLE_SERVER_CLIENT_ID'];
       if (serverClientId == null) {
-        return Left(Failure('Google server client ID not found'));
+        return Left(
+          Failure(
+            message: 'Google server client ID not found',
+            technicalMessage: 'serverClientId is null',
+            type: FailureType.authFailed,
+            stackTrace: StackTrace.current,
+          ),
+        );
       }
       if (iosServerClientId == null) {
-        return Left(Failure('iOS Google server client ID not found'));
+        return Left(
+          Failure(
+            message: 'iOS Google server client ID not found',
+            technicalMessage: 'iosServerClientId is null',
+            type: FailureType.authFailed,
+            stackTrace: StackTrace.current,
+          ),
+        );
       }
 
       await googleSignIn.initialize(
@@ -48,9 +69,16 @@ class AuthSupabaseRepository implements AuthRepository {
       GoogleSignInAccount? googleUser;
       try {
         googleUser = await googleSignIn.authenticate();
-      } catch (e) {
-        // If authentication fails, return the error
-        return Left(Failure('Google sign in error: $e'));
+      } catch (e, s) {
+        return Left(
+          Failure(
+            message: 'Google sign in error',
+            technicalMessage: 'Google sign in error: $e',
+            type: FailureType.authFailed,
+            error: e,
+            stackTrace: s,
+          ),
+        );
       }
 
       // Get authentication tokens
@@ -58,7 +86,14 @@ class AuthSupabaseRepository implements AuthRepository {
 
       final idToken = googleAuth.idToken;
       if (idToken == null) {
-        return Left(Failure('ID token not found'));
+        return Left(
+          Failure(
+            message: 'ID token not found',
+            technicalMessage: 'idToken is null',
+            type: FailureType.authFailed,
+            stackTrace: StackTrace.current,
+          ),
+        );
       }
 
       final result = await _supabase.signInWithIdToken(
@@ -70,9 +105,24 @@ class AuthSupabaseRepository implements AuthRepository {
         return Right(AuthenticatedUser(id: user.id));
       }
 
-      return Left(Failure('Authentication failed'));
-    } catch (e) {
-      return Left(Failure('Google sign in error: $e'));
+      return Left(
+        Failure(
+          message: 'Authentication failed',
+          technicalMessage: 'User is null',
+          type: FailureType.authFailed,
+          stackTrace: StackTrace.current,
+        ),
+      );
+    } catch (e, s) {
+      return Left(
+        Failure(
+          message: 'Google sign in error',
+          technicalMessage: 'Google sign in error: $e',
+          type: FailureType.authFailed,
+          error: e,
+          stackTrace: s,
+        ),
+      );
     }
   }
 

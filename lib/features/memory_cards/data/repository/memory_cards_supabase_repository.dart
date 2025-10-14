@@ -1,5 +1,5 @@
 import 'package:dart_either/dart_either.dart';
-import 'package:lang_learn_mobile/core/falures/failure.dart';
+import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/flashcard_dto.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/memory_cards_preview_dto.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
@@ -36,10 +36,15 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
       }
 
       return Right(cards);
-    } on PostgrestException catch (e) {
-      return Left(Failure('Failed to fetch memory cards: ${e.message}'));
-    } catch (e) {
-      return Left(Failure('An unexpected error occurred: $e'));
+    } catch (e, s) {
+      return Left(
+        Failure(
+          message: 'Failed to fetch memory cards',
+          technicalMessage: 'Failed to fetch memory cards: $e',
+          type: FailureType.supabaseError,
+          stackTrace: s,
+        ),
+      );
     }
   }
 
@@ -61,17 +66,28 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
         try {
           final dto = FlashcardDto.fromJson(item);
           cards.add(dto.toEntity());
-        } catch (e) {
-          return Left(Failure('Flashcard mapping failed: $e'));
+        } catch (e, s) {
+          return Left(
+            Failure(
+              message: 'Flashcard mapping failed: $e',
+              technicalMessage: 'Flashcard mapping failed: $e',
+              type: FailureType.supabaseError,
+              stackTrace: s,
+            ),
+          );
         }
       }
 
       return Right(cards);
-      // TODO: error handling in bloc
-    } on PostgrestException catch (e) {
-      return Left(Failure('Failed to fetch flashcards: ${e.message}'));
-    } catch (e) {
-      return Left(Failure('An unexpected error occurred: $e'));
+    } catch (e, s) {
+      return Left(
+        Failure(
+          message: 'Failed to fetch flashcards',
+          technicalMessage: 'Failed to fetch flashcards: $e',
+          type: FailureType.supabaseError,
+          stackTrace: s,
+        ),
+      );
     }
   }
 }

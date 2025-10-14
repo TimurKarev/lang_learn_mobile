@@ -7,11 +7,10 @@ class ModelHandlerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class ModelHandlerFetchEvent<P extends Object>
-    extends ModelHandlerEvent {
-  const ModelHandlerFetchEvent({required this.params});
+final class ModelHandlerFetchEvent<P extends Object> extends ModelHandlerEvent {
+  const ModelHandlerFetchEvent([this.params]);
 
-  final P params;
+  final P? params;
 }
 
 final class ModelHandlerSetModelEvent<M extends Object>

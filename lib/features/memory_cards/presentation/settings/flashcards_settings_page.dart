@@ -42,9 +42,7 @@ class FlashcardsSettingsPage extends StatelessWidget {
           if (settings case final FlashcardsSettings settings) {
             bloc.add(ModelHandlerSetModelEvent(settings));
           } else {
-            bloc.add(
-              ModelHandlerFetchEvent(params: FlashcardsSettings.initial()),
-            );
+            bloc.add(ModelHandlerFetchEvent());
           }
           return bloc;
         },

@@ -1,5 +1,5 @@
 import 'package:dart_either/dart_either.dart';
-import 'package:lang_learn_mobile/core/falures/failure.dart';
+import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/falshcard_settings_dto.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
@@ -26,18 +26,31 @@ class FalshcardSettingsSupabaseRepository
         'ask_language': settings.askLanguage.name,
       });
       return Right(null);
-    } catch (e) {
-      return Left(Failure('Failed to save settings'));
+    } catch (e, s) {
+      return Left(
+        Failure(
+          message: 'Failed to save settings',
+          technicalMessage: 'Failed to save settings: $e',
+          type: FailureType.authFailed,
+          error: e,
+          stackTrace: s,
+        ),
+      );
     }
   }
 
   @override
-  Future<Either<Failure, FlashcardsSettings>> getSettings({
-    required FlashcardsSettings defaultSettings,
-  }) async {
+  Future<Either<Failure, FlashcardsSettings>> getSettings() async {
     final userId = _supabase.auth.currentUser?.id;
     if (userId == null) {
-      return Left(Failure('User is not authenticated'));
+      return Left(
+        Failure(
+          message: 'User is not authenticated',
+          technicalMessage: 'User is not authenticated',
+          type: FailureType.authFailed,
+          stackTrace: StackTrace.current,
+        ),
+      );
     }
 
     try {
@@ -49,13 +62,16 @@ class FalshcardSettingsSupabaseRepository
 
       final dto = FalshcardSettingsDto.fromJson(response);
       return Right(FlashcardsSettingsMapper().mapToEntity(dto));
-    } on PostgrestException catch (e) {
-      if (e.code == 'PGRST116') {
-        return Right(defaultSettings);
-      }
-      return Left(Failure('Failed to get settings'));
-    } catch (e) {
-      return Left(Failure('Failed to get settings'));
+    } catch (e, s) {
+      return Left(
+        Failure(
+          message: 'Failed to get settings',
+          technicalMessage: 'Failed to get settings: $e',
+          type: FailureType.authFailed,
+          error: e,
+          stackTrace: s,
+        ),
+      );
     }
   }
 }

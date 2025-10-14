@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_either/dart_either.dart' show Either;
 import 'package:equatable/equatable.dart';
-import 'package:lang_learn_mobile/core/falures/failure.dart';
+import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 
 part 'fetch_event.dart';
 part 'fetch_state.dart';

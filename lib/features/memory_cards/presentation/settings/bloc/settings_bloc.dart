@@ -3,15 +3,14 @@ import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/initial_model_mixin.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/entities/languages.dart';
-import 'package:lang_learn_mobile/core/falures/failure.dart';
+import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 
 part 'settings_event.dart';
 
-class SettingsBloc
-    extends ModelHandlerBloc<FlashcardsSettings, FlashcardsSettings>
-    with SettingsChangeTracker<FlashcardsSettings, FlashcardsSettings> {
+class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object>
+    with SettingsChangeTracker<FlashcardsSettings, Object> {
   SettingsBloc(this._repository) : super() {
     on<ShuffleCardsChangesSettingsEvent>(_onShuffleCardsChange);
     on<RepeatWrongChangesSettingsEvent>(_onRepeatWrongChange);
@@ -23,14 +22,13 @@ class SettingsBloc
   final FlashcardSettingsRepository _repository;
 
   @override
-  Future<Either<Failure, FlashcardsSettings>> fetchModel(
-    FlashcardsSettings? params,
-  ) async {
-    if (params case final FlashcardsSettings settings) {
-      return _repository.getSettings(defaultSettings: settings);
-    } else {
-      return Left(Failure('Settings are required'));
-    }
+  Future<Either<Failure, FlashcardsSettings>> fetchModel(Object? params) async {
+    final result = await _repository.getSettings();
+
+    return result.fold(
+      ifLeft: (failure) => Right(FlashcardsSettings.initial()),
+      ifRight: (data) => Right(data),
+    );
   }
 
   @override

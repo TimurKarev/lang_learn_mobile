@@ -39,14 +39,9 @@ class MemoryChallengePage extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (context) =>
-                SettingsBloc(
-                  context.read<DiLocator>().get<FlashcardSettingsRepository>(),
-                )..add(
-                  ModelHandlerFetchEvent<FlashcardsSettings>(
-                    params: FlashcardsSettings.initial(),
-                  ),
-                ),
+            create: (context) => SettingsBloc(
+              context.read<DiLocator>().get<FlashcardSettingsRepository>(),
+            )..add(ModelHandlerFetchEvent<FlashcardsSettings>()),
           ),
         ],
         child: MultiBlocListener(
