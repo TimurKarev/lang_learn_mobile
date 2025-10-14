@@ -29,7 +29,7 @@ class LoadedModelState<M> extends ModelState<M> {
 class ErrorModelState<M> extends ModelState<M> {
   const ErrorModelState({required this.failure});
 
-  final Failure failure;
+  final UiError failure;
 
   @override
   List<Object?> get props => [failure];

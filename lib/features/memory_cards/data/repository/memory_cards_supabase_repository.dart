@@ -39,7 +39,6 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
     } catch (e, s) {
       return Left(
         Failure(
-          message: 'Failed to fetch memory cards',
           technicalMessage: 'Failed to fetch memory cards: $e',
           type: FailureType.supabaseError,
           stackTrace: s,
@@ -69,7 +68,6 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
         } catch (e, s) {
           return Left(
             Failure(
-              message: 'Flashcard mapping failed: $e',
               technicalMessage: 'Flashcard mapping failed: $e',
               type: FailureType.supabaseError,
               stackTrace: s,
@@ -82,7 +80,6 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
     } catch (e, s) {
       return Left(
         Failure(
-          message: 'Failed to fetch flashcards',
           technicalMessage: 'Failed to fetch flashcards: $e',
           type: FailureType.supabaseError,
           stackTrace: s,

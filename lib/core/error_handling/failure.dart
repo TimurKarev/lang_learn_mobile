@@ -1,6 +1,5 @@
 class Failure {
   const Failure({
-    required this.message,
     required this.technicalMessage,
     required this.type,
     required this.stackTrace,
@@ -8,7 +7,6 @@ class Failure {
     this.code,
   });
 
-  final String message;
   final String technicalMessage;
   final FailureType type;
   final StackTrace stackTrace;

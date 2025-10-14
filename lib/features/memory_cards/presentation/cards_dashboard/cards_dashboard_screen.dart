@@ -5,6 +5,7 @@ import 'package:lang_learn_mobile/core/router/tili_navigation.dart';
 import 'package:lang_learn_mobile/features/avatar/presentation/tili_avatar.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/cards_dashboard/bloc/card_list/card_list_bloc.dart';
+import 'package:lang_learn_mobile/ui_kit/error_placeholder/error_placeholder.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
 
 class CardsDashboardScreen extends StatelessWidget {
@@ -50,8 +51,8 @@ class CardsDashboardScreen extends StatelessWidget {
                     ),
                 ],
               ),
-              FetchError<List<MemoryCardsPreview>>(failure: final failure) =>
-                Center(child: Text(failure.message)),
+              FetchError<List<MemoryCardsPreview>>(error: final error) =>
+                ErrorPlaceholder(error: error),
             };
           },
         ),

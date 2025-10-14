@@ -25,7 +25,6 @@ class FetchMemoryChallengeBloc
     } else {
       return Left(
         Failure(
-          message: 'Challenge ID is required',
           technicalMessage:
               'FetchMemoryChallengeBloc fetchModel params is required',
           type: FailureType.internalParamError,

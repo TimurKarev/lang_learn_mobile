@@ -7,6 +7,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flashcard_settings.repository.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/flashcards_settings_view.dart';
+import 'package:lang_learn_mobile/ui_kit/error_placeholder/error_placeholder.dart';
 
 class FlashcardsSettingsPage extends StatelessWidget {
   const FlashcardsSettingsPage({super.key, required this.settings});
@@ -70,7 +71,7 @@ class FlashcardsSettingsPage extends StatelessWidget {
                     } else if (state
                         case final ModelHandlerError<FlashcardsSettings>
                             state) {
-                      return Center(child: Text(state.failure.message));
+                      return ErrorPlaceholder(error: state.uiError);
                     } else {
                       return const Center(child: CircularProgressIndicator());
                     }

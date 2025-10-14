@@ -1,7 +1,10 @@
+import 'dart:async' show FutureOr;
+
 import 'package:bloc/bloc.dart';
 import 'package:dart_either/dart_either.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
+import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 
 part 'model_handler_event.dart';
 part 'model_handler_state.dart';
@@ -22,6 +25,24 @@ abstract class ModelHandlerBloc<M extends Object, P extends Object>
 
   void onSetModel(M model) {}
 
+  FutureOr<void> onFetchError({
+    required Failure failure,
+    required Emitter<ModelHandlerState<M>> emit,
+    P? params,
+  }) async {
+    emit(
+      ModelHandlerError<M>(
+        uiError: UiError(
+          title: "Что-то пошло не так",
+          description:
+              "Произошла ошибка при загрузке данных. Проверьте подключение к интернету и попробуйте снова.",
+          displayType: ErrorDisplayType.internal,
+          onRetry: () => add(ModelHandlerFetchEvent<P>(params)),
+        ),
+      ),
+    );
+  }
+
   Future<void> _onFetch(
     ModelHandlerFetchEvent<P> event,
     Emitter<ModelHandlerState<M>> emit,
@@ -34,7 +55,8 @@ abstract class ModelHandlerBloc<M extends Object, P extends Object>
         emit(ModelHandlerLoaded<M>(model: data));
         onSetModel(data);
       },
-      ifLeft: (failure) => emit(ModelHandlerError<M>(failure: failure)),
+      ifLeft: (failure) =>
+          onFetchError(failure: failure, emit: emit, params: event.params),
     );
   }
 

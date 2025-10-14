@@ -16,9 +16,9 @@ final class ModelHandlerLoading<M extends Object> extends ModelHandlerState<M> {
 }
 
 final class ModelHandlerError<M extends Object> extends ModelHandlerState<M> {
-  const ModelHandlerError({required this.failure});
+  const ModelHandlerError({required this.uiError});
 
-  final Failure failure;
+  final UiError uiError;
 }
 
 final class ModelHandlerLoaded<M extends Object> extends ModelHandlerState<M> {

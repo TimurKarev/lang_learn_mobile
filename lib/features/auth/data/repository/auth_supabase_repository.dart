@@ -21,7 +21,6 @@ class AuthSupabaseRepository implements AuthRepository {
     }
     return Left(
       Failure(
-        message: 'Aunonimus auth failed',
         technicalMessage: 'Aunonimus auth failed',
         type: FailureType.authFailed,
         stackTrace: StackTrace.current,
@@ -39,7 +38,6 @@ class AuthSupabaseRepository implements AuthRepository {
       if (serverClientId == null) {
         return Left(
           Failure(
-            message: 'Google server client ID not found',
             technicalMessage: 'serverClientId is null',
             type: FailureType.authFailed,
             stackTrace: StackTrace.current,
@@ -49,7 +47,6 @@ class AuthSupabaseRepository implements AuthRepository {
       if (iosServerClientId == null) {
         return Left(
           Failure(
-            message: 'iOS Google server client ID not found',
             technicalMessage: 'iosServerClientId is null',
             type: FailureType.authFailed,
             stackTrace: StackTrace.current,
@@ -72,7 +69,6 @@ class AuthSupabaseRepository implements AuthRepository {
       } catch (e, s) {
         return Left(
           Failure(
-            message: 'Google sign in error',
             technicalMessage: 'Google sign in error: $e',
             type: FailureType.authFailed,
             error: e,
@@ -88,7 +84,6 @@ class AuthSupabaseRepository implements AuthRepository {
       if (idToken == null) {
         return Left(
           Failure(
-            message: 'ID token not found',
             technicalMessage: 'idToken is null',
             type: FailureType.authFailed,
             stackTrace: StackTrace.current,
@@ -107,7 +102,6 @@ class AuthSupabaseRepository implements AuthRepository {
 
       return Left(
         Failure(
-          message: 'Authentication failed',
           technicalMessage: 'User is null',
           type: FailureType.authFailed,
           stackTrace: StackTrace.current,
@@ -116,7 +110,6 @@ class AuthSupabaseRepository implements AuthRepository {
     } catch (e, s) {
       return Left(
         Failure(
-          message: 'Google sign in error',
           technicalMessage: 'Google sign in error: $e',
           type: FailureType.authFailed,
           error: e,

@@ -26,9 +26,9 @@ final class PerformMemoryChallangeLoading extends PerformMemoryChallangeState {
 }
 
 final class PerformMemoryChallangeError extends PerformMemoryChallangeState {
-  const PerformMemoryChallangeError(this.failure);
+  const PerformMemoryChallangeError({required this.uiError});
 
-  final Failure failure;
+  final UiError uiError;
 }
 
 abstract class PerformMemoryChallangeLoaded

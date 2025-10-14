@@ -36,8 +36,8 @@ class InformationScreen extends StatelessWidget {
                   },
                 ),
               ),
-              FetchError<Vocabulary>(failure: final failure) => Center(
-                child: Text(failure.message),
+              FetchError<Vocabulary>(error: final failure) => Center(
+                child: Text(failure.title),
               ),
             };
           },

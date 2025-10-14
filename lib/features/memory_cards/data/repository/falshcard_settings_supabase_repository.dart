@@ -29,7 +29,6 @@ class FalshcardSettingsSupabaseRepository
     } catch (e, s) {
       return Left(
         Failure(
-          message: 'Failed to save settings',
           technicalMessage: 'Failed to save settings: $e',
           type: FailureType.authFailed,
           error: e,
@@ -45,7 +44,6 @@ class FalshcardSettingsSupabaseRepository
     if (userId == null) {
       return Left(
         Failure(
-          message: 'User is not authenticated',
           technicalMessage: 'User is not authenticated',
           type: FailureType.authFailed,
           stackTrace: StackTrace.current,
@@ -65,7 +63,6 @@ class FalshcardSettingsSupabaseRepository
     } catch (e, s) {
       return Left(
         Failure(
-          message: 'Failed to get settings',
           technicalMessage: 'Failed to get settings: $e',
           type: FailureType.authFailed,
           error: e,

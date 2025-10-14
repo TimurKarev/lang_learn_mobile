@@ -26,7 +26,6 @@ class InformationBloc extends FetchBloc<Vocabulary, ChallengeThemes> {
     } else {
       return Left(
         Failure(
-          message: 'Challenge ID is required',
           technicalMessage: 'InformationBloc fetchModel params is required',
           type: FailureType.internalParamError,
           stackTrace: StackTrace.current,
