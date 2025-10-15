@@ -10,12 +10,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Идти/ехать',
       transcript: 'Idti/ekhat',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '41',
       word: 'Баруу',
       transcript: 'Baruu',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -25,12 +27,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Приходить',
       transcript: 'Prikhodit',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '42',
       word: 'Келүү',
       transcript: 'Kelüü',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -40,12 +44,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Есть (кушать)',
       transcript: 'Est (kushat)',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '43',
       word: 'Жеүү',
       transcript: 'Jeüü',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -55,12 +61,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Пить',
       transcript: 'Pit',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '44',
       word: 'Ичүү',
       transcript: 'Ichüü',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -70,12 +78,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Говорить',
       transcript: 'Govorit',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '45',
       word: 'Сүйлөө',
       transcript: 'Süylöö',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -85,12 +95,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Видеть',
       transcript: 'Videts',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '46',
       word: 'Көрүү',
       transcript: 'Körüü',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -100,12 +112,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Слушать',
       transcript: 'Slushat',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '47',
       word: 'Угуу',
       transcript: 'Uguu',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -115,12 +129,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Писать',
       transcript: 'Pisats',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '48',
       word: 'Жазуу',
       transcript: 'Jazuu',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -130,12 +146,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Читать',
       transcript: 'Chitat',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '49',
       word: 'Окуу',
       transcript: 'Okuu',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -145,12 +163,14 @@ const List<Flashcard> verbsMemoryCards = [
       word: 'Знать',
       transcript: 'Znats',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '50',
       word: 'Билүү',
       transcript: 'Bilüü',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
 ];

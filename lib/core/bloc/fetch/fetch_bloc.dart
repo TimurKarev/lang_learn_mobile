@@ -28,7 +28,7 @@ abstract class FetchBloc<T extends Object, P extends Object>
           title: "Что-то пошло не так",
           description:
               "Произошла ошибка при загрузке данных. Проверьте подключение к интернету и попробуйте снова.",
-          displayType: ErrorDisplayType.internal,
+          displayType: ErrorDisplayType.unknown,
           onRetry: () => add(FetchDataEvent<P>(params: params)),
         ),
       ),

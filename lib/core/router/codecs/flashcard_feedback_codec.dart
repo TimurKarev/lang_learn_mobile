@@ -66,12 +66,14 @@ class _FlashcardFeedbackDecoder extends Converter<String, FlashcardFeedback?> {
             word: fWordMap['word'] as String,
             transcript: fWordMap['transcript'] as String,
             lang: Languages.getByName(fWordMap['lang'] as String),
+            hasAudio: fWordMap['hasAudio'] as bool,
           ),
           sWord: Literal(
             id: sWordMap['id'] as String,
             word: sWordMap['word'] as String,
             transcript: sWordMap['transcript'] as String,
             lang: Languages.getByName(sWordMap['lang'] as String),
+            hasAudio: sWordMap['hasAudio'] as bool,
           ),
         ),
       );

@@ -10,8 +10,15 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Дом',
       transcript: 'Dom',
       lang: Languages.ru,
+      hasAudio: false,
     ),
-    sWord: Literal(id: '29', word: 'Үй', transcript: 'Üy', lang: Languages.ky),
+    sWord: Literal(
+      id: '29',
+      word: 'Үй',
+      transcript: 'Üy',
+      lang: Languages.ky,
+      hasAudio: false,
+    ),
   ),
   Flashcard(
     id: '30',
@@ -20,12 +27,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Еда',
       transcript: 'Eda',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '30',
       word: 'Тамак',
       transcript: 'Tamag',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -35,12 +44,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Вода',
       transcript: 'Voda',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '31',
       word: 'Суу',
       transcript: 'Suu',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -50,12 +61,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Чай',
       transcript: 'Chay',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '32',
       word: 'Чай',
       transcript: 'Chay',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -65,12 +78,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Хлеб',
       transcript: 'Hleb',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '33',
       word: 'Нан',
       transcript: 'Nan',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -80,12 +95,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Дверь',
       transcript: 'Dver',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '34',
       word: 'Эшик',
       transcript: 'Eshik',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -95,12 +112,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Окно',
       transcript: 'Okno',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '35',
       word: 'Терезе',
       transcript: 'Tereze',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -110,12 +129,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Стол',
       transcript: 'Stol',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '36',
       word: 'Дасторкон',
       transcript: 'Dastorkon',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -125,12 +146,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Стул',
       transcript: 'Stul',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '37',
       word: 'Отургуч',
       transcript: 'Oturguch',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -140,12 +163,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Книга',
       transcript: 'Kniga',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '38',
       word: 'Китеп',
       transcript: 'Kitep',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -155,12 +180,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Дорога',
       transcript: 'Doroga',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '39',
       word: 'Жол',
       transcript: 'Jol',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -170,12 +197,14 @@ const List<Flashcard> householdMemoryCards = [
       word: 'Рынок',
       transcript: 'Rynok',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '40',
       word: 'Базар',
       transcript: 'Bazar',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
 ];

@@ -10,12 +10,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Привет',
       transcript: 'Privet',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '11',
       word: 'Салам',
       transcript: 'Salam',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -25,12 +27,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Здравствуйте',
       transcript: 'Zdravstvuyte',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '12',
       word: 'Саламатсызбы',
       transcript: 'Salamatsyzby',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -40,12 +44,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Как дела?',
       transcript: 'Kak dela?',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '13',
       word: 'Жакшыбы',
       transcript: 'Jakshyby',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -55,12 +61,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Спасибо',
       transcript: 'Spasibo',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '14',
       word: 'Рахмат',
       transcript: 'Rahmat',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   // MemoryCard(
@@ -100,12 +108,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Хорошо',
       transcript: 'Horosho',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '17',
       word: 'Жакшы',
       transcript: 'Jakshy',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -115,12 +125,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'До свидания',
       transcript: 'Do svidaniya',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '18',
       word: 'Кош болуңуз',
       transcript: 'Kosh boluŋuz',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -130,12 +142,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Пожалуйста',
       transcript: 'Pozhaluysta',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '19',
       word: 'Сураныч',
       transcript: 'Suranych',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -145,12 +159,14 @@ const List<Flashcard> greetingsMemoryCards = [
       word: 'Извините',
       transcript: 'Izvinite',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '20',
       word: 'Кечиресиз',
       transcript: 'Kechiresiz',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
 ];

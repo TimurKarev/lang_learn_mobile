@@ -6,14 +6,16 @@ class Literal extends Equatable {
   final String word;
   final String transcript;
   final Languages lang;
+  final bool hasAudio;
 
   const Literal({
     required this.id,
     required this.word,
     required this.transcript,
     required this.lang,
+    required this.hasAudio,
   });
 
   @override
-  List<Object?> get props => [id, word, transcript, lang];
+  List<Object?> get props => [id, word, transcript, lang, hasAudio];
 }

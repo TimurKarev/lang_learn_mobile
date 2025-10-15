@@ -36,7 +36,7 @@ abstract class ModelHandlerBloc<M extends Object, P extends Object>
           title: "Что-то пошло не так",
           description:
               "Произошла ошибка при загрузке данных. Проверьте подключение к интернету и попробуйте снова.",
-          displayType: ErrorDisplayType.internal,
+          displayType: ErrorDisplayType.unknown,
           onRetry: () => add(ModelHandlerFetchEvent<P>(params)),
         ),
       ),

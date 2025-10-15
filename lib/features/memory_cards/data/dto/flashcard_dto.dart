@@ -16,16 +16,18 @@ class FlashcardDto implements DtoMapper<Flashcard> {
   factory FlashcardDto.fromJson(Map<String, dynamic> json) => FlashcardDto(
     id: json['id'] as String,
     fWord: LiteralDto(
-      id: '',
+      id: json['from_id'] as String,
       word: json['from_word'] as String,
       transcript: json['from_transcript'] as String? ?? '',
       lang: json['from_translation_lang'] as String,
+      hasAudio: json['from_has_audio'] as bool,
     ),
     sWord: LiteralDto(
-      id: '',
+      id: json['to_id'] as String,
       word: json['to_word'] as String,
       transcript: json['to_transcript'] as String? ?? '',
       lang: json['to_translation_lang'] as String,
+      hasAudio: json['to_has_audio'] as bool,
     ),
   );
 

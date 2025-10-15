@@ -69,7 +69,7 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
           return Left(
             Failure(
               technicalMessage: 'Flashcard mapping failed: $e',
-              type: FailureType.supabaseError,
+              type: FailureType.mappingError,
               stackTrace: s,
             ),
           );

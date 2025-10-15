@@ -10,12 +10,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Где',
       transcript: 'Gde',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '51',
       word: 'Кайда',
       transcript: 'Kayda',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -25,12 +27,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Когда',
       transcript: 'Kogda',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '52',
       word: 'Качан',
       transcript: 'Kachan',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -40,12 +44,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Сколько',
       transcript: 'Skolko',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '53',
       word: 'Канча',
       transcript: 'Kancha',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -55,12 +61,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Какой/какая',
       transcript: 'Kakoy/kakaya',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '54',
       word: 'Кандай',
       transcript: 'Kanday',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -70,12 +78,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Почему',
       transcript: 'Pochemu',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '55',
       word: 'Эмнеге',
       transcript: 'Emnege',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -85,12 +95,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Который',
       transcript: 'Kotoriy',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '56',
       word: 'Кайсы',
       transcript: 'Kaysy',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -100,12 +112,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Это',
       transcript: 'Eto',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '57',
       word: 'Бул',
       transcript: 'Bul',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -115,12 +129,14 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Тот/та',
       transcript: 'Tot/ta',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '58',
       word: 'Тиги',
       transcript: 'Tigi',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
@@ -130,22 +146,31 @@ const List<Flashcard> questionsMemoryCards = [
       word: 'Нет',
       transcript: 'Net',
       lang: Languages.ru,
+      hasAudio: false,
     ),
     sWord: Literal(
       id: '59',
       word: 'Жок',
       transcript: 'Jok',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
   Flashcard(
     id: '60',
-    fWord: Literal(id: '60', word: 'Да', transcript: 'Da', lang: Languages.ru),
+    fWord: Literal(
+      id: '60',
+      word: 'Да',
+      transcript: 'Da',
+      lang: Languages.ru,
+      hasAudio: false,
+    ),
     sWord: Literal(
       id: '60',
       word: 'Ооба',
       transcript: 'Ooba',
       lang: Languages.ky,
+      hasAudio: false,
     ),
   ),
 ];

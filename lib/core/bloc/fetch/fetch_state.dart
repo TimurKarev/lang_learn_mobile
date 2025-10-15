@@ -15,7 +15,7 @@ final class FetchLoading<T extends Object> extends FetchState<T> {
   const FetchLoading();
 }
 
-final class FetchError<T extends Object> extends FetchState<T> {
+class FetchError<T extends Object> extends FetchState<T> {
   const FetchError({required this.error});
 
   final UiError error;

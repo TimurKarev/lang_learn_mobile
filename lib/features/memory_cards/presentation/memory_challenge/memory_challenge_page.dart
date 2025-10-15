@@ -72,6 +72,18 @@ class MemoryChallengePage extends StatelessWidget {
                 }
               },
             ),
+            BlocListener<FetchMemoryChallengeBloc, FetchState<List<Flashcard>>>(
+              listenWhen: (previous, current) =>
+                  previous is! FetchError<List<Flashcard>> &&
+                  current is FetchError<List<Flashcard>>,
+              listener: (context, state) {
+                if (state case FetchError<List<Flashcard>>(
+                  error: final error,
+                )) {
+                  print(error);
+                }
+              },
+            ),
           ],
           child: MemoryChallengeScreen(challengeTheme: theme),
         ),

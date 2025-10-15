@@ -7,12 +7,14 @@ class LiteralDto implements DtoMapper<Literal> {
   final String word;
   final String transcript;
   final String lang;
+  final bool hasAudio;
 
   const LiteralDto({
     required this.id,
     required this.word,
     required this.transcript,
     required this.lang,
+    required this.hasAudio,
   });
 
   @override
@@ -22,6 +24,7 @@ class LiteralDto implements DtoMapper<Literal> {
       word: word,
       transcript: transcript,
       lang: Languages.getByName(lang),
+      hasAudio: hasAudio,
     );
   }
 }

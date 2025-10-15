@@ -12,4 +12,4 @@ class UiError {
   final void Function()? onRetry;
 }
 
-enum ErrorDisplayType { toast, screen, internal }
+enum ErrorDisplayType { toast, screen, internal, unknown }
