@@ -51,3 +51,10 @@ final class PerformMemoryChallangeNextEvent
 
   final bool? feedback;
 }
+
+final class PerformMemoryChallangePlayAudioEvent
+    extends PerformMemoryChallangeEvent {
+  const PerformMemoryChallangePlayAudioEvent(this.literalId);
+
+  final String literalId;
+}

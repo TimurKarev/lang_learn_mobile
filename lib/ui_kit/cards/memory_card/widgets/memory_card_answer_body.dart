@@ -6,10 +6,12 @@ class MemoryCardAnswerBody extends StatelessWidget {
     super.key,
     required this.question,
     required this.answer,
+    required this.onPressAudio,
   });
 
   final Literal question;
   final Literal answer;
+  final void Function(String literalId) onPressAudio;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +34,26 @@ class MemoryCardAnswerBody extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 12),
-        Text(
-          '/${answer.transcript}/',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-          textAlign: TextAlign.center,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Text(
+                '/${answer.transcript}/',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
+            if (answer.hasAudio)
+              IconButton(
+                icon: Icon(
+                  Icons.volume_up,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                onPressed: () => onPressAudio(answer.id),
+              ),
+          ],
         ),
         Divider(
           thickness: 1,
@@ -59,12 +75,29 @@ class MemoryCardAnswerBody extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
           textAlign: TextAlign.center,
         ),
-        Text(
-          '/${question.transcript}/',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface,
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  '/${question.transcript}/',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              if (question.hasAudio)
+                IconButton(
+                  icon: Icon(
+                    Icons.volume_up,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                  onPressed: () => onPressAudio(question.id),
+                ),
+            ],
           ),
-          textAlign: TextAlign.center,
         ),
         const Spacer(),
       ],

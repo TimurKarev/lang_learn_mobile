@@ -21,6 +21,7 @@ class PerformMemoryChallangeBloc
     on<PerformMemoryChallangeRestartEvent>(_onRestart);
     on<PerformMemoryChallangeAnswerEvent>(_onAnswer);
     on<PerformMemoryChallangeNextEvent>(_onNext);
+    on<PerformMemoryChallangePlayAudioEvent>(_onPlayAudio);
   }
 
   ChallengeThemes get challengeTheme => _challange.challengeTheme;
@@ -119,5 +120,13 @@ class PerformMemoryChallangeBloc
     } else {
       emit(PerformMemoryChallangeFinished(history: _challange.history));
     }
+  }
+
+  Future<void> _onPlayAudio(
+    PerformMemoryChallangePlayAudioEvent event,
+    Emitter<PerformMemoryChallangeState> emit,
+  ) async {
+    // TODO: implement audio play
+    //_challange.playAudio(event.literalId);
   }
 }

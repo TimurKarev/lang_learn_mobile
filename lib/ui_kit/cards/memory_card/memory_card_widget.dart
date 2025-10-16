@@ -8,6 +8,7 @@ import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/memory_card_q
 class MemoryCardWidget extends StatefulWidget {
   const MemoryCardWidget({
     super.key,
+    required this.onPressAudio,
     required this.card,
     this.onPressedAfterFlipped,
     this.onCardFlipped,
@@ -17,6 +18,7 @@ class MemoryCardWidget extends StatefulWidget {
   final Flashcard card;
   final VoidCallback? onCardFlipped;
   final VoidCallback? onPressedAfterFlipped;
+  final void Function(String literalId) onPressAudio;
 
   final EdgeInsets padding;
 
@@ -115,6 +117,7 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
                           : MemoryCardAnswerBody(
                               question: widget.card.sWord,
                               answer: widget.card.fWord,
+                              onPressAudio: widget.onPressAudio,
                             ),
                     ),
                   ),

@@ -39,6 +39,11 @@ class MemoryChallengeWidget extends StatelessWidget {
           Flexible(
             flex: 4,
             child: MemoryCardWidget(
+              onPressAudio: (String literalId) {
+                context.read<PerformMemoryChallangeBloc>().add(
+                  PerformMemoryChallangePlayAudioEvent(literalId),
+                );
+              },
               key: ValueKey(card.id),
               padding: const EdgeInsets.only(top: 8.0),
               card: card,
