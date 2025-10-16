@@ -16,6 +16,8 @@ import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
 import 'package:lang_learn_mobile/features/home/presentation/home_page.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/splash_page.dart';
+import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
+import 'package:lang_learn_mobile/ui_kit/error_placeholder/error_placeholder.dart';
 
 /// Centralized route constants and navigation helpers
 class TiliRoutes {
@@ -54,6 +56,30 @@ class TiliRoutes {
         return null;
       },
       routes: <RouteBase>[
+        GoRoute(
+          path: Paths.error.path,
+          name: Paths.error.name,
+          builder: (BuildContext context, GoRouterState state) {
+            final error = state.extra as UiError?;
+            // TODO: move to Page
+            return Scaffold(
+              body: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: ErrorPlaceholder(
+                    error:
+                        error ??
+                        const UiError(
+                          title: 'Unknown Error',
+                          description: 'An unknown error occurred',
+                          displayType: ErrorDisplayType.screen,
+                        ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
         GoRoute(
           path: Paths.splash.path,
           name: Paths.splash.name,

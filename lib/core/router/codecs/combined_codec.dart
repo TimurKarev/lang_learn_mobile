@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'package:lang_learn_mobile/core/router/codecs/challenge_theme_codec.dart';
 import 'package:lang_learn_mobile/core/router/codecs/flashcards_settings_codec.dart';
 import 'package:lang_learn_mobile/core/router/codecs/flashcard_feedback_codec.dart';
+import 'package:lang_learn_mobile/core/router/codecs/ui_error_codec.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
+import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 
 class CombinedCodec extends Codec<Object?, String> {
   const CombinedCodec();
@@ -32,6 +34,8 @@ class _CombinedEncoder extends Converter<Object?, String> {
           .map((item) => const FlashcardFeedbackCodec().encoder.convert(item))
           .join('|');
       return 'flashcard_feedback_list:$encodedList';
+    } else if (input is UiError) {
+      return 'ui_error:${const UiErrorCodec().encoder.convert(input)}';
     }
 
     throw ArgumentError('Unsupported type for encoding: ${input.runtimeType}');
@@ -59,6 +63,9 @@ class _CombinedDecoder extends Converter<String, Object?> {
       return items
           .map((item) => const FlashcardFeedbackCodec().decoder.convert(item))
           .toList();
+    } else if (input.startsWith('ui_error:')) {
+      final data = input.substring('ui_error:'.length);
+      return const UiErrorCodec().decoder.convert(data);
     }
 
     // Try to decode as challenge theme for backward compatibility

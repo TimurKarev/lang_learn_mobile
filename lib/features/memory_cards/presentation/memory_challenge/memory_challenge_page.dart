@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
+import 'package:lang_learn_mobile/core/router/tili_navigation.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
@@ -80,7 +81,10 @@ class MemoryChallengePage extends StatelessWidget {
                 if (state case FetchError<List<Flashcard>>(
                   error: final error,
                 )) {
-                  print(error);
+                  context.read<TiliNavigation>().goToError(
+                    context,
+                    error: error,
+                  );
                 }
               },
             ),

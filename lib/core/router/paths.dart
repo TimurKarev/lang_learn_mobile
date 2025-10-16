@@ -25,7 +25,8 @@ enum Paths {
     name: 'vocabulary-challenge-settings',
   ),
 
-  nothig(path: '/nothig', name: 'nothig');
+  nothig(path: '/nothig', name: 'nothig'),
+  error(path: '/error', name: 'error');
 
   const Paths({required this.path, required this.name});
 
