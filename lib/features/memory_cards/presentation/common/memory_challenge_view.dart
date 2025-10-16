@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/history_view.dart';
-import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memoory_challenge_widget.dart';
+import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_widget.dart';
 
 class MemoryChallengeView extends StatelessWidget {
   const MemoryChallengeView({super.key});

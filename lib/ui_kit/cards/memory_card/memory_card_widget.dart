@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
+import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/memory_card_answer_body.dart';
+import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/memory_card_question_body.dart';
 
 class MemoryCardWidget extends StatefulWidget {
   const MemoryCardWidget({
@@ -106,17 +107,14 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
                         ..scale(isShowingBack ? -1.0 : 1.0, 1.0, 1.0),
                       alignment: Alignment.center,
                       child: !isShowingBack
-                          ? _QuestionBody(
+                          ? MemoryCardQuestionBody(
                               question: widget.card.fWord.word,
                               lang: widget.card.fWord.lang,
                               transcript: widget.card.fWord.transcript,
                             )
-                          : _AnswerBody(
-                              question: widget.card.fWord.word,
-                              questionlang: widget.card.fWord.lang,
-                              answerTranscript: widget.card.sWord.transcript,
-                              answer: widget.card.sWord.word,
-                              answerLang: widget.card.sWord.lang,
+                          : MemoryCardAnswerBody(
+                              question: widget.card.sWord,
+                              answer: widget.card.fWord,
                             ),
                     ),
                   ),
@@ -126,111 +124,6 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
           },
         ),
       ),
-    );
-  }
-}
-
-class _QuestionBody extends StatelessWidget {
-  const _QuestionBody({
-    required this.question,
-    required this.lang,
-    required this.transcript,
-  });
-
-  final String question;
-  final Languages lang;
-  final String transcript;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 36),
-        Text(
-          lang.displayRussianName,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 24),
-        Text(
-          question,
-          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-}
-
-class _AnswerBody extends StatelessWidget {
-  const _AnswerBody({
-    required this.question,
-    required this.questionlang,
-    required this.answerTranscript,
-    required this.answer,
-    required this.answerLang,
-  });
-
-  final String question;
-  final Languages questionlang;
-  final String answerTranscript;
-  final String answer;
-  final Languages answerLang;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        Text(
-          answerLang.displayRussianName,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          answer,
-          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          '/$answerTranscript/',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        Divider(
-          thickness: 1,
-          height: 64,
-          indent: 32,
-          endIndent: 32,
-          color: Theme.of(context).colorScheme.primary,
-        ),
-        Text(
-          questionlang.displayRussianName,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 8),
-        Text(
-          question,
-          style: Theme.of(context).textTheme.headlineMedium,
-          textAlign: TextAlign.center,
-        ),
-        const Spacer(flex: 3),
-      ],
     );
   }
 }
