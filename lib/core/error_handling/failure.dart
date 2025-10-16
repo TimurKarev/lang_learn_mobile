@@ -14,4 +14,10 @@ class Failure {
   final int? code;
 }
 
-enum FailureType { internalParamError, authFailed, supabaseError, mappingError }
+enum FailureType {
+  internalParamError,
+  authFailed,
+  supabaseError,
+  mappingError,
+  justAudioError,
+}

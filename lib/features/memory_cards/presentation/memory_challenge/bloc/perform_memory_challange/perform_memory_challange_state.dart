@@ -25,12 +25,6 @@ final class PerformMemoryChallangeLoading extends PerformMemoryChallangeState {
   List<Object?> get props => [cards, settings];
 }
 
-final class PerformMemoryChallangeError extends PerformMemoryChallangeState {
-  const PerformMemoryChallangeError({required this.uiError});
-
-  final UiError uiError;
-}
-
 abstract class PerformMemoryChallangeLoaded
     extends PerformMemoryChallangeState {
   const PerformMemoryChallangeLoaded();
@@ -58,6 +52,15 @@ final class PerformMemoryChallangeAnswer extends PerformMemoryChallangeLoaded {
 
   @override
   List<Object> get props => [card];
+}
+
+final class PerformMemoryChallangeError extends PerformMemoryChallangeAnswer {
+  const PerformMemoryChallangeError(super.card, {required this.uiError});
+
+  final UiError uiError;
+
+  @override
+  List<Object> get props => [super.card, uiError];
 }
 
 final class PerformMemoryChallangeFinished

@@ -1,20 +1,26 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_either/dart_either.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/performers/memory_card_performer.dart';
+import 'package:lang_learn_mobile/core/audio_player/tili_audio_player.dart';
 
 part 'perform_memory_challange_event.dart';
 part 'perform_memory_challange_state.dart';
 
 class PerformMemoryChallangeBloc
     extends Bloc<PerformMemoryChallangeEvent, PerformMemoryChallangeState> {
-  PerformMemoryChallangeBloc({required MemoryChallangePerformer challange})
-    : _challange = challange,
-      super(PerformMemoryChallangeInitial()) {
+  PerformMemoryChallangeBloc({
+    required MemoryChallangePerformer challange,
+    required TiliAudioPlayer audioPlayer,
+  }) : _challange = challange,
+       _audioPlayer = audioPlayer,
+       super(PerformMemoryChallangeInitial()) {
     on<PerformMemoryChallangeCardsReadyEvent>(_onCardsReady);
     on<PerformMemoryChallangeSettingsReadyEvent>(_onSettingsReady);
     on<PerformMemoryChallangeDataReadyEvent>(_onDataReady);
@@ -27,6 +33,7 @@ class PerformMemoryChallangeBloc
   ChallengeThemes get challengeTheme => _challange.challengeTheme;
 
   final MemoryChallangePerformer _challange;
+  final TiliAudioPlayer _audioPlayer;
 
   static const _duration = Duration(milliseconds: 300);
 
@@ -126,7 +133,20 @@ class PerformMemoryChallangeBloc
     PerformMemoryChallangePlayAudioEvent event,
     Emitter<PerformMemoryChallangeState> emit,
   ) async {
-    // TODO: implement audio play
-    //_challange.playAudio(event.literalId);
+    if (state case final PerformMemoryChallangeAnswer currentState) {
+      final result = await _audioPlayer.playAudio(literalId: event.literalId);
+      if (result.isLeft) {
+        emit(
+          PerformMemoryChallangeError(
+            currentState.card,
+            uiError: UiError(
+              title: 'Не удалось воспроизвести аудио',
+              displayType: ErrorDisplayType.toast,
+              description: '',
+            ),
+          ),
+        );
+      }
+    }
   }
 }

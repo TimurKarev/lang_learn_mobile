@@ -1,3 +1,5 @@
+import 'package:lang_learn_mobile/core/audio_player/just_audio_player.dart';
+import 'package:lang_learn_mobile/core/audio_player/tili_audio_player.dart';
 import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/features/auth/data/repository/auth_supabase_repository.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart'
@@ -72,6 +74,19 @@ class DiLocator {
         _objectContainer.add(authRepo);
       }
       return authRepo as T;
+    }
+
+    if (T == TiliAudioPlayer) {
+      final TiliAudioPlayer audioPlayer;
+      if (mock) {
+        throw Exception('Mock not implemented');
+      } else {
+        audioPlayer = JustAudioPlayer();
+      }
+      if (keepAlive) {
+        _objectContainer.add(audioPlayer);
+      }
+      return audioPlayer as T;
     }
 
     throw Exception('Object not found');

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lang_learn_mobile/core/audio_player/tili_audio_player.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
@@ -37,6 +38,7 @@ class MemoryChallengePage extends StatelessWidget {
           BlocProvider(
             create: (context) => PerformMemoryChallangeBloc(
               challange: FeedbackPerformer(challengeTheme: theme),
+              audioPlayer: context.read<DiLocator>().get<TiliAudioPlayer>(),
             ),
           ),
           BlocProvider(
@@ -88,11 +90,26 @@ class MemoryChallengePage extends StatelessWidget {
                 }
               },
             ),
+            BlocListener<
+              PerformMemoryChallangeBloc,
+              PerformMemoryChallangeState
+            >(
+              listenWhen: (previous, current) =>
+                  current is PerformMemoryChallangeError,
+              listener: (context, state) {
+                if (state case final PerformMemoryChallangeError error) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(error.uiError.title)));
+                }
+              },
+            ),
           ],
           child: MemoryChallengeScreen(challengeTheme: theme),
         ),
       );
     } else {
+      // TODO: handle error
       return const ErrorScreen(
         title: 'Error',
         message: 'Challenge ID is required',
