@@ -26,6 +26,7 @@ dependencies:
   font_awesome_flutter: ^10.6.0
   google_sign_in: ^7.2.0
   just_audio: ^0.10.5
+  file_picker: ^10.3.3
 
 dev_dependencies:
   json_serializable: ^6.7.1
