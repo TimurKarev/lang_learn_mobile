@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/ui_kit/buttons/outline_icon_button.dart';
-import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint_dialog.dart';
+import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/add_hint_dialog.dart';
 
 class MemoryCardAnswerBody extends StatelessWidget {
   const MemoryCardAnswerBody({
@@ -9,11 +9,13 @@ class MemoryCardAnswerBody extends StatelessWidget {
     required this.question,
     required this.answer,
     required this.onPressAudio,
+    required this.literaId,
   });
 
   final Literal question;
   final Literal answer;
   final void Function(String literalId) onPressAudio;
+  final String literaId;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class MemoryCardAnswerBody extends StatelessWidget {
               right: 16,
               child: OutlineIconButton(
                 icon: Icons.lightbulb,
-                onPressed: () => showHintDialog(context),
+                onPressed: () => showAddHintDialog(context, literaId: literaId),
                 foregroundColor: Theme.of(context).colorScheme.primary,
               ),
             ),

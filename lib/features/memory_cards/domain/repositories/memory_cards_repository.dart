@@ -1,3 +1,5 @@
+import 'dart:io' show File;
+
 import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
@@ -11,6 +13,11 @@ abstract class MemoryCardsRepository {
   Future<Either<Failure, List<Flashcard>>> getMemoryCardsForChallenge(
     ChallengeThemes theme,
   );
+  Future<Either<Failure, void>> addHint({
+    required String flashcardId,
+    required String? hint,
+    required File? imageFile,
+  });
 }
 
 class MemoryCardsRepositoryMock implements MemoryCardsRepository {
@@ -78,5 +85,15 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
       default:
         return Right([]);
     }
+  }
+
+  @override
+  Future<Either<Failure, void>> addHint({
+    required String flashcardId,
+    required String? hint,
+    required File? imageFile,
+  }) {
+    // TODO: implement addHint
+    throw UnimplementedError();
   }
 }

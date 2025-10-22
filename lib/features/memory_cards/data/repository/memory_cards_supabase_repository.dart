@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/flashcard_dto.dart';
@@ -86,5 +89,55 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
         ),
       );
     }
+  }
+
+  @override
+  Future<Either<Failure, void>> addHint({
+    required String flashcardId,
+    required String? hint,
+    required File? imageFile,
+  }) async {
+    final Map<String, dynamic> payload = {'translation_id': flashcardId};
+
+    // Add text if provided
+    if (hint case final String hintText when hintText.isNotEmpty) {
+      payload['hint_text'] = hintText;
+    }
+
+    // Add image if provided (convert to base64)
+    if (imageFile != null) {
+      final bytes = await imageFile.readAsBytes();
+      final base64Image = base64Encode(bytes);
+      final fileName = imageFile.path.split('/').last;
+
+      // Determine MIME type from extension
+      String mimeType = 'image/jpeg';
+      final ext = fileName.split('.').last.toLowerCase();
+      if (ext == 'png') {
+        mimeType = 'image/png';
+      } else if (ext == 'gif') {
+        mimeType = 'image/gif';
+      } else if (ext == 'webp') {
+        mimeType = 'image/webp';
+      }
+
+      payload['image_base64'] = base64Image;
+      payload['image_filename'] = fileName;
+      payload['image_mime'] = mimeType;
+    }
+
+    try {
+      await _supabase.functions.invoke('add_hint', body: payload);
+    } catch (e, s) {
+      return Left(
+        Failure(
+          technicalMessage: 'Failed to add hint: $e',
+          type: FailureType.supabaseError,
+          stackTrace: s,
+        ),
+      );
+    }
+
+    return Right(null);
   }
 }
