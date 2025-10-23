@@ -140,4 +140,25 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
 
     return Right(null);
   }
+
+  @override
+  Future<Either<Failure, String>> getFlashcardPicureHintUrl({
+    required String picPath,
+  }) async {
+    try {
+      final response = await _supabase.storage
+          .from('user_translation_hint')
+          .createSignedUrl(picPath, 3600);
+
+      return Right(response);
+    } catch (e, s) {
+      return Left(
+        Failure(
+          technicalMessage: 'Failed to get flashcard picture hint URL: $e',
+          type: FailureType.supabaseError,
+          stackTrace: s,
+        ),
+      );
+    }
+  }
 }

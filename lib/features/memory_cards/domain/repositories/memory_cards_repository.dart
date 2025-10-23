@@ -4,6 +4,8 @@ import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_hint.dart'
+    show FlashcardHint;
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/household_cards.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/numbers_cards.dart';
@@ -17,6 +19,10 @@ abstract class MemoryCardsRepository {
     required String flashcardId,
     required String? hint,
     required File? imageFile,
+  });
+
+  Future<Either<Failure, String>> getFlashcardPicureHintUrl({
+    required String picPath,
   });
 }
 
@@ -94,6 +100,14 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
     required File? imageFile,
   }) {
     // TODO: implement addHint
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, String>> getFlashcardPicureHintUrl({
+    required String picPath,
+  }) {
+    // TODO: implement getFlashcardPicureHintUrl
     throw UnimplementedError();
   }
 }

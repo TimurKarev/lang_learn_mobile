@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
+import 'package:lang_learn_mobile/core/di/di_locator.dart';
+import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
+import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_hint.dart'
+    show FlashcardHint;
+import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
+import 'package:lang_learn_mobile/features/memory_cards/hint/bloc/flashcard_hint_bloc.dart';
+
+class FlashcardHintWidget extends StatelessWidget {
+  const FlashcardHintWidget({
+    super.key,
+    required this.picturePath,
+    required this.stringHint,
+  });
+
+  final String picturePath;
+  final String stringHint;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => FlashcardHintBloc(
+        memoryCardsRepository: context
+            .read<DiLocator>()
+            .get<MemoryCardsRepository>(),
+        stringHint: stringHint,
+      )..add(FetchDataEvent<String>(params: picturePath)),
+      child: BlocBuilder<FlashcardHintBloc, FetchState<FlashcardHint>>(
+        builder: (context, state) {
+          switch (state) {
+            case FetchInitial():
+            case FetchLoading():
+              return const Center(child: CircularProgressIndicator());
+            case FetchLoaded<FlashcardHint>(data: final FlashcardHint data):
+              return const Center(child: Text('Success'));
+            case FetchError(error: final UiError _):
+              return SizedBox.shrink();
+          }
+        },
+      ),
+    );
+  }
+}
