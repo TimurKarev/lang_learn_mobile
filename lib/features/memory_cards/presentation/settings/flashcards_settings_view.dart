@@ -53,6 +53,16 @@ class FlashcardsSettingsView extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(height: 16),
+          TiliSwitchListTile(
+            title: 'Показывать подсказку',
+            value: settings.isShowHint,
+            onChanged: (value) {
+              context.read<SettingsBloc>().add(
+                ShowHintChangesSettingsEvent(value),
+              );
+            },
+          ),
           const SizedBox(height: 32),
           Text(
             'Язык вопроса',

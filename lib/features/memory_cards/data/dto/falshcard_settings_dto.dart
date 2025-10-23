@@ -8,6 +8,7 @@ class FalshcardSettingsDto {
     required this.isShufle,
     required this.isRepeatWrongCard,
     required this.askLanguage,
+    required this.isShowHint,
   });
 
   factory FalshcardSettingsDto.fromJson(Map<String, dynamic> json) =>
@@ -21,4 +22,6 @@ class FalshcardSettingsDto {
   final bool isRepeatWrongCard;
   @JsonKey(name: 'ask_language')
   final String askLanguage;
+  @JsonKey(name: 'is_show_hint')
+  final bool isShowHint;
 }

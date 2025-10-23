@@ -24,6 +24,7 @@ class FalshcardSettingsSupabaseRepository
         'is_shuffle': settings.isShufleCards,
         'is_repeat_wrong_card': settings.isRepeatWrong,
         'ask_language': settings.askLanguage.name,
+        'is_show_hint': settings.isShowHint,
       });
       return Right(null);
     } catch (e, s) {

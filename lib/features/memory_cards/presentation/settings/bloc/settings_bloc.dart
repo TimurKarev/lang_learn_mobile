@@ -15,6 +15,7 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object>
     on<ShuffleCardsChangesSettingsEvent>(_onShuffleCardsChange);
     on<RepeatWrongChangesSettingsEvent>(_onRepeatWrongChange);
     on<AskLanguageChangesSettingsEvent>(_onAskLanguageChange);
+    on<ShowHintChangesSettingsEvent>(_onShowHintChange);
     // on<ApplySettingsEvent>(_onApplySettings);
     on<CancelSettingsEvent>(_onCancelSettings);
   }
@@ -46,6 +47,7 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object>
         isShufleCards: event.value,
         isRepeatWrong: state.model.isRepeatWrong,
         askLanguage: state.model.askLanguage,
+        isShowHint: state.model.isShowHint,
       );
       emit(state.copyWith(model: model));
     } else {
@@ -62,6 +64,7 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object>
         isShufleCards: state.model.isShufleCards,
         isRepeatWrong: event.value,
         askLanguage: state.model.askLanguage,
+        isShowHint: state.model.isShowHint,
       );
       emit(state.copyWith(model: model));
     } else {
@@ -78,6 +81,24 @@ class SettingsBloc extends ModelHandlerBloc<FlashcardsSettings, Object>
         isShufleCards: state.model.isShufleCards,
         isRepeatWrong: state.model.isRepeatWrong,
         askLanguage: event.value,
+        isShowHint: state.model.isShowHint,
+      );
+      emit(state.copyWith(model: model));
+    } else {
+      throw UnimplementedError();
+    }
+  }
+
+  Future<void> _onShowHintChange(
+    ShowHintChangesSettingsEvent event,
+    Emitter<ModelHandlerState<FlashcardsSettings>> emit,
+  ) async {
+    if (state case final ModelHandlerLoaded<FlashcardsSettings> state) {
+      final model = FlashcardsSettings(
+        isShufleCards: state.model.isShufleCards,
+        isRepeatWrong: state.model.isRepeatWrong,
+        askLanguage: state.model.askLanguage,
+        isShowHint: event.value,
       );
       emit(state.copyWith(model: model));
     } else {
