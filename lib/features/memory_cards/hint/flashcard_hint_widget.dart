@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
@@ -34,7 +35,24 @@ class FlashcardHintWidget extends StatelessWidget {
             case FetchLoading():
               return const Center(child: CircularProgressIndicator());
             case FetchLoaded<FlashcardHint>(data: final FlashcardHint data):
-              return const Center(child: Text('Success'));
+              return Column(
+                children: [
+                  Expanded(
+                    child: CachedNetworkImage(
+                      imageUrl: data.pictureUrl,
+                      placeholder: (context, url) =>
+                          Center(child: const CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    data.stringHint,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              );
             case FetchError(error: final UiError _):
               return SizedBox.shrink();
           }

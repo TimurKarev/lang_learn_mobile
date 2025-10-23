@@ -44,18 +44,27 @@ class MemoryCardQuestionBody extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         if (imageHintPath.isNotEmpty || stringHint.isNotEmpty)
-          BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
-            builder: (context, state) {
-              if (state
-                  case final ModelHandlerLoaded<FlashcardsSettings> loadedState
-                  when loadedState.model.isShowHint) {
-                return FlashcardHintWidget(
-                  picturePath: imageHintPath,
-                  stringHint: stringHint,
-                );
-              }
-              return const SizedBox.shrink();
-            },
+          Flexible(
+            child:
+                BlocBuilder<
+                  SettingsBloc,
+                  ModelHandlerState<FlashcardsSettings>
+                >(
+                  builder: (context, state) {
+                    if (state
+                        case final ModelHandlerLoaded<FlashcardsSettings>
+                            loadedState when loadedState.model.isShowHint) {
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: FlashcardHintWidget(
+                          picturePath: imageHintPath,
+                          stringHint: stringHint,
+                        ),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
           ),
       ],
     );
