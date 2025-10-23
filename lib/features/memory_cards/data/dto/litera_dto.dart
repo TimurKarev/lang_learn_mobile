@@ -7,14 +7,18 @@ class LiteralDto implements DtoMapper<Literal> {
   final String word;
   final String transcript;
   final String lang;
-  final bool hasAudio;
+  final bool? hasAudio;
+  final String? stringHint;
+  final String? imagePath;
 
   const LiteralDto({
     required this.id,
     required this.word,
     required this.transcript,
     required this.lang,
-    required this.hasAudio,
+    this.hasAudio,
+    this.stringHint,
+    this.imagePath,
   });
 
   @override
@@ -24,7 +28,9 @@ class LiteralDto implements DtoMapper<Literal> {
       word: word,
       transcript: transcript,
       lang: Languages.getByName(lang),
-      hasAudio: hasAudio,
+      hasAudio: hasAudio ?? false,
+      stringHint: stringHint ?? '',
+      imagePath: imagePath ?? '',
     );
   }
 }

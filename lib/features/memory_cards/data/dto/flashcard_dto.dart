@@ -20,14 +20,18 @@ class FlashcardDto implements DtoMapper<Flashcard> {
       word: json['from_word'] as String,
       transcript: json['from_transcript'] as String? ?? '',
       lang: json['from_translation_lang'] as String,
-      hasAudio: json['from_audio'] as bool? ?? false,
+      hasAudio: json['from_audio'] as bool?,
+      stringHint: json['from_hint_text'] as String?,
+      imagePath: json['from_image_path'] as String?,
     ),
     sWord: LiteralDto(
       id: json['to_id'] as String,
       word: json['to_word'] as String,
       transcript: json['to_transcript'] as String? ?? '',
       lang: json['to_translation_lang'] as String,
-      hasAudio: json['to_audio'] as bool? ?? false,
+      hasAudio: json['to_audio'] as bool?,
+      stringHint: json['to_hint_text'] as String?,
+      imagePath: json['to_image_path'] as String?,
     ),
   );
 
