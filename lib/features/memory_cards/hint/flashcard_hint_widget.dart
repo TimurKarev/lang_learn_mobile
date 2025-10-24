@@ -33,23 +33,44 @@ class FlashcardHintWidget extends StatelessWidget {
           switch (state) {
             case FetchInitial():
             case FetchLoading():
-              return const Center(child: CircularProgressIndicator());
+              return Column(
+                children: [
+                  Expanded(
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                  const SizedBox(height: 54),
+                ],
+              );
             case FetchLoaded<FlashcardHint>(data: final FlashcardHint data):
               return Column(
                 children: [
                   Expanded(
-                    child: CachedNetworkImage(
-                      imageUrl: data.pictureUrl,
-                      placeholder: (context, url) =>
-                          Center(child: const CircularProgressIndicator()),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
+                    child: data.pictureUrl.isEmpty
+                        ? const SizedBox.shrink()
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: CachedNetworkImage(
+                              imageUrl: data.pictureUrl,
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Center(
+                                child: const CircularProgressIndicator(),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
+                          ),
                   ),
                   const SizedBox(height: 16),
-                  Text(
-                    data.stringHint,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                  SizedBox(
+                    height: 54,
+                    child: Text(
+                      data.stringHint,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                   ),
                 ],
               );

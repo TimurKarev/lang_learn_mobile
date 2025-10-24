@@ -9,6 +9,7 @@ class OutlineIconButton extends StatelessWidget {
     this.onPressed,
     this.size = 48.0,
     this.borderWidth = 2.0,
+    this.iconSize,
     super.key,
   });
 
@@ -18,6 +19,7 @@ class OutlineIconButton extends StatelessWidget {
   final Color? backgroundColor;
   final VoidCallback? onPressed;
   final double size;
+  final double? iconSize;
   final double borderWidth;
 
   @override
@@ -39,7 +41,7 @@ class OutlineIconButton extends StatelessWidget {
           ),
           padding: EdgeInsets.zero,
         ),
-        icon: Icon(icon, color: foregroundColor),
+        icon: Icon(icon, color: foregroundColor, size: iconSize),
       ),
     );
   }

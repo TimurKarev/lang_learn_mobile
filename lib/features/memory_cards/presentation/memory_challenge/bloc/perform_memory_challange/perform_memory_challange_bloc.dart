@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:dart_either/dart_either.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard_feedback.dart';

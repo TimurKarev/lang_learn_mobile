@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
+import 'package:lang_learn_mobile/core/services/image_compression_service.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/bloc/add_hint_bloc.dart';
 
@@ -17,6 +18,9 @@ void showAddHintDialog(BuildContext context, {required String literaId}) {
           memoryCardsRepository: context
               .read<DiLocator>()
               .get<MemoryCardsRepository>(),
+          imageCompressionService: context
+              .read<DiLocator>()
+              .get<ImageCompressionService>(),
         ),
         child: BlocListener<AddHintBloc, AddHintState>(
           listener: (context, state) {

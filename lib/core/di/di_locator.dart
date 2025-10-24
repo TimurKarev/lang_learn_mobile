@@ -1,6 +1,7 @@
 import 'package:lang_learn_mobile/core/audio_player/just_audio_player.dart';
 import 'package:lang_learn_mobile/core/audio_player/tili_audio_player.dart';
 import 'package:lang_learn_mobile/core/di/object_container.dart';
+import 'package:lang_learn_mobile/core/services/image_compression_service.dart';
 import 'package:lang_learn_mobile/features/auth/data/repository/auth_supabase_repository.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart'
     show AuthRepository;
@@ -87,6 +88,19 @@ class DiLocator {
         _objectContainer.add(audioPlayer);
       }
       return audioPlayer as T;
+    }
+
+    if (T == ImageCompressionService) {
+      final ImageCompressionService imageCompressionService;
+      if (mock) {
+        throw Exception('Mock not implemented');
+      } else {
+        imageCompressionService = ImageCompressionServiceImpl();
+      }
+      if (keepAlive) {
+        _objectContainer.add(imageCompressionService);
+      }
+      return imageCompressionService as T;
     }
 
     throw Exception('Object not found');

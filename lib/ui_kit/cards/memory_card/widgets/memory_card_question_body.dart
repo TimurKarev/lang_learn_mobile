@@ -6,8 +6,9 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/hint/flashcard_hint_widget.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart'
     show SettingsBloc;
+import 'package:lang_learn_mobile/ui_kit/buttons/outline_icon_button.dart';
 
-class MemoryCardQuestionBody extends StatelessWidget {
+class MemoryCardQuestionBody extends StatefulWidget {
   const MemoryCardQuestionBody({
     super.key,
     required this.question,
@@ -24,12 +25,19 @@ class MemoryCardQuestionBody extends StatelessWidget {
   final String imageHintPath;
 
   @override
+  State<MemoryCardQuestionBody> createState() => _MemoryCardQuestionBodyState();
+}
+
+class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
+  bool _isHintVisible = false;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 36),
         Text(
-          lang.displayRussianName,
+          widget.lang.displayRussianName,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
             color: Theme.of(context).colorScheme.outline,
           ),
@@ -37,14 +45,14 @@ class MemoryCardQuestionBody extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          question,
+          widget.question,
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           textAlign: TextAlign.center,
         ),
-        if (imageHintPath.isNotEmpty || stringHint.isNotEmpty)
-          Flexible(
+        if (widget.imageHintPath.isNotEmpty || widget.stringHint.isNotEmpty)
+          Expanded(
             child:
                 BlocBuilder<
                   SettingsBloc,
@@ -54,13 +62,29 @@ class MemoryCardQuestionBody extends StatelessWidget {
                     if (state
                         case final ModelHandlerLoaded<FlashcardsSettings>
                             loadedState when loadedState.model.isShowHint) {
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: FlashcardHintWidget(
-                          picturePath: imageHintPath,
-                          stringHint: stringHint,
-                        ),
-                      );
+                      if (_isHintVisible) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: FlashcardHintWidget(
+                            picturePath: widget.imageHintPath,
+                            stringHint: widget.stringHint,
+                          ),
+                        );
+                      } else {
+                        return OutlineIconButton(
+                          icon: Icons.lightbulb,
+                          size: 64,
+                          iconSize: 48,
+                          foregroundColor: Theme.of(
+                            context,
+                          ).colorScheme.secondary,
+                          onPressed: () {
+                            setState(() {
+                              _isHintVisible = true;
+                            });
+                          },
+                        );
+                      }
                     }
                     return const SizedBox.shrink();
                   },
