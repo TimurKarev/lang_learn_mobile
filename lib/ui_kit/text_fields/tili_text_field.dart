@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lang_learn_mobile/core/theme/tili_palette.dart';
 
 class TiliTextField extends StatefulWidget {
   const TiliTextField({
@@ -59,7 +58,7 @@ class _TiliTextFieldState extends State<TiliTextField> {
   Widget build(BuildContext context) {
     return TextField(
       autocorrect: false,
-      cursorColor: TiliPalette.mutedTeal,
+      cursorColor: Theme.of(context).colorScheme.tertiary,
       controller: _controller,
       obscureText: _obscureText,
       decoration: InputDecoration(
@@ -69,16 +68,16 @@ class _TiliTextFieldState extends State<TiliTextField> {
                 child: Icon(widget.suffixIcon),
               )
             : null,
-        suffixIconColor: TiliPalette.veryLightGrayMedium,
+        suffixIconColor: Theme.of(context).colorScheme.outlineVariant,
         hintText: widget.hintText,
         filled: true,
         fillColor: widget.enabled
-            ? TiliPalette.grayLight
-            : TiliPalette.veryLightGrayMedium,
+            ? Theme.of(context).colorScheme.surfaceContainer
+            : Theme.of(context).colorScheme.outlineVariant,
         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
           color: widget.enabled
-              ? TiliPalette.veryLightGrayMedium
-              : TiliPalette.grayishBlue,
+              ? Theme.of(context).colorScheme.outlineVariant
+              : Theme.of(context).colorScheme.outline,
         ),
       ),
       enabled: widget.enabled,

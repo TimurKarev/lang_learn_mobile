@@ -13,6 +13,8 @@ import 'package:lang_learn_mobile/features/memory_cards/presentation/information
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/flashcards_settings_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/terms_of_use_page.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/privacy_policy_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
 import 'package:lang_learn_mobile/features/home/presentation/home_page.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/splash_page.dart';
@@ -44,9 +46,12 @@ class TiliRoutes {
           return '/home';
         }
 
-        // If user is not authenticated, only allow them to access login or onboarding.
+        // If user is not authenticated, only allow them to access login, onboarding, terms of use, or privacy policy.
         final isGoingToPublicRoute =
-            location == '/login' || location == '/onboarding';
+            location == '/login' ||
+            location == '/onboarding' ||
+            location == '/terms-of-use' ||
+            location == '/privacy-policy';
         if (user is UnauthenticatedUser && !isGoingToPublicRoute) {
           // The SplashBloc should have already decided between login and onboarding.
           // This redirect is a fallback for other cases.
@@ -96,6 +101,16 @@ class TiliRoutes {
               builder: (context, state) => const OnboardingPage(),
             ),
           ],
+        ),
+        GoRoute(
+          path: Paths.termsOfUse.path,
+          name: Paths.termsOfUse.name,
+          builder: (context, state) => const TermsOfUsePage(),
+        ),
+        GoRoute(
+          path: Paths.privacyPolicy.path,
+          name: Paths.privacyPolicy.name,
+          builder: (context, state) => const PrivacyPolicyPage(),
         ),
         GoRoute(
           path: Paths.home.path,

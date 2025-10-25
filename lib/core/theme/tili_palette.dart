@@ -1,8 +1,8 @@
-// Your exact color palette
-import 'package:flutter/material.dart';
+// Your exact color palette - private implementation
+part of 'tilit_theme.dart';
 
-class TiliPalette {
-  TiliPalette._();
+class _TiliPalette {
+  _TiliPalette._();
   static const Color deepOrange = Color(0xFFE5734E);
 
   static const Color ochre = Color(0xFFC8A25F);

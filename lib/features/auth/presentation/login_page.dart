@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/policy_widget.dart';
 import 'package:lang_learn_mobile/ui_kit/buttons/login_with_button.dart';
 import 'package:lang_learn_mobile/ui_kit/text_fields/password_text_field.dart';
 import 'package:lang_learn_mobile/ui_kit/text_fields/tili_text_field.dart';
-import 'package:lang_learn_mobile/core/theme/tili_palette.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        backgroundColor: TiliPalette.offWhiteBackground,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -55,7 +55,7 @@ class LoginPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: null,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: TiliPalette.deepOrange,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -109,6 +109,8 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {},
                     enabled: false,
                   ),
+                  const SizedBox(height: 16),
+                  PolicyWidget(),
                 ],
               ),
             ),

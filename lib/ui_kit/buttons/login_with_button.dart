@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lang_learn_mobile/core/theme/tili_palette.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum LoginWithButtonVariant { google, apple, facebook }
@@ -31,8 +30,8 @@ class LoginWithButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        backgroundColor: TiliPalette.white,
-        foregroundColor: TiliPalette.black,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainerLowest,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
         iconColor: switch (variant) {
           LoginWithButtonVariant.google => Theme.of(
             context,

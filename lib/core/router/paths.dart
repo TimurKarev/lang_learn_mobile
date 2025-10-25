@@ -2,6 +2,8 @@ enum Paths {
   splash(path: '/', name: 'splash'),
   onboarding(path: 'onboarding', name: 'onboarding'),
   login(path: 'login', name: 'login'),
+  termsOfUse(path: '/terms-of-use', name: 'terms-of-use'),
+  privacyPolicy(path: '/privacy-policy', name: 'privacy-policy'),
 
   home(path: '/home', name: 'home'),
   vocabularyDashboard(
