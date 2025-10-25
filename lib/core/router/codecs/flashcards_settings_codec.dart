@@ -44,6 +44,7 @@ class _FlashcardsSettingsDecoder
         isShufleCards: map['isShufleCards'] as bool,
         isRepeatWrong: map['isRepeatWrong'] as bool,
         askLanguage: Languages.getByName(map['askLanguage'] as String),
+        isShowHint: map['isShowHint'] as bool,
       );
     } catch (e) {
       return null;

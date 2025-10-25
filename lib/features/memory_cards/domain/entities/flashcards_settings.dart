@@ -7,11 +7,13 @@ class FlashcardsSettings extends Equatable {
   final bool isShufleCards;
   final bool isRepeatWrong;
   final Languages askLanguage;
+  final bool isShowHint;
 
   const FlashcardsSettings({
     required this.isShufleCards,
     required this.isRepeatWrong,
     required this.askLanguage,
+    required this.isShowHint,
   });
 
   const FlashcardsSettings.initial()
@@ -19,10 +21,16 @@ class FlashcardsSettings extends Equatable {
         isShufleCards: false,
         isRepeatWrong: true,
         askLanguage: Languages.ru,
+        isShowHint: true,
       );
 
   @override
-  List<Object?> get props => [isShufleCards, isRepeatWrong, askLanguage];
+  List<Object?> get props => [
+    isShufleCards,
+    isRepeatWrong,
+    askLanguage,
+    isShowHint,
+  ];
 }
 
 class FlashcardsSettingsMapper
@@ -33,6 +41,7 @@ class FlashcardsSettingsMapper
       isShufleCards: dto.isShufle,
       isRepeatWrong: dto.isRepeatWrongCard,
       askLanguage: Languages.getByName(dto.askLanguage),
+      isShowHint: dto.isShowHint,
     );
   }
 
@@ -42,6 +51,7 @@ class FlashcardsSettingsMapper
       isShufle: entity.isShufleCards,
       isRepeatWrongCard: entity.isRepeatWrong,
       askLanguage: entity.askLanguage.name,
+      isShowHint: entity.isShowHint,
     );
   }
 }

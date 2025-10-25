@@ -113,11 +113,14 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
                               question: widget.card.fWord.word,
                               lang: widget.card.fWord.lang,
                               transcript: widget.card.fWord.transcript,
+                              stringHint: widget.card.sWord.stringHint,
+                              imageHintPath: widget.card.sWord.imagePath,
                             )
                           : MemoryCardAnswerBody(
                               question: widget.card.fWord,
                               answer: widget.card.sWord,
                               onPressAudio: widget.onPressAudio,
+                              literaId: widget.card.sWord.id,
                             ),
                     ),
                   ),

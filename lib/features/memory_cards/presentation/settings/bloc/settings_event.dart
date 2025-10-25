@@ -25,3 +25,9 @@ class AskLanguageChangesSettingsEvent extends ModelHandlerEvent {
 class CancelSettingsEvent extends ModelHandlerEvent {
   const CancelSettingsEvent();
 }
+
+class ShowHintChangesSettingsEvent extends ModelHandlerEvent {
+  const ShowHintChangesSettingsEvent(this.value);
+
+  final bool value;
+}
