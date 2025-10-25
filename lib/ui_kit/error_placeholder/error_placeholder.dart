@@ -42,7 +42,7 @@ class ErrorPlaceholder extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: error.onRetry,
-              child: const Text('Попробовать снова'),
+              child: Text(error.buttonLabel ?? 'Попробовать снова'),
             ),
             const SizedBox(height: 42),
             Text(

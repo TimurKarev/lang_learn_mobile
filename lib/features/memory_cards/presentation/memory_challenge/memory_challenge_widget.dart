@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 import 'package:lang_learn_mobile/core/router/tili_navigation.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challange_button_panel.dart';
+import 'package:lang_learn_mobile/ui_kit/error_placeholder/error_page.dart';
 import 'package:lang_learn_mobile/ui_kit/ui_kit.dart';
 
 class MemoryChallengeWidget extends StatelessWidget {
@@ -25,10 +27,15 @@ class MemoryChallengeWidget extends StatelessWidget {
     final card = this.card;
     if (card == null) {
       return GestureDetector(
-        child: ErrorScreen(title: 'Unhandled state', message: 'Card is null'),
-        onTap: () {
-          context.pop();
-        },
+        child: ErrorPage(
+          error: UiError(
+            title: 'Unhandled state',
+            description: 'Card is null',
+            displayType: ErrorDisplayType.screen,
+            buttonLabel: 'Вернуться назад',
+            onRetry: () => context.pop(),
+          ),
+        ),
       );
     }
 

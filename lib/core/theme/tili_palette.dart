@@ -20,7 +20,7 @@ class _TiliPalette {
   static const Color lightGrayMedium = Color(0x80D9D9D9);
   static const Color veryLightGrayMedium = Color(0x4dD9D9D9);
 
-  static const Color grayDark = Color(0xFF2A2A2A);
+  //static const Color grayDark = Color(0xFF2A2A2A);
   static const Color lightGrayDark = Color(0x802A2A2A);
 
   static const Color white = Color(0xFFFFFFFF);
@@ -29,5 +29,5 @@ class _TiliPalette {
   static const Color grayLight = Color(0xFFF8F6F0);
   static const Color black = Color(0xFF000000);
 
-  static const Color grayishBlue = Color(0xFFADAEBC);
+  //static const Color grayishBlue = Color(0xFFADAEBC);
 }
