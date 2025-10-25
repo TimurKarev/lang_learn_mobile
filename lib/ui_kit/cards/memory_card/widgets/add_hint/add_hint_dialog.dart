@@ -5,6 +5,7 @@ import 'package:lang_learn_mobile/core/services/image_compression_service.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memory_cards_repository.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/bloc/add_hint_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/add_hint_dialog_body.dart';
+import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 
 void showAddHintDialog(BuildContext context, {required String literaId}) {
   showDialog(
@@ -24,7 +25,12 @@ void showAddHintDialog(BuildContext context, {required String literaId}) {
             if (state is AddHintSuccess) {
               Navigator.of(context).pop();
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Hint added successfully')),
+                const SnackBar(
+                  content: TiliToast(
+                    message: 'Hint added successfully',
+                    type: ToastType.success,
+                  ),
+                ),
               );
             } else if (state is AddHintFailure) {
               ScaffoldMessenger.of(context).showSnackBar(

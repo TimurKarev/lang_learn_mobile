@@ -149,6 +149,12 @@ class TiliTheme {
       backgroundColor: _TiliPalette.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      insetPadding: EdgeInsets.zero,
+    ),
     appBarTheme: AppBarTheme(
       foregroundColor: _TiliPalette.lightBlack,
       titleTextStyle: _textTheme.headlineSmall,

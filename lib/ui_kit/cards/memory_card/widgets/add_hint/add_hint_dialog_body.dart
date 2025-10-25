@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/bloc/add_hint_bloc.dart';
+import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 
 class AddHintDialogBody extends StatefulWidget {
   final String literaId;
@@ -25,6 +26,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
 
   void _pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
       allowedExtensions: [
         'jpg',
         'jpeg',
@@ -44,8 +46,10 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Файл выбран: ${result.files.first.name}'),
-            backgroundColor: Theme.of(context).colorScheme.secondary,
+            content: TiliToast(
+              message: 'Файл выбран: ${result.files.first.name}',
+              type: ToastType.success,
+            ),
           ),
         );
       }
