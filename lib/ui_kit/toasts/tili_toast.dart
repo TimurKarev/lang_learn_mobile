@@ -29,7 +29,6 @@ class TiliToast extends StatelessWidget {
 
     switch (type) {
       case ToastType.success:
-        // TODO: Need specific success green color - currently using mutedTeal from theme
         backgroundColor = colorScheme.surface;
         iconColor = colorScheme.tertiary;
         iconData = Icons.check_circle;

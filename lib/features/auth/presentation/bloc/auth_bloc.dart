@@ -6,7 +6,6 @@ import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repositor
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-// TODO: create repo and return app ProjectUser from here
 // TODO: create error scaffold messenger
 class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
   AuthBloc({required AuthRepository authRepository})

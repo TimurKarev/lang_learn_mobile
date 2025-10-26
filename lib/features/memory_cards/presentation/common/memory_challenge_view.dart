@@ -19,7 +19,6 @@ class MemoryChallengeView extends StatelessWidget {
           final card = switch (state) {
             PerformMemoryChallangeQuestion() => state.card,
             PerformMemoryChallangeAnswer() => state.card,
-            // TODO: Handle other states.
             _ => throw UnimplementedError(),
           };
           final isAnswered = state is PerformMemoryChallangeAnswer;

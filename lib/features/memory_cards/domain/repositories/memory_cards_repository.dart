@@ -97,7 +97,6 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
     required String? hint,
     required File? imageFile,
   }) {
-    // TODO: implement addHint
     throw UnimplementedError();
   }
 
@@ -105,7 +104,6 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
   Future<Either<Failure, String>> getFlashcardPicureHintUrl({
     required String picPath,
   }) {
-    // TODO: implement getFlashcardPicureHintUrl
     throw UnimplementedError();
   }
 }
