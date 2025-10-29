@@ -17,8 +17,10 @@ final class AuthenticatedUser extends ProjectUser {
 }
 
 final class UnauthenticatedUser extends ProjectUser {
-  const UnauthenticatedUser();
+  const UnauthenticatedUser([this.error]);
+
+  final UiError? error;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [error];
 }

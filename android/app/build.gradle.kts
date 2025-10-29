@@ -19,6 +19,8 @@ android {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
+    flavorDimensions += "version"
+    
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.lang_learn_mobile"
@@ -28,6 +30,23 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+    }
+
+    productFlavors {
+        create("dev") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
+        create("dev_no_analytics") {
+            dimension = "version"
+            applicationIdSuffix = ".dev_no_analytics"
+            versionNameSuffix = "-dev-no-analytics"
+        }
+        create("prod") {
+            dimension = "version"
+            // Production app uses the default applicationId
+        }
     }
 
     buildTypes {

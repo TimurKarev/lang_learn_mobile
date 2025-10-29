@@ -8,6 +8,7 @@ import 'package:lang_learn_mobile/features/auth/presentation/policy_widget.dart'
 import 'package:lang_learn_mobile/ui_kit/buttons/login_with_button.dart';
 import 'package:lang_learn_mobile/ui_kit/text_fields/password_text_field.dart';
 import 'package:lang_learn_mobile/ui_kit/text_fields/tili_text_field.dart';
+import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,6 +20,17 @@ class LoginPage extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthenticatedUser) {
           context.go('/home');
+        } else if (state case final UnauthenticatedUser unauthenticatedUser
+            when unauthenticatedUser.error != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: TiliToast(
+                message: unauthenticatedUser.error?.description ?? '',
+                type: ToastType.error,
+              ),
+              duration: const Duration(seconds: 4),
+            ),
+          );
         }
       },
       child: Scaffold(

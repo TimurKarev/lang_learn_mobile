@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-// TODO: create error scaffold messenger
 class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
   AuthBloc({required AuthRepository authRepository})
     : _authRepository = authRepository,
@@ -43,7 +43,15 @@ class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
     try {
       await _authRepository.signInAnonymously();
     } catch (e) {
-      emit(UnauthenticatedUser());
+      emit(
+        UnauthenticatedUser(
+          UiError(
+            title: 'Error',
+            displayType: ErrorDisplayType.toast,
+            description: 'Something went wrong',
+          ),
+        ),
+      );
     }
   }
 
@@ -51,11 +59,24 @@ class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
     AuthSignInWithGoogleEvent event,
     Emitter<ProjectUser> emit,
   ) async {
-    try {
-      await _authRepository.signInWithGoogle();
-    } catch (e) {
-      emit(UnauthenticatedUser());
+    final result = await _authRepository.signInWithGoogle();
+    if (result.isLeft) {
+      emit(
+        UnauthenticatedUser(
+          UiError(
+            title: 'Не удалось войти',
+            displayType: ErrorDisplayType.toast,
+            description: 'Попробуйте другой способ или обратитесь в поддержку',
+          ),
+        ),
+      );
     }
+    // } catch (e) {
+    //   emit(
+    //     UnauthenticatedUser(
+    //     ),
+    //   );
+    // }
   }
 
   Future<void> _onLogout(

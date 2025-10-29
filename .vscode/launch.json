@@ -4,23 +4,43 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
         {
-            "name": "lang_learn_mobile",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "lang_learn_mobile (profile mode)",
+            "name": "dev-analytics",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define=FLAVOR=dev"
+            ]
         },
         {
-            "name": "lang_learn_mobile (release mode)",
+            "name": "dev",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define=FLAVOR=dev_no_analytics"
+            ]
+        },
+        {
+            "name": "release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--flavor=prod",
+                "--dart-define=FLAVOR=prod"
+            ]
+        },
+        {
+           "name": "profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--flavor=prod",
+                "--dart-define=FLAVOR=prod"
+            ]
         }
     ]
 }
