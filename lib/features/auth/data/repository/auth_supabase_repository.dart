@@ -1,11 +1,12 @@
 import 'package:dart_either/dart_either.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:lang_learn_mobile/core/config/flavor_config.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart'
     show ProjectUser, AuthenticatedUser, UnauthenticatedUser;
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthSupabaseRepository implements AuthRepository {
   GoTrueClient get _supabase => Supabase.instance.client.auth;
@@ -32,8 +33,9 @@ class AuthSupabaseRepository implements AuthRepository {
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
-      final serverClientId = dotenv.env['GOOGLE_SERVER_CLIENT_ID'];
+      final serverClientId = AppFlavorConfig.googleServerClientId;
       final iosServerClientId = dotenv.env['IOS_GOOGLE_SERVER_CLIENT_ID'];
+
       if (serverClientId == null) {
         return Left(
           Failure(

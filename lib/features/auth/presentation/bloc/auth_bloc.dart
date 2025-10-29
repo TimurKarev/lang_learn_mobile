@@ -71,12 +71,6 @@ class AuthBloc extends Bloc<AuthEvent, ProjectUser> with ChangeNotifier {
         ),
       );
     }
-    // } catch (e) {
-    //   emit(
-    //     UnauthenticatedUser(
-    //     ),
-    //   );
-    // }
   }
 
   Future<void> _onLogout(

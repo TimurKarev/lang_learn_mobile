@@ -5,21 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dev-analytics",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "debug",
-            "args": [
-                "--dart-define=FLAVOR=dev"
-            ]
-        },
-        {
             "name": "dev",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",
             "args": [
-                "--dart-define=FLAVOR=dev_no_analytics"
+                "--flavor=dev",
+                "--dart-define=FLAVOR=dev"
             ]
         },
         {
@@ -27,16 +19,6 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": [
-                "--flavor=prod",
-                "--dart-define=FLAVOR=prod"
-            ]
-        },
-        {
-           "name": "profile",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile",
             "args": [
                 "--flavor=prod",
                 "--dart-define=FLAVOR=prod"

@@ -1,7 +1,6 @@
 import 'package:clarity_flutter/clarity_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lang_learn_mobile/core/analytics/clarity_init.dart';
 import 'package:lang_learn_mobile/core/config/flavor_config.dart';
 import 'package:lang_learn_mobile/core/di/di_locator.dart';
@@ -37,7 +36,7 @@ class _MainAppState extends State<MainApp> {
   }
 
   void _initClarity() {
-    final projectId = dotenv.env['CLARITY_PROJECT_ID'];
+    final projectId = AppFlavorConfig.clarityProjectId;
     final logLevel = AppFlavorConfig.logLevel;
     final isAnalyticsEnabled = AppFlavorConfig.isAnalyticsEnabled;
 
@@ -47,9 +46,10 @@ class _MainAppState extends State<MainApp> {
         logLevel: logLevel,
       ).getConfig();
       Clarity.initialize(context, config);
-    }
-    if (!isAnalyticsEnabled) {
-      Clarity.pause();
+
+      if (!isAnalyticsEnabled) {
+        Clarity.pause();
+      }
     }
   }
 

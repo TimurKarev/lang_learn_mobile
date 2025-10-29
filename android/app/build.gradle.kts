@@ -38,11 +38,6 @@ android {
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
         }
-        create("dev_no_analytics") {
-            dimension = "version"
-            applicationIdSuffix = ".dev_no_analytics"
-            versionNameSuffix = "-dev-no-analytics"
-        }
         create("prod") {
             dimension = "version"
             // Production app uses the default applicationId
