@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
 import 'package:lang_learn_mobile/core/entities/languages.dart';
+import 'package:lang_learn_mobile/core/utils/string_extension.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/hint/flashcard_hint_widget.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart'
@@ -39,15 +40,16 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
         Text(
           widget.lang.displayRussianName,
           style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: Theme.of(context).colorScheme.outline,
+            color: Theme.of(context).colorScheme.tertiary,
           ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 24),
         Text(
-          widget.question,
-          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          widget.question.capitalizeFirst(),
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
           textAlign: TextAlign.center,
         ),
@@ -71,18 +73,34 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
                           ),
                         );
                       } else {
-                        return OutlineIconButton(
-                          icon: Icons.lightbulb,
-                          size: 64,
-                          iconSize: 48,
-                          foregroundColor: Theme.of(
-                            context,
-                          ).colorScheme.secondary,
-                          onPressed: () {
-                            setState(() {
-                              _isHintVisible = true;
-                            });
-                          },
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            OutlineIconButton(
+                              icon: Icons.lightbulb,
+                              size: 80,
+                              iconSize: 56,
+                              foregroundColor: Theme.of(
+                                context,
+                              ).colorScheme.tertiary,
+                              onPressed: () {
+                                setState(() {
+                                  _isHintVisible = true;
+                                });
+                              },
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Показать подсказку',
+                              style: Theme.of(context).textTheme.bodyLarge
+                                  ?.copyWith(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.tertiary,
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         );
                       }
                     }
