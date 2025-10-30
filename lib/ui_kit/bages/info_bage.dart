@@ -21,7 +21,9 @@ class InfoBadge extends StatelessWidget {
     return CircleAvatar(
       radius: radius,
       backgroundColor: backgroundColor,
-      child: Icon(icon, color: foregroundColor, size: iconSize),
+      child: Center(
+        child: Icon(icon, color: foregroundColor, size: iconSize),
+      ),
     );
   }
 }

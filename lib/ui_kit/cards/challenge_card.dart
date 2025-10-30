@@ -41,6 +41,7 @@ class ChallangeCard extends StatelessWidget {
                 icon: _iconData,
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                radius: 24,
                 iconSize: 18,
               ),
               const SizedBox(height: 16),
