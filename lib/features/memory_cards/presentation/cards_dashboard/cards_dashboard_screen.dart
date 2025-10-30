@@ -18,10 +18,10 @@ class CardsDashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memory Cards'),
-        leading: IconButton(
-          icon: const Icon(Icons.chevron_left, size: 36),
-          onPressed: () => Navigator.pop(context),
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.chevron_left, size: 36),
+        //   onPressed: () => Navigator.pop(context),
+        // ),
         actions: [
           Padding(padding: EdgeInsets.only(right: 24.0), child: TiliAvatar()),
         ],

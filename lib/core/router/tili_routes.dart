@@ -16,7 +16,6 @@ import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/terms_of_use_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/privacy_policy_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
-import 'package:lang_learn_mobile/features/home/presentation/home_page.dart';
 import 'package:lang_learn_mobile/features/splash/presentation/splash_page.dart';
 import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 import 'package:lang_learn_mobile/ui_kit/error_placeholder/error_page.dart';
@@ -99,49 +98,39 @@ class TiliRoutes {
         GoRoute(
           path: Paths.home.path,
           name: Paths.home.name,
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) => const CardsDashboardPage(),
           routes: [
             GoRoute(
-              path: Paths.vocabularyDashboard.path,
-              name: Paths.vocabularyDashboard.name,
+              path: 'vocabulary-challenge',
+              name: Paths.vocabularyChallenge.name,
               builder: (BuildContext context, GoRouterState state) {
-                return const CardsDashboardPage();
+                final challengeTheme = state.extra as ChallengeThemes?;
+                return MemoryChallengePage(challengeTheme: challengeTheme);
               },
               routes: [
                 GoRoute(
-                  path: Paths.vocabularyChallenge.path,
-                  name: Paths.vocabularyChallenge.name,
+                  path: 'vocabulary-challenge-history',
+                  name: Paths.vocabularyChallengeHistory.name,
+                  builder: (BuildContext context, GoRouterState state) {
+                    final history = state.extra as List<FlashcardFeedback?>?;
+                    return HistoryPage(history: history ?? []);
+                  },
+                ),
+                GoRoute(
+                  path: 'vocabulary-challenge-information',
+                  name: Paths.vocabularyChallengeInformation.name,
                   builder: (BuildContext context, GoRouterState state) {
                     final challengeTheme = state.extra as ChallengeThemes?;
-                    return MemoryChallengePage(challengeTheme: challengeTheme);
+                    return InformationPage(challengeTheme: challengeTheme);
                   },
-                  routes: [
-                    GoRoute(
-                      path: Paths.vocabularyChallengeHistory.path,
-                      name: Paths.vocabularyChallengeHistory.name,
-                      builder: (BuildContext context, GoRouterState state) {
-                        final history =
-                            state.extra as List<FlashcardFeedback?>?;
-                        return HistoryPage(history: history ?? []);
-                      },
-                    ),
-                    GoRoute(
-                      path: Paths.vocabularyChallengeInformation.path,
-                      name: Paths.vocabularyChallengeInformation.name,
-                      builder: (BuildContext context, GoRouterState state) {
-                        final challengeTheme = state.extra as ChallengeThemes?;
-                        return InformationPage(challengeTheme: challengeTheme);
-                      },
-                    ),
-                    GoRoute(
-                      path: Paths.vocabularyChallengeSettings.path,
-                      name: Paths.vocabularyChallengeSettings.name,
-                      builder: (BuildContext context, GoRouterState state) {
-                        final settings = state.extra as FlashcardsSettings?;
-                        return FlashcardsSettingsPage(settings: settings);
-                      },
-                    ),
-                  ],
+                ),
+                GoRoute(
+                  path: 'vocabulary-challenge-settings',
+                  name: Paths.vocabularyChallengeSettings.name,
+                  builder: (BuildContext context, GoRouterState state) {
+                    final settings = state.extra as FlashcardsSettings?;
+                    return FlashcardsSettingsPage(settings: settings);
+                  },
                 ),
               ],
             ),

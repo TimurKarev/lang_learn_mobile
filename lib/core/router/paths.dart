@@ -6,10 +6,6 @@ enum Paths {
   privacyPolicy(path: '/privacy-policy', name: 'privacy-policy'),
 
   home(path: '/home', name: 'home'),
-  vocabularyDashboard(
-    path: 'vocabulary-dashboard',
-    name: 'vocabulary-dashboard',
-  ),
   vocabularyChallenge(
     path: '/vocabulary-challenge',
     name: 'vocabulary-challenge',

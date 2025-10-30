@@ -57,7 +57,7 @@ class MemoryChallengePage extends StatelessWidget {
           description: 'Challenge ID is required',
           displayType: ErrorDisplayType.screen,
           buttonLabel: 'Вернуться назад',
-          onRetry: () => context.goNamed(Paths.vocabularyDashboard.name),
+          onRetry: () => context.goNamed(Paths.home.name),
         ),
       );
     }

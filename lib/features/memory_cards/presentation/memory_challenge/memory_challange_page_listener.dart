@@ -65,9 +65,7 @@ class _MemoryChallangePageListenerState
                 context,
                 error: error.copyWith(
                   buttonLabel: 'Вернуться назад',
-                  onRetry: () => context.pushReplacementNamed(
-                    Paths.vocabularyDashboard.name,
-                  ),
+                  onRetry: () => context.pushReplacementNamed(Paths.home.name),
                 ),
               );
             }

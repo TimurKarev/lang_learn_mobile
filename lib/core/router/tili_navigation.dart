@@ -8,7 +8,7 @@ import 'package:lang_learn_mobile/core/error_handling/ui_error.dart';
 
 class TiliNavigation {
   void goToVocablaryDashboard(BuildContext context) {
-    context.pushNamed(Paths.vocabularyDashboard.name);
+    context.pushNamed(Paths.home.name);
   }
 
   void goToChallenge(
