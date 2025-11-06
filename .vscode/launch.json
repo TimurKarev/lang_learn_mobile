@@ -11,7 +11,19 @@
             "flutterMode": "debug",
             "args": [
                 "--flavor=dev",
-                "--dart-define=FLAVOR=dev"
+                "--dart-define=FLAVOR=dev",
+                "--dart-define=LOCAL_SUPABASE=false"
+            ]
+        },
+        {
+            "name": "dev-local",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor=dev",
+                "--dart-define=FLAVOR=dev",
+                "--dart-define=LOCAL_SUPABASE=true"
             ]
         },
         {
@@ -21,7 +33,8 @@
             "flutterMode": "release",
             "args": [
                 "--flavor=prod",
-                "--dart-define=FLAVOR=prod"
+                "--dart-define=FLAVOR=prod",
+                "--dart-define=LOCAL_SUPABASE=false"
             ]
         }
     ]

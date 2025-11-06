@@ -28,6 +28,7 @@ class AppFlavorConfig {
   static bool isAnalyticsEnabledForFlavor() {
     switch (_currentFlavor) {
       case AppFlavor.dev:
+        return true;
       case AppFlavor.prod:
       case null:
         return true;
