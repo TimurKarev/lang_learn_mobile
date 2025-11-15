@@ -35,22 +35,26 @@ class CardsDashboardScreen extends StatelessWidget {
               FetchLoading<List<MemoryCardsPreview>>() => const Center(
                 child: CircularProgressIndicator(),
               ),
-              FetchLoaded<List<MemoryCardsPreview>>(data: final data) => Wrap(
-                runSpacing: 16,
-                spacing: 16,
-                children: [
-                  for (int i = 0; i < data.length; i++)
-                    ChallangeCard(
-                      width: width,
-                      title: data[i].title,
-                      theme: data[i].theme,
-                      onTap: () => context.read<TiliNavigation>().goToChallenge(
-                        context,
-                        challengeTheme: data[i].theme,
-                      ),
-                    ),
-                ],
-              ),
+              FetchLoaded<List<MemoryCardsPreview>>(data: final data) =>
+                SingleChildScrollView(
+                  child: Wrap(
+                    runSpacing: 16,
+                    spacing: 16,
+                    children: [
+                      for (int i = 0; i < data.length; i++)
+                        ChallangeCard(
+                          width: width,
+                          title: data[i].title,
+                          theme: data[i].theme,
+                          onTap: () =>
+                              context.read<TiliNavigation>().goToChallenge(
+                                context,
+                                challengeTheme: data[i].theme,
+                              ),
+                        ),
+                    ],
+                  ),
+                ),
               FetchError<List<MemoryCardsPreview>>(error: final error) =>
                 ErrorPlaceholder(error: error),
             };

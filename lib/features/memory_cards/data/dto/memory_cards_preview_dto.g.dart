@@ -9,8 +9,8 @@ part of 'memory_cards_preview_dto.dart';
 MemoryCardsPreviewDto _$MemoryCardsPreviewDtoFromJson(
   Map<String, dynamic> json,
 ) => MemoryCardsPreviewDto(
-  id: json['id'] as String,
-  title: json['title'] as String,
-  description: json['description'] as String,
-  theme: json['theme'] as String,
+  id: json['id'] as String?,
+  title: json['title'] as String?,
+  description: json['description'] as String?,
+  themeName: json['theme_name'] as String?,
 );

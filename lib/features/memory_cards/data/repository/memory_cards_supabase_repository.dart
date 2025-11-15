@@ -5,6 +5,8 @@ import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/flashcard_dto.dart';
 import 'package:lang_learn_mobile/features/memory_cards/data/dto/memory_cards_preview_dto.dart';
+import 'package:lang_learn_mobile/features/memory_cards/data/repository/database_functions_name.dart';
+import 'package:lang_learn_mobile/features/memory_cards/data/repository/database_table_name.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/challenge_themes.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/memory_cards_preview.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcard.dart';
@@ -20,8 +22,9 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
   Future<Either<Failure, List<MemoryCardsPreview>>> getMemoryCardsList() async {
     try {
       final response = await _supabase
-          .from('memory_cards_preview')
+          .from(DatabaseTableName.theme_previews.name)
           .select()
+          .filter('is_visible', 'eq', true)
           .order('created_at', ascending: true);
 
       if (response.isEmpty) {
@@ -55,9 +58,10 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
     ChallengeThemes theme,
   ) async {
     try {
-      final response = await _supabase
-          .rpc('get_flashcards_by_theme', params: {'theme_name': theme.name})
-          .order('card_order', ascending: true);
+      final response = await _supabase.rpc(
+        DatabaseFunctionsName.get_flashcards_by_theme.name,
+        params: {'theme_name': theme.name},
+      );
 
       if (response.isEmpty) {
         return Right([]);

@@ -8,9 +8,13 @@ enum ChallengeThemes {
   unknown;
 
   static ChallengeThemes getByName(
-    String name, {
+    String? name, {
     ChallengeThemes defaultValue = ChallengeThemes.unknown,
   }) {
+    if (name == null) {
+      return defaultValue;
+    }
+
     final index = ChallengeThemes.values.indexWhere(
       (element) => element.name == name,
     );

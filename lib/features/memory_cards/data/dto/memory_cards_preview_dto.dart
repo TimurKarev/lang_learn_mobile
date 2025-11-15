@@ -11,24 +11,26 @@ class MemoryCardsPreviewDto implements DtoMapper<MemoryCardsPreview> {
     required this.id,
     required this.title,
     required this.description,
-    required this.theme,
+    required this.themeName,
   });
 
-  final String id;
-  final String title;
-  final String description;
-  final String theme;
+  final String? id;
+  final String? title;
+  final String? description;
+  @JsonKey(name: 'theme_name')
+  final String? themeName;
 
   factory MemoryCardsPreviewDto.fromJson(Map<String, dynamic> json) =>
       _$MemoryCardsPreviewDtoFromJson(json);
 
+  // TODO: make empty value and return it in some cases
   @override
   MemoryCardsPreview toEntity() {
     return MemoryCardsPreview(
-      id: id,
-      title: title,
-      description: description,
-      theme: ChallengeThemes.getByName(theme),
+      id: id ?? '',
+      title: title ?? '',
+      description: description ?? '',
+      theme: ChallengeThemes.getByName(themeName),
     );
   }
 }
