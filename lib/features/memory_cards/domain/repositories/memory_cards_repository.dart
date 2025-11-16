@@ -36,7 +36,7 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
         id: '1',
         title: 'Цифры',
         description: 'Учим кыргызские цифры',
-        theme: ChallengeThemes.number,
+        theme: ChallengeThemes.numbers,
       ),
       // MemoryCardsPreview(
       //   id: '2',
@@ -74,7 +74,7 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
     await Future.delayed(_duration);
 
     switch (theme) {
-      case ChallengeThemes.number:
+      case ChallengeThemes.numbers:
         return Right(numbersMemoryCards);
       // case ChallengeThemes.greeting:
       //   return Right(greetingsMemoryCards);

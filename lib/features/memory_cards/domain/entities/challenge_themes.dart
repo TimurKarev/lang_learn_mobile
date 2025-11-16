@@ -1,22 +1,44 @@
+// ignore_for_file: constant_identifier_names
+
 enum ChallengeThemes {
-  number,
+  animals,
+  basic_qualities,
+  biological_verbs,
+  body_parts,
+  city,
+  clothes,
+  colors,
+  consumption_verbs,
+  food,
+  functional,
+  furniture,
+  head,
   household,
-  verbs,
+  interaction_verbs,
+  mind_verbs,
+  movement_verbs,
+  nature,
+  numbers,
+  people,
+  professions,
   pronouns,
   questions,
-  people,
+  sizes,
+  tools,
+  vehicles,
   unknown;
 
   static ChallengeThemes getByName(
     String? name, {
     ChallengeThemes defaultValue = ChallengeThemes.unknown,
   }) {
-    if (name == null) {
+    final lName = name?.toLowerCase();
+    if (lName == null || lName.isEmpty) {
       return defaultValue;
     }
 
     final index = ChallengeThemes.values.indexWhere(
-      (element) => element.name == name,
+      (element) => element.name == lName,
     );
 
     return index == -1 ? defaultValue : ChallengeThemes.values[index];

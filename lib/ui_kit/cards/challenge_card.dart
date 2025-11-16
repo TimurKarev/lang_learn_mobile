@@ -55,18 +55,56 @@ class ChallangeCard extends StatelessWidget {
 
   IconData get _iconData {
     switch (theme) {
-      case ChallengeThemes.number:
-        return FontAwesomeIcons.seven;
+      case ChallengeThemes.animals:
+        return FontAwesomeIcons.paw;
+      case ChallengeThemes.basic_qualities:
+        return FontAwesomeIcons.star;
+      case ChallengeThemes.biological_verbs:
+        return FontAwesomeIcons.heartbeat;
+      case ChallengeThemes.body_parts:
+        return FontAwesomeIcons.user;
+      case ChallengeThemes.city:
+        return FontAwesomeIcons.city;
+      case ChallengeThemes.clothes:
+        return FontAwesomeIcons.tshirt;
+      case ChallengeThemes.colors:
+        return FontAwesomeIcons.palette;
+      case ChallengeThemes.consumption_verbs:
+        return FontAwesomeIcons.utensils;
+      case ChallengeThemes.food:
+        return FontAwesomeIcons.appleAlt;
+      case ChallengeThemes.functional:
+        return FontAwesomeIcons.cogs;
+      case ChallengeThemes.furniture:
+        return FontAwesomeIcons.couch;
+      case ChallengeThemes.head:
+        return FontAwesomeIcons.userCircle;
       case ChallengeThemes.household:
         return FontAwesomeIcons.house;
-      case ChallengeThemes.verbs:
-        return FontAwesomeIcons.play;
+      case ChallengeThemes.interaction_verbs:
+        return FontAwesomeIcons.handshake;
+      case ChallengeThemes.mind_verbs:
+        return FontAwesomeIcons.brain;
+      case ChallengeThemes.movement_verbs:
+        return FontAwesomeIcons.running;
+      case ChallengeThemes.nature:
+        return FontAwesomeIcons.leaf;
+      case ChallengeThemes.numbers:
+        return FontAwesomeIcons.seven;
+      case ChallengeThemes.people:
+        return FontAwesomeIcons.users;
+      case ChallengeThemes.professions:
+        return FontAwesomeIcons.briefcase;
       case ChallengeThemes.pronouns:
         return FontAwesomeIcons.user;
       case ChallengeThemes.questions:
         return FontAwesomeIcons.question;
-      case ChallengeThemes.people:
-        return FontAwesomeIcons.users;
+      case ChallengeThemes.sizes:
+        return FontAwesomeIcons.expandArrowsAlt;
+      case ChallengeThemes.tools:
+        return FontAwesomeIcons.wrench;
+      case ChallengeThemes.vehicles:
+        return FontAwesomeIcons.car;
       case ChallengeThemes.unknown:
         return FontAwesomeIcons.book;
     }
