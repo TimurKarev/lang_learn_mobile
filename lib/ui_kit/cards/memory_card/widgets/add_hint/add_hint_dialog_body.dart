@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/bloc/add_hint_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 
+//TODO: fix UI, button Coхранть и Добавить подсказку
 class AddHintDialogBody extends StatefulWidget {
   final String literaId;
 
@@ -27,17 +28,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
   void _pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
-      allowedExtensions: [
-        'jpg',
-        'jpeg',
-        'png',
-        'gif',
-        'webp',
-        'bmp',
-        'tiff',
-        'heic',
-      ],
-      type: FileType.custom,
+      type: FileType.image,
     );
     if (result != null && mounted) {
       setState(() {

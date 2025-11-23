@@ -47,6 +47,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Photo Library Permissions -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to the photo library to select images for hints.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs access to save images to the photo library.</string>
 	<!-- Google Sign-in Section -->
 	<key>GIDClientID</key>
 	<string>545203080565-rv15rn88p7trr4jjrgl7u1pdv0flrjl5.apps.googleusercontent.com</string>
