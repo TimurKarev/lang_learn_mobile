@@ -5,34 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dev",
+            "name": "Dev (Local)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",
             "args": [
-                "--flavor=dev",
                 "--dart-define=FLAVOR=dev",
-                "--dart-define=LOCAL_SUPABASE=false"
+                "--dart-define=LOCAL_SUPABASE=true",
+                "--web-port=3000",
+                "--web-hostname=127.0.0.1"
             ]
         },
         {
-            "name": "dev-local",
+            "name": "Dev (Remote)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "debug",
             "args": [
-                "--flavor=dev",
                 "--dart-define=FLAVOR=dev",
-                "--dart-define=LOCAL_SUPABASE=true"
+                "--dart-define=LOCAL_SUPABASE=false",
+                "--web-port=3000"
             ]
         },
         {
-            "name": "release",
+            "name": "Prod",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
             "args": [
-                "--flavor=prod",
                 "--dart-define=FLAVOR=prod",
                 "--dart-define=LOCAL_SUPABASE=false"
             ]

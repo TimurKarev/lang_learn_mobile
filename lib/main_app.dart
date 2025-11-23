@@ -36,9 +36,9 @@ class _MainAppState extends State<MainApp> {
   }
 
   void _initClarity() {
-    final projectId = AppFlavorConfig.clarityProjectId;
-    final logLevel = AppFlavorConfig.logLevel;
-    final isAnalyticsEnabled = AppFlavorConfig.isAnalyticsEnabled;
+    final projectId = AppConfig.clarityProjectId;
+    final logLevel = AppConfig.logLevel;
+    final isAnalyticsEnabled = AppConfig.isAnalyticsEnabled;
 
     if (projectId != null) {
       final config = ClarityInit(

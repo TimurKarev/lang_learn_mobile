@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -102,7 +103,7 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 32),
-                  if (Platform.isIOS)
+                  if (!kIsWeb && Platform.isIOS)
                     LoginWithButton(
                       variant: LoginWithButtonVariant.apple,
                       onPressed: () {},

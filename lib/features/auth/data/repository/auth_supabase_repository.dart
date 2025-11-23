@@ -1,5 +1,6 @@
 import 'package:dart_either/dart_either.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/foundation.dart';
 import 'package:lang_learn_mobile/core/config/flavor_config.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
@@ -31,9 +32,21 @@ class AuthSupabaseRepository implements AuthRepository {
   @override
   Future<Either<Failure, ProjectUser>> signInWithGoogle() async {
     try {
+      if (kIsWeb) {
+        await _supabase.signInWithOAuth(
+          OAuthProvider.google,
+          redirectTo: kIsWeb
+              ? (AppConfig.isLocalSupabase ? 'http://127.0.0.1:3000' : null)
+              : 'io.supabase.flutter://login-callback/',
+        );
+        // On Web, this triggers a redirect, so the return value doesn't matter much
+        // as the app will reload.
+        return Right(UnauthenticatedUser());
+      }
+
       final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
-      final serverClientId = AppFlavorConfig.googleServerClientId;
+      final serverClientId = AppConfig.googleServerClientId;
       final iosServerClientId = dotenv.env['IOS_GOOGLE_SERVER_CLIENT_ID'];
 
       if (serverClientId == null) {
