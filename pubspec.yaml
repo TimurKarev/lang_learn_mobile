@@ -46,7 +46,6 @@ flutter:
 
   assets:
     - assets/svg/puma.svg
-    - .env
     - shorebird.yaml
 
 flutter_launcher_icons:

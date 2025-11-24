@@ -4,6 +4,7 @@ import 'package:lang_learn_mobile/main_app.dart';
 import 'package:lang_learn_mobile/core/config/flavor_config.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:lang_learn_mobile/core/config/env.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,20 +13,25 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // Load .env file
-  await dotenv.load(fileName: ".env");
+  // Load .env file safely
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    // .env file might not exist in production, which is expected
+    debugPrint("Could not load .env file: $e");
+  }
 
   final supabaseUrl = AppConfig.isLocalSupabase
-      ? dotenv.env['SUPABASE_URL_LOCAL']
-      : dotenv.env['SUPABASE_URL'];
+      ? Env.supabaseUrlLocal
+      : Env.supabaseUrl;
   final supabaseKey = AppConfig.isLocalSupabase
-      ? dotenv.env['SUPABASE_KEY_LOCAL']
-      : dotenv.env['SUPABASE_KEY'];
+      ? Env.supabaseKeyLocal
+      : Env.supabaseKey;
 
-  if (supabaseUrl != null && supabaseKey != null) {
+  if (supabaseUrl.isNotEmpty && supabaseKey.isNotEmpty) {
     await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
     runApp(const MainApp());
   } else {
-    throw Exception('Supabase URL or key not found in .env file');
+    throw Exception('Supabase URL or key not found in environment variables');
   }
 }
