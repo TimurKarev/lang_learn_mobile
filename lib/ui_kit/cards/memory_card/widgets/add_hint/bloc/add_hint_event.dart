@@ -11,13 +11,15 @@ final class AddHintSubmitted extends AddHintEvent {
   const AddHintSubmitted({
     required this.literaId,
     required this.hint,
-    this.imagePath,
+    this.imageBytes,
+    this.fileName,
   });
 
   final String literaId;
   final String? hint;
-  final String? imagePath;
+  final Uint8List? imageBytes;
+  final String? fileName;
 
   @override
-  List<Object?> get props => [literaId, hint, imagePath];
+  List<Object?> get props => [literaId, hint, imageBytes, fileName];
 }

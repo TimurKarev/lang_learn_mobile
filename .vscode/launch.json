@@ -12,6 +12,8 @@
             "args": [
                 "--dart-define=FLAVOR=dev",
                 "--dart-define=LOCAL_SUPABASE=true",
+                "--dart-define=CLARITY_PROJECT_ID_PROD=txlwp2wd6n",
+                "--dart-define=CLARITY_PROJECT_ID_DEV=twtv6eze69",
                 "--web-port=3000",
                 "--web-hostname=127.0.0.1"
             ]
@@ -24,6 +26,11 @@
             "args": [
                 "--dart-define=FLAVOR=dev",
                 "--dart-define=LOCAL_SUPABASE=false",
+                "--dart-define=SUPABASE_URL=https://qbdsidbpcsehkgnfbjig.supabase.co",
+                "--dart-define=SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHNpZGJwY3NlaGtnbmZiamlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNTYwNDIsImV4cCI6MjA3MjkzMjA0Mn0.FAXfLQe4JKIDUvyb-1C_-QCgTfeDRb0kd4U0k1p2Z2M",
+                "--dart-define=CLARITY_PROJECT_ID_PROD=txlwp2wd6n",
+                "--dart-define=CLARITY_PROJECT_ID_DEV=twtv6eze69",
+                "--dart-define=GOOGLE_SERVER_CLIENT_ID=545203080565-ln6rn4h0arv01giktaan9r1qkn7bf6dg.apps.googleusercontent.com",
                 "--web-port=3000"
             ]
         },
@@ -35,6 +42,11 @@
             "args": [
                 "--dart-define=FLAVOR=prod",
                 "--dart-define=LOCAL_SUPABASE=false",
+                "--dart-define=SUPABASE_URL=https://qbdsidbpcsehkgnfbjig.supabase.co",
+                "--dart-define=SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHNpZGJwY3NlaGtnbmZiamlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNTYwNDIsImV4cCI6MjA3MjkzMjA0Mn0.FAXfLQe4JKIDUvyb-1C_-QCgTfeDRb0kd4U0k1p2Z2M",
+                "--dart-define=CLARITY_PROJECT_ID_PROD=txlwp2wd6n",
+                "--dart-define=CLARITY_PROJECT_ID_DEV=twtv6eze69",
+                "--dart-define=GOOGLE_SERVER_CLIENT_ID=545203080565-ln6rn4h0arv01giktaan9r1qkn7bf6dg.apps.googleusercontent.com",
                 "--web-port=3000"
             ]
         }

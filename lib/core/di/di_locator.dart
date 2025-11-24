@@ -1,5 +1,7 @@
 import 'package:lang_learn_mobile/core/audio_player/just_audio_player.dart';
 import 'package:lang_learn_mobile/core/audio_player/tili_audio_player.dart';
+import 'package:lang_learn_mobile/core/config/env.dart';
+import 'package:lang_learn_mobile/core/config/flavor_config.dart';
 import 'package:lang_learn_mobile/core/di/object_container.dart';
 import 'package:lang_learn_mobile/core/services/image_compression_service.dart';
 import 'package:lang_learn_mobile/features/auth/data/repository/auth_supabase_repository.dart';
@@ -28,7 +30,13 @@ class DiLocator {
       if (mock) {
         newObject = MemoryCardsRepositoryMock();
       } else {
-        newObject = MemoryCardsSupabaseRepository(Supabase.instance.client);
+        final anonKey = AppConfig.isLocalSupabase
+            ? Env.supabaseKeyLocal
+            : Env.supabaseKey;
+        newObject = MemoryCardsSupabaseRepository(
+          Supabase.instance.client,
+          anonKey,
+        );
       }
       if (keepAlive) {
         _objectContainer.add(newObject);

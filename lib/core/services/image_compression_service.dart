@@ -1,10 +1,9 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 abstract class ImageCompressionService {
-  Future<File?> compressImage({
-    required File imageFile,
+  Future<Uint8List> compressImage({
+    required Uint8List imageBytes,
     int maxSizeKB = 50,
     int? minWidth,
     int? minHeight,
@@ -13,23 +12,18 @@ abstract class ImageCompressionService {
 
 class ImageCompressionServiceImpl implements ImageCompressionService {
   @override
-  Future<File?> compressImage({
-    required File imageFile,
+  Future<Uint8List> compressImage({
+    required Uint8List imageBytes,
     int maxSizeKB = 50,
     int? minWidth,
     int? minHeight,
   }) async {
     try {
       // Check if file size is already within acceptable limit
-      final fileSizeKB = imageFile.lengthSync() ~/ 1024;
+      final fileSizeKB = imageBytes.lengthInBytes ~/ 1024;
       if (fileSizeKB <= maxSizeKB) {
-        return imageFile;
+        return imageBytes;
       }
-
-      // Read the original file once
-      final Uint8List originalBytes = await imageFile.readAsBytes();
-
-      // Initialize compression parameters
 
       int currentWidth = minWidth ?? 1920;
       int currentHeight = minHeight ?? 1080;
@@ -45,12 +39,13 @@ class ImageCompressionServiceImpl implements ImageCompressionService {
       // Quality tiers for even attempts
       final List<int> qualityTiers = [85, 70, 55, 40, 30];
       int currentQuality = qualityTiers.first;
-      File? bestResult;
+
+      Uint8List bestResult = imageBytes;
       int bestSize = fileSizeKB;
 
       // Try up to 8 attempts (4 quality + 4 resolution reductions)
       for (int attempt = 0; attempt < 8; attempt++) {
-        Uint8List? compressedBytes;
+        Uint8List compressedBytes;
 
         if (attempt.isOdd) {
           // Odd attempts: reduce resolution
@@ -68,7 +63,7 @@ class ImageCompressionServiceImpl implements ImageCompressionService {
         }
 
         compressedBytes = await FlutterImageCompress.compressWithList(
-          originalBytes,
+          imageBytes,
           minWidth: currentWidth,
           minHeight: currentHeight,
           quality: currentQuality,
@@ -79,50 +74,24 @@ class ImageCompressionServiceImpl implements ImageCompressionService {
           continue; // Skip this attempt if compression fails
         }
 
-        // Create temporary compressed file
-        final String compressedPath = '${imageFile.path}_temp_$attempt.jpg';
-        final File compressedFile = File(compressedPath);
-        await compressedFile.writeAsBytes(compressedBytes);
-
-        final compressedSizeKB = compressedFile.lengthSync() ~/ 1024;
-
-        // Debug: Attempt $attempt: Quality=$currentQuality, Resolution=${currentWidth}x$currentHeight, Size=${compressedSizeKB}KB
+        final compressedSizeKB = compressedBytes.lengthInBytes ~/ 1024;
 
         // Check if this is the best result so far
         if (compressedSizeKB < bestSize) {
-          // Delete previous best result
-          if (bestResult != null) {
-            await bestResult.delete();
-          }
-          bestResult = compressedFile;
+          bestResult = compressedBytes;
           bestSize = compressedSizeKB;
 
           // If we're under the target size, we can stop
           if (bestSize <= maxSizeKB) {
             break;
           }
-        } else {
-          // Delete this attempt since it's not better
-          await compressedFile.delete();
         }
       }
 
-      // Clean up and return best result
-      if (bestResult != null && bestSize < fileSizeKB) {
-        // Rename the best result to replace original
-        final String finalPath = '${imageFile.path}_compressed.jpg';
-        await bestResult.rename(finalPath);
-        return File(finalPath);
-      } else {
-        // If no improvement, return original
-        if (bestResult != null) {
-          await bestResult.delete();
-        }
-        return imageFile;
-      }
+      return bestResult;
     } catch (e) {
-      // Return original file if compression fails
-      return imageFile;
+      // Return original bytes if compression fails
+      return imageBytes;
     }
   }
 }

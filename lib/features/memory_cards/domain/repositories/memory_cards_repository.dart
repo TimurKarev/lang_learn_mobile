@@ -1,4 +1,4 @@
-import 'dart:io' show File;
+import 'dart:typed_data';
 
 import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
@@ -16,7 +16,8 @@ abstract class MemoryCardsRepository {
   Future<Either<Failure, void>> addHint({
     required String flashcardId,
     required String? hint,
-    required File? imageFile,
+    required Uint8List? imageBytes,
+    required String? fileName,
   });
 
   Future<Either<Failure, String>> getFlashcardPicureHintUrl({
@@ -95,7 +96,8 @@ class MemoryCardsRepositoryMock implements MemoryCardsRepository {
   Future<Either<Failure, void>> addHint({
     required String flashcardId,
     required String? hint,
-    required File? imageFile,
+    required Uint8List? imageBytes,
+    required String? fileName,
   }) {
     throw UnimplementedError();
   }

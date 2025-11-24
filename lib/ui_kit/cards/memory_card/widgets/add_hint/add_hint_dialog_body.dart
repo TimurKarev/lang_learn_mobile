@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +17,8 @@ class AddHintDialogBody extends StatefulWidget {
 
 class _AddHintDialogState extends State<AddHintDialogBody> {
   final TextEditingController textController = TextEditingController();
-  String? selectedImagePath;
+  Uint8List? selectedImageBytes;
+  String? selectedImageName;
 
   @override
   void dispose() {
@@ -29,10 +30,12 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.image,
+      withData: true,
     );
     if (result != null && mounted) {
       setState(() {
-        selectedImagePath = result.files.first.path;
+        selectedImageBytes = result.files.first.bytes;
+        selectedImageName = result.files.first.name;
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -49,7 +52,8 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
 
   void _removeImage() {
     setState(() {
-      selectedImagePath = null;
+      selectedImageBytes = null;
+      selectedImageName = null;
     });
   }
 
@@ -147,13 +151,13 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                   width: 1,
                 ),
               ),
-              child: selectedImagePath != null
+              child: selectedImageBytes != null
                   ? Stack(
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.file(
-                            File(selectedImagePath!),
+                          child: Image.memory(
+                            selectedImageBytes!,
                             width: double.infinity,
                             height: double.infinity,
                             fit: BoxFit.cover,
@@ -271,14 +275,15 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                             ? null
                             : () {
                                 if (textController.text.isNotEmpty ||
-                                    selectedImagePath != null) {
+                                    selectedImageBytes != null) {
                                   context.read<AddHintBloc>().add(
                                     AddHintSubmitted(
                                       literaId: widget.literaId,
                                       hint: textController.text.isNotEmpty
                                           ? textController.text
                                           : null,
-                                      imagePath: selectedImagePath,
+                                      imageBytes: selectedImageBytes,
+                                      fileName: selectedImageName,
                                     ),
                                   );
                                 }

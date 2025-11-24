@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dart_either/dart_either.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
@@ -14,9 +14,10 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/memo
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
-  MemoryCardsSupabaseRepository(this._supabase);
+  MemoryCardsSupabaseRepository(this._supabase, this._anonKey);
 
   final SupabaseClient _supabase;
+  final String _anonKey;
 
   @override
   Future<Either<Failure, List<MemoryCardsPreview>>> getMemoryCardsList() async {
@@ -99,7 +100,8 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
   Future<Either<Failure, void>> addHint({
     required String flashcardId,
     required String? hint,
-    required File? imageFile,
+    required Uint8List? imageBytes,
+    required String? fileName,
   }) async {
     final Map<String, dynamic> payload = {'translation_id': flashcardId};
 
@@ -109,10 +111,8 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
     }
 
     // Add image if provided (convert to base64)
-    if (imageFile != null) {
-      final bytes = await imageFile.readAsBytes();
-      final base64Image = base64Encode(bytes);
-      final fileName = imageFile.path.split('/').last;
+    if (imageBytes != null && fileName != null) {
+      final base64Image = base64Encode(imageBytes);
 
       // Determine MIME type from extension
       String mimeType = 'image/jpeg';
@@ -131,7 +131,14 @@ class MemoryCardsSupabaseRepository implements MemoryCardsRepository {
     }
 
     try {
-      await _supabase.functions.invoke('add_hint', body: payload);
+      await _supabase.functions.invoke(
+        'add_hint',
+        body: payload,
+        headers: {
+          'Authorization':
+              'Bearer ${_supabase.auth.currentSession?.accessToken ?? _anonKey}',
+        },
+      );
     } catch (e, s) {
       return Left(
         Failure(

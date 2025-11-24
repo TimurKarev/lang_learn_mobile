@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -28,18 +28,18 @@ class AddHintBloc extends Bloc<AddHintEvent, AddHintState> {
   ) async {
     emit(AddHintLoading());
 
-    File? imageFile;
-    if (event.imagePath case final String imagePath when imagePath.isNotEmpty) {
-      final originalFile = File(imagePath);
-      imageFile = await _imageCompressionService.compressImage(
-        imageFile: originalFile,
+    Uint8List? imageBytes;
+    if (event.imageBytes case final Uint8List bytes when bytes.isNotEmpty) {
+      imageBytes = await _imageCompressionService.compressImage(
+        imageBytes: bytes,
       );
     }
 
     final result = await _memoryCardsRepository.addHint(
       flashcardId: event.literaId,
       hint: event.hint,
-      imageFile: imageFile,
+      imageBytes: imageBytes,
+      fileName: event.fileName,
     );
 
     result.fold(
