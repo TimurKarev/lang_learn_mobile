@@ -34,7 +34,8 @@
             "flutterMode": "release",
             "args": [
                 "--dart-define=FLAVOR=prod",
-                "--dart-define=LOCAL_SUPABASE=false"
+                "--dart-define=LOCAL_SUPABASE=false",
+                "--web-port=3000"
             ]
         }
     ]
