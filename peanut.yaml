@@ -1,0 +1,8 @@
+# peanut.yaml
+# Configuration file for the 'peanut' package
+
+directories:
+  - web # This is the default output directory for flutter build web
+
+# Specify the arguments to be passed to 'flutter build web'
+extra-args: "--dart-define=FLAVOR=prod --dart-define=LOCAL_SUPABASE=false --release"  # Note: You must separate each argument, even the dart-defines, with a comma.
