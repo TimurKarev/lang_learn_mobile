@@ -10,6 +10,7 @@ import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 void showAddHintDialog(BuildContext context, {required String literaId}) {
   showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return BlocProvider(
         create: (context) => AddHintBloc(

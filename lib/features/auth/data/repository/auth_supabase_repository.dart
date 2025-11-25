@@ -1,5 +1,4 @@
 import 'package:dart_either/dart_either.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/foundation.dart';
 import 'package:lang_learn_mobile/core/config/flavor_config.dart';
 import 'package:lang_learn_mobile/core/error_handling/failure.dart';
@@ -47,7 +46,7 @@ class AuthSupabaseRepository implements AuthRepository {
       final GoogleSignIn googleSignIn = GoogleSignIn.instance;
 
       final serverClientId = AppConfig.googleServerClientId;
-      final iosServerClientId = dotenv.env['IOS_GOOGLE_SERVER_CLIENT_ID'];
+      final iosServerClientId = AppConfig.iosGoogleServerClientId;
 
       if (serverClientId == null) {
         return Left(

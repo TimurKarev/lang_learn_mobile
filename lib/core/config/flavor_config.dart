@@ -26,4 +26,8 @@ class AppConfig {
     }
     return isDev ? Env.devGoogleServerClientId : Env.googleServerClientId;
   }
+
+  static String? get iosGoogleServerClientId {
+    return Env.iosGoogleServerClientId;
+  }
 }

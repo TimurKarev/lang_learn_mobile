@@ -12,8 +12,12 @@
             "args": [
                 "--dart-define=FLAVOR=dev",
                 "--dart-define=LOCAL_SUPABASE=true",
+                "--dart-define=SUPABASE_URL_LOCAL=http://localhost:54321",
+                "--dart-define=SUPABASE_KEY_LOCAL=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeJx30gNxzRkY0dRhmF9V9lZ8XoKl-sA",
                 "--dart-define=CLARITY_PROJECT_ID_PROD=txlwp2wd6n",
                 "--dart-define=CLARITY_PROJECT_ID_DEV=twtv6eze69",
+                "--dart-define=IOS_GOOGLE_SERVER_CLIENT_ID=545203080565-rv15rn88p7trr4jjrgl7u1pdv0flrjl5.apps.googleusercontent.com",
+                "--dart-define=GOOGLE_SERVER_CLIENT_ID=545203080565-ln6rn4h0arv01giktaan9r1qkn7bf6dg.apps.googleusercontent.com",
                 "--web-port=3000",
                 "--web-hostname=127.0.0.1"
             ]
@@ -30,6 +34,7 @@
                 "--dart-define=SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHNpZGJwY3NlaGtnbmZiamlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNTYwNDIsImV4cCI6MjA3MjkzMjA0Mn0.FAXfLQe4JKIDUvyb-1C_-QCgTfeDRb0kd4U0k1p2Z2M",
                 "--dart-define=CLARITY_PROJECT_ID_PROD=txlwp2wd6n",
                 "--dart-define=CLARITY_PROJECT_ID_DEV=twtv6eze69",
+                "--dart-define=IOS_GOOGLE_SERVER_CLIENT_ID=545203080565-rv15rn88p7trr4jjrgl7u1pdv0flrjl5.apps.googleusercontent.com",
                 "--dart-define=GOOGLE_SERVER_CLIENT_ID=545203080565-ln6rn4h0arv01giktaan9r1qkn7bf6dg.apps.googleusercontent.com",
                 "--web-port=3000"
             ]
@@ -46,6 +51,7 @@
                 "--dart-define=SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHNpZGJwY3NlaGtnbmZiamlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTczNTYwNDIsImV4cCI6MjA3MjkzMjA0Mn0.FAXfLQe4JKIDUvyb-1C_-QCgTfeDRb0kd4U0k1p2Z2M",
                 "--dart-define=CLARITY_PROJECT_ID_PROD=txlwp2wd6n",
                 "--dart-define=CLARITY_PROJECT_ID_DEV=twtv6eze69",
+                "--dart-define=IOS_GOOGLE_SERVER_CLIENT_ID=545203080565-rv15rn88p7trr4jjrgl7u1pdv0flrjl5.apps.googleusercontent.com",
                 "--dart-define=GOOGLE_SERVER_CLIENT_ID=545203080565-ln6rn4h0arv01giktaan9r1qkn7bf6dg.apps.googleusercontent.com",
                 "--web-port=3000"
             ]

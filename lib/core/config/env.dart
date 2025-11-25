@@ -1,66 +1,40 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class Env {
   static String get(String key, {String? fallback}) {
-    return dotenv.env[key] ?? fallback ?? '';
+    final value = String.fromEnvironment(key, defaultValue: '');
+    return value.isNotEmpty ? value : (fallback ?? '');
   }
 
   // Supabase
   static String get supabaseUrl =>
-      const String.fromEnvironment('SUPABASE_URL', defaultValue: '') != ''
-      ? const String.fromEnvironment('SUPABASE_URL')
-      : dotenv.env['SUPABASE_URL'] ?? '';
+      const String.fromEnvironment('SUPABASE_URL', defaultValue: '');
 
   static String get supabaseUrlLocal =>
-      const String.fromEnvironment('SUPABASE_URL_LOCAL', defaultValue: '') != ''
-      ? const String.fromEnvironment('SUPABASE_URL_LOCAL')
-      : dotenv.env['SUPABASE_URL_LOCAL'] ?? '';
+      const String.fromEnvironment('SUPABASE_URL_LOCAL', defaultValue: '');
 
   static String get supabaseKey =>
-      const String.fromEnvironment('SUPABASE_KEY', defaultValue: '') != ''
-      ? const String.fromEnvironment('SUPABASE_KEY')
-      : dotenv.env['SUPABASE_KEY'] ?? '';
+      const String.fromEnvironment('SUPABASE_KEY', defaultValue: '');
 
   static String get supabaseKeyLocal =>
-      const String.fromEnvironment('SUPABASE_KEY_LOCAL', defaultValue: '') != ''
-      ? const String.fromEnvironment('SUPABASE_KEY_LOCAL')
-      : dotenv.env['SUPABASE_KEY_LOCAL'] ?? '';
+      const String.fromEnvironment('SUPABASE_KEY_LOCAL', defaultValue: '');
 
   // Clarity
   static String get clarityProjectIdDev =>
-      const String.fromEnvironment(
-            'CLARITY_PROJECT_ID_DEV',
-            defaultValue: '',
-          ) !=
-          ''
-      ? const String.fromEnvironment('CLARITY_PROJECT_ID_DEV')
-      : dotenv.env['CLARITY_PROJECT_ID_DEV'] ?? '';
+      const String.fromEnvironment('CLARITY_PROJECT_ID_DEV', defaultValue: '');
 
   static String get clarityProjectIdProd =>
-      const String.fromEnvironment(
-            'CLARITY_PROJECT_ID_PROD',
-            defaultValue: '',
-          ) !=
-          ''
-      ? const String.fromEnvironment('CLARITY_PROJECT_ID_PROD')
-      : dotenv.env['CLARITY_PROJECT_ID_PROD'] ?? '';
+      const String.fromEnvironment('CLARITY_PROJECT_ID_PROD', defaultValue: '');
 
   // Google
   static String get googleServerClientId =>
-      const String.fromEnvironment(
-            'GOOGLE_SERVER_CLIENT_ID',
-            defaultValue: '',
-          ) !=
-          ''
-      ? const String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID')
-      : dotenv.env['GOOGLE_SERVER_CLIENT_ID'] ?? '';
+      const String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID', defaultValue: '');
 
-  static String get devGoogleServerClientId =>
-      const String.fromEnvironment(
-            'DEV_GOOGLE_SERVER_CLIENT_ID',
-            defaultValue: '',
-          ) !=
-          ''
-      ? const String.fromEnvironment('DEV_GOOGLE_SERVER_CLIENT_ID')
-      : dotenv.env['DEV_GOOGLE_SERVER_CLIENT_ID'] ?? '';
+  static String get devGoogleServerClientId => const String.fromEnvironment(
+    'DEV_GOOGLE_SERVER_CLIENT_ID',
+    defaultValue: '',
+  );
+
+  static String get iosGoogleServerClientId => const String.fromEnvironment(
+    'IOS_GOOGLE_SERVER_CLIENT_ID',
+    defaultValue: '',
+  );
 }
