@@ -1,0 +1,1 @@
+ /Users/timurkarev/Projects/lang_learn/lang_learn_mobile/.dart_tool/flutter_build/a6bc3eb1499691e8e89c5eb70571b10b/native_assets.json: 
