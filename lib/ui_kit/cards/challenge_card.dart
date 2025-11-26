@@ -10,6 +10,7 @@ class ChallangeCard extends StatelessWidget {
     this.onTap,
     required this.width,
     required this.theme,
+    this.onDictionaryTap,
     super.key,
   });
 
@@ -17,6 +18,7 @@ class ChallangeCard extends StatelessWidget {
   final EdgeInsets padding;
   final ChallengeThemes theme;
   final VoidCallback? onTap;
+  final VoidCallback? onDictionaryTap;
   final double width;
 
   @override
@@ -33,19 +35,55 @@ class ChallangeCard extends StatelessWidget {
         child: SizedBox(
           width: width,
           height: 160,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
-              InfoBadge(
-                icon: _iconData,
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                radius: 24,
-                iconSize: 18,
+              if (onDictionaryTap != null)
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: InkWell(
+                    onTap: onDictionaryTap,
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 1,
+                        ),
+                      ),
+                      child: Text(
+                        'Словарь',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InfoBadge(
+                      icon: _iconData,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                      radius: 24,
+                      iconSize: 18,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(title, style: Theme.of(context).textTheme.labelMedium),
+                  ],
+                ),
               ),
-              const SizedBox(height: 16),
-              Text(title, style: Theme.of(context).textTheme.labelMedium),
             ],
           ),
         ),

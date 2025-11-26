@@ -74,46 +74,46 @@ class MemoryChallengeWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
-            builder: (context, state) {
-              if (state
-                  case final ModelHandlerLoaded<FlashcardsSettings> loadedState
-                  when loadedState.model.isShowHint) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      style: _buttonStyle(context),
-                      onPressed: () {
-                        context.read<TiliNavigation>().goToFlashcardHistory(
-                          context,
-                          history: context
-                              .read<PerformMemoryChallangeBloc>()
-                              .history,
-                        );
-                      },
-                      icon: const Icon(Icons.history),
-                    ),
-                    const SizedBox(width: 16),
-                    IconButton(
-                      style: _buttonStyle(context, true),
-                      onPressed: () => context
-                          .read<TiliNavigation>()
-                          .pushVocabularyInformation(
-                            context,
-                            challengeTheme: context
-                                .read<PerformMemoryChallangeBloc>()
-                                .challengeTheme,
-                          ),
-                      icon: const Icon(Icons.info),
-                    ),
-                  ],
-                );
-              }
-              return const SizedBox(height: 64);
-            },
-          ),
-          const Spacer(),
+          // BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
+          //   builder: (context, state) {
+          //     if (state
+          //         case final ModelHandlerLoaded<FlashcardsSettings> loadedState
+          //         when loadedState.model.isShowHint) {
+          //       return Row(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           IconButton(
+          //             style: _buttonStyle(context),
+          //             onPressed: () {
+          //               context.read<TiliNavigation>().goToFlashcardHistory(
+          //                 context,
+          //                 history: context
+          //                     .read<PerformMemoryChallangeBloc>()
+          //                     .history,
+          //               );
+          //             },
+          //             icon: const Icon(Icons.history),
+          //           ),
+          //           const SizedBox(width: 16),
+          //           IconButton(
+          //             style: _buttonStyle(context, true),
+          //             onPressed: () => context
+          //                 .read<TiliNavigation>()
+          //                 .pushVocabularyInformation(
+          //                   context,
+          //                   challengeTheme: context
+          //                       .read<PerformMemoryChallangeBloc>()
+          //                       .challengeTheme,
+          //                 ),
+          //             icon: const Icon(Icons.info),
+          //           ),
+          //         ],
+          //       );
+          //     }
+          //     return const SizedBox(height: 64);
+          //   },
+          // ),
+          //const Spacer(),
           MemoryChallangeButtonPanel(isAnswered: isAnswered, cardId: card.id),
         ],
       ),

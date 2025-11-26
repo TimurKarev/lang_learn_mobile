@@ -51,6 +51,12 @@ class CardsDashboardScreen extends StatelessWidget {
                                 context,
                                 challengeTheme: data[i].theme,
                               ),
+                          onDictionaryTap: () => context
+                              .read<TiliNavigation>()
+                              .pushVocabularyInformation(
+                                context,
+                                challengeTheme: data[i].theme,
+                              ),
                         ),
                     ],
                   ),
