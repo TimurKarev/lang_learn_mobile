@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -30,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             const SizedBox(width: 12),
             Text(
-              'Киригиз тили',
+              AppLocalizations.of(context)!.kyrgyzLanguage,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
@@ -44,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             style: TextButton.styleFrom(
               foregroundColor: Theme.of(context).colorScheme.tertiary,
             ),
-            child: Text('Skip'),
+            child: Text(AppLocalizations.of(context)!.skip),
           ),
         ],
       ),
@@ -67,7 +68,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               onPressed: () {
                 context.go('/home');
               },
-              child: Text(currentIndex < totalPages - 1 ? 'Next' : 'Finish'),
+              child: Text(
+                currentIndex < totalPages - 1
+                    ? AppLocalizations.of(context)!.next
+                    : AppLocalizations.of(context)!.finish,
+              ),
             ),
             // Dot indicators
           ],

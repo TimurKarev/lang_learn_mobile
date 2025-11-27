@@ -11,6 +11,7 @@ import 'package:lang_learn_mobile/core/theme/tilit_theme.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -75,6 +76,8 @@ class _MainAppState extends State<MainApp> {
           darkTheme: TiliTheme.darkTheme,
           themeMode: ThemeMode.light,
           routerConfig: _router,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
         ),
       ),
     );

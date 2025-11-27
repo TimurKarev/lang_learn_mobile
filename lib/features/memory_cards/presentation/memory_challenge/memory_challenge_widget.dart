@@ -50,61 +50,23 @@ class MemoryChallengeWidget extends StatelessWidget {
       padding: const EdgeInsets.all(24.0),
       child: Column(
         children: [
-          MemoryCardWidget(
-            onPressAudio: (String literalId) {
-              context.read<PerformMemoryChallangeBloc>().add(
-                PerformMemoryChallangePlayAudioEvent(literalId),
-              );
-            },
-            key: ValueKey(card.id),
-            padding: const EdgeInsets.only(top: 8.0),
-            card: card,
-            onCardFlipped: () {
-              context.read<PerformMemoryChallangeBloc>().add(
-                PerformMemoryChallangeAnswerEvent(card),
-              );
-            },
+          Expanded(
+            child: MemoryCardWidget(
+              onPressAudio: (String literalId) {
+                context.read<PerformMemoryChallangeBloc>().add(
+                  PerformMemoryChallangePlayAudioEvent(literalId),
+                );
+              },
+              key: ValueKey(card.id),
+              padding: const EdgeInsets.only(top: 8.0),
+              card: card,
+              onCardFlipped: () {
+                context.read<PerformMemoryChallangeBloc>().add(
+                  PerformMemoryChallangeAnswerEvent(card),
+                );
+              },
+            ),
           ),
-          const Spacer(), // BlocBuilder<SettingsBloc, ModelHandlerState<FlashcardsSettings>>(
-          //   builder: (context, state) {
-          //     if (state
-          //         case final ModelHandlerLoaded<FlashcardsSettings> loadedState
-          //         when loadedState.model.isShowHint) {
-          //       return Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           IconButton(
-          //             style: _buttonStyle(context),
-          //             onPressed: () {
-          //               context.read<TiliNavigation>().goToFlashcardHistory(
-          //                 context,
-          //                 history: context
-          //                     .read<PerformMemoryChallangeBloc>()
-          //                     .history,
-          //               );
-          //             },
-          //             icon: const Icon(Icons.history),
-          //           ),
-          //           const SizedBox(width: 16),
-          //           IconButton(
-          //             style: _buttonStyle(context, true),
-          //             onPressed: () => context
-          //                 .read<TiliNavigation>()
-          //                 .pushVocabularyInformation(
-          //                   context,
-          //                   challengeTheme: context
-          //                       .read<PerformMemoryChallangeBloc>()
-          //                       .challengeTheme,
-          //                 ),
-          //             icon: const Icon(Icons.info),
-          //           ),
-          //         ],
-          //       );
-          //     }
-          //     return const SizedBox(height: 64);
-          //   },
-          // ),
-          //const Spacer(),
           MemoryChallangeButtonPanel(isAnswered: isAnswered, cardId: card.id),
         ],
       ),

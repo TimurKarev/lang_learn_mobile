@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/bloc/add_hint_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class AddHintDialogBody extends StatefulWidget {
   final String literaId;
@@ -40,7 +41,8 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: TiliToast(
-              message: 'Файл выбран: ${result.files.first.name}',
+              message:
+                  '${AppLocalizations.of(context)!.fileSelected} ${result.files.first.name}',
               type: ToastType.success,
             ),
           ),
@@ -80,7 +82,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
               children: [
                 Center(
                   child: Text(
-                    'Добавить подсказку',
+                    AppLocalizations.of(context)!.addHint,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -89,7 +91,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                 const SizedBox(height: 24),
                 // Text input section
                 Text(
-                  'Текст подсказки',
+                  AppLocalizations.of(context)!.hintText,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600,
@@ -104,7 +106,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                     FocusScope.of(context).unfocus();
                   },
                   decoration: InputDecoration(
-                    hintText: 'Введите текст подсказки...',
+                    hintText: AppLocalizations.of(context)!.enterHintText,
                     filled: true,
                     fillColor: Theme.of(
                       context,
@@ -128,7 +130,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
 
                 // Image attachment section
                 Text(
-                  'Изображение (необязательно)',
+                  AppLocalizations.of(context)!.imageOptional,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600,
@@ -173,7 +175,9 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          'Не удалось загрузить изображение',
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.failedToLoadImage,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodySmall
@@ -236,7 +240,9 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Нажмите для выбора изображения',
+                                AppLocalizations.of(
+                                  context,
+                                )!.clickToSelectImage,
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
                                       color: Theme.of(
@@ -271,7 +277,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                         ),
-                        child: Text('Отмена'),
+                        child: Text(AppLocalizations.of(context)!.cancel),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -310,7 +316,7 @@ class _AddHintDialogState extends State<AddHintDialogBody> {
                                     ),
                                   )
                                 : Text(
-                                    'Сохранить',
+                                    AppLocalizations.of(context)!.save,
                                     maxLines: 1,
                                     style: Theme.of(context)
                                         .textTheme

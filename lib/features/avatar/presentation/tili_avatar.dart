@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class TiliAvatar extends StatelessWidget {
   const TiliAvatar({super.key});
@@ -25,14 +26,14 @@ class TiliAvatar extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Logout'),
-          content: const Text('Are you sure you want to logout?'),
+          title: Text(AppLocalizations.of(context)!.logout),
+          content: Text(AppLocalizations.of(context)!.logoutConfirmation),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: const Text('CANCEL'),
+              child: Text(AppLocalizations.of(context)!.cancel.toUpperCase()),
             ),
             TextButton(
               onPressed: () {
@@ -41,7 +42,7 @@ class TiliAvatar extends StatelessWidget {
                   AuthSingoutEvent(),
                 ); // Perform logout
               },
-              child: const Text('LOGOUT'),
+              child: Text(AppLocalizations.of(context)!.logout.toUpperCase()),
             ),
           ],
         );

@@ -10,6 +10,7 @@ import 'package:lang_learn_mobile/ui_kit/buttons/login_with_button.dart';
 import 'package:lang_learn_mobile/ui_kit/text_fields/password_text_field.dart';
 import 'package:lang_learn_mobile/ui_kit/text_fields/tili_text_field.dart';
 import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -17,6 +18,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     return BlocListener<AuthBloc, ProjectUser>(
       listener: (context, state) {
         if (state is AuthenticatedUser) {
@@ -44,16 +46,16 @@ class LoginPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Войти в приложение',
+                    l10n.loginTitle,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 32),
-                  Text('Email', style: theme.textTheme.titleSmall),
+                  Text(l10n.email, style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
-                  TiliTextField(hintText: 'Enter your email', enabled: false),
+                  TiliTextField(hintText: l10n.enterEmail, enabled: false),
                   const SizedBox(height: 16),
-                  Text('Password', style: theme.textTheme.titleSmall),
+                  Text(l10n.password, style: theme.textTheme.titleSmall),
                   const SizedBox(height: 8),
                   PasswordTextField(enabled: false),
                   const SizedBox(height: 8),
@@ -61,7 +63,7 @@ class LoginPage extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: null,
-                      child: const Text('Forgot Password?'),
+                      child: Text(l10n.forgotPassword),
                     ),
                   ),
                   const SizedBox(height: 32),
@@ -73,8 +75,8 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      'Log In',
+                    child: Text(
+                      l10n.login,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
@@ -82,8 +84,8 @@ class LoginPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an account? "),
-                      TextButton(onPressed: null, child: Text('Sign Up')),
+                      Text(l10n.dontHaveAccount),
+                      TextButton(onPressed: null, child: Text(l10n.signUp)),
                     ],
                   ),
                   const SizedBox(height: 32),
@@ -93,7 +95,7 @@ class LoginPage extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          'or',
+                          l10n.or,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.surfaceDim,
                           ),

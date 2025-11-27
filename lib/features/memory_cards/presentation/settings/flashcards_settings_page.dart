@@ -8,6 +8,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/repositories/flas
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/flashcards_settings_view.dart';
 import 'package:lang_learn_mobile/ui_kit/error_placeholder/error_placeholder.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class FlashcardsSettingsPage extends StatelessWidget {
   const FlashcardsSettingsPage({super.key, required this.settings});
@@ -51,7 +52,7 @@ class FlashcardsSettingsPage extends StatelessWidget {
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Flashcard Settings'),
+                title: Text(AppLocalizations.of(context)!.flashcardSettings),
                 leading: GestureDetector(
                   child: Icon(Icons.chevron_left, size: 36),
                   onTap: () => _onClose(context),

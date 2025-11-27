@@ -4,6 +4,7 @@ import 'package:lang_learn_mobile/features/home/presentation/sections/challanges
 import 'package:lang_learn_mobile/features/home/presentation/sections/learning_path_section.dart';
 import 'package:lang_learn_mobile/features/home/presentation/sections/offline_section.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/progress_card/progress_card.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: false,
         titleSpacing: 24,
         title: Text(
-          'Главная',
+          AppLocalizations.of(context)!.home,
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         actions: [

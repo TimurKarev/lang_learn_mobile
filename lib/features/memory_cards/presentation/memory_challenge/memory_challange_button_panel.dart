@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class MemoryChallangeButtonPanel extends StatelessWidget {
   const MemoryChallangeButtonPanel({
@@ -38,7 +39,7 @@ class MemoryChallangeButtonPanel extends StatelessWidget {
                           );
                         }
                       : null,
-                  child: const Text('Wrong'),
+                  child: Text(AppLocalizations.of(context)!.wrong),
                 ),
               ),
               const SizedBox(width: 8),
@@ -54,7 +55,7 @@ class MemoryChallangeButtonPanel extends StatelessWidget {
                           );
                         }
                       : null,
-                  child: const Text('Correct'),
+                  child: Text(AppLocalizations.of(context)!.correct),
                 ),
               ),
             ],

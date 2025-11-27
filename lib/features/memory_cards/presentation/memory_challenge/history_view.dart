@@ -7,6 +7,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class HistoryView extends StatelessWidget {
   const HistoryView({super.key, required this.history});
@@ -48,8 +49,8 @@ class HistoryView extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           history[index]?.isCorrect == true
-                              ? 'Верно'
-                              : 'Ошибка',
+                              ? AppLocalizations.of(context)!.right
+                              : AppLocalizations.of(context)!.error,
                           style: Theme.of(context).textTheme.labelMedium
                               ?.copyWith(
                                 color: history[index]?.isCorrect == true
@@ -82,7 +83,10 @@ class HistoryView extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text('Повторить', maxLines: 1),
+                    child: Text(
+                      AppLocalizations.of(context)!.repeat,
+                      maxLines: 1,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -91,7 +95,10 @@ class HistoryView extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('Закончить', maxLines: 1),
+                    child: Text(
+                      AppLocalizations.of(context)!.finish,
+                      maxLines: 1,
+                    ),
                   ),
                 ),
               ],

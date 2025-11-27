@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   const PrivacyPolicyPage({super.key});
@@ -15,7 +16,7 @@ class PrivacyPolicyPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.go('/login'),
         ),
-        title: const Text('Privacy Policy'),
+        title: Text(AppLocalizations.of(context)!.privacyPolicy),
       ),
       body: const SafeArea(
         child: SingleChildScrollView(

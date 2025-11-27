@@ -6,6 +6,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/custom/dual_radio_list.dart';
 import 'package:lang_learn_mobile/ui_kit/tiles/tili_switch_list_tile.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 // Менять надпись на кнопке в зависимости от статуса
 class FlashcardsSettingsView extends StatelessWidget {
@@ -28,14 +29,14 @@ class FlashcardsSettingsView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Настройки',
+            AppLocalizations.of(context)!.flashcardSettings,
             style: Theme.of(
               context,
             ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           TiliSwitchListTile(
-            title: 'Перемешивать карточки',
+            title: AppLocalizations.of(context)!.shuffleCards,
             value: settings.isShufleCards,
             onChanged: (value) {
               context.read<SettingsBloc>().add(
@@ -45,7 +46,7 @@ class FlashcardsSettingsView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TiliSwitchListTile(
-            title: 'Повторять неправильные ответы',
+            title: AppLocalizations.of(context)!.repeatWrong,
             value: settings.isRepeatWrong,
             onChanged: (value) {
               context.read<SettingsBloc>().add(
@@ -55,7 +56,7 @@ class FlashcardsSettingsView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TiliSwitchListTile(
-            title: 'Показывать подсказку',
+            title: AppLocalizations.of(context)!.showHint,
             value: settings.isShowHint,
             onChanged: (value) {
               context.read<SettingsBloc>().add(
@@ -65,7 +66,7 @@ class FlashcardsSettingsView extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Text(
-            'Язык вопроса',
+            AppLocalizations.of(context)!.questionLanguage,
             style: Theme.of(
               context,
             ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
@@ -87,7 +88,11 @@ class FlashcardsSettingsView extends StatelessWidget {
             builder: (context, state) {
               return ElevatedButton(
                 onPressed: onClose,
-                child: Text(hasChanges ? 'Применить' : 'Закрыть'),
+                child: Text(
+                  hasChanges
+                      ? AppLocalizations.of(context)!.apply
+                      : AppLocalizations.of(context)!.close,
+                ),
               );
             },
           ),

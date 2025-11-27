@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class TermsOfUsePage extends StatelessWidget {
   const TermsOfUsePage({super.key});
@@ -15,7 +16,7 @@ class TermsOfUsePage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.go('/login'),
         ),
-        title: const Text('Terms of Use'),
+        title: Text(AppLocalizations.of(context)!.termsOfUse),
       ),
       body: const SafeArea(
         child: SingleChildScrollView(

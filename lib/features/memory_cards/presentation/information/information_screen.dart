@@ -4,6 +4,7 @@ import 'package:lang_learn_mobile/core/bloc/fetch/fetch_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/vocabulary.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/information/bloc/information/information_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/tiles/vocabulary_tile.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class InformationScreen extends StatelessWidget {
   const InformationScreen({super.key});
@@ -11,7 +12,7 @@ class InformationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Vocabulary')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.vocabulary)),
       body: SafeArea(
         child: BlocBuilder<InformationBloc, FetchState<Vocabulary>>(
           builder: (context, state) {

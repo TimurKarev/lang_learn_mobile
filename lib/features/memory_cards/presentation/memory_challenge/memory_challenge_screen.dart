@@ -7,6 +7,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/bloc/perform_memory_challange/perform_memory_challange_bloc.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/common/memory_challenge_view.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart';
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class MemoryChallengeScreen extends StatelessWidget {
   const MemoryChallengeScreen({super.key, required this.challengeTheme});
@@ -18,7 +19,7 @@ class MemoryChallengeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Memory Challenge'),
+        title: Text(AppLocalizations.of(context)!.memoryChallenge),
         actions: [
           BlocBuilder<PerformMemoryChallangeBloc, PerformMemoryChallangeState>(
             builder: (context, state) {
