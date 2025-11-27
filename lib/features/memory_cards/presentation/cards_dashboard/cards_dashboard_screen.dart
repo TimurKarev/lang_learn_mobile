@@ -17,7 +17,10 @@ class CardsDashboardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Memory Cards'),
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          child: Text('Vocabulary Themes'),
+        ),
         // leading: IconButton(
         //   icon: const Icon(Icons.chevron_left, size: 36),
         //   onPressed: () => Navigator.pop(context),
@@ -26,45 +29,52 @@ class CardsDashboardScreen extends StatelessWidget {
           Padding(padding: EdgeInsets.only(right: 24.0), child: TiliAvatar()),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: BlocBuilder<CardListBloc, FetchState<List<MemoryCardsPreview>>>(
-          builder: (context, state) {
-            return switch (state) {
-              FetchInitial() => const Center(child: Text('Initial state')),
-              FetchLoading<List<MemoryCardsPreview>>() => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              FetchLoaded<List<MemoryCardsPreview>>(data: final data) =>
-                SingleChildScrollView(
-                  child: Wrap(
-                    runSpacing: 16,
-                    spacing: 16,
-                    children: [
-                      for (int i = 0; i < data.length; i++)
-                        ChallangeCard(
-                          width: width,
-                          title: data[i].title,
-                          theme: data[i].theme,
-                          onTap: () =>
-                              context.read<TiliNavigation>().goToChallenge(
-                                context,
-                                challengeTheme: data[i].theme,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child:
+              BlocBuilder<CardListBloc, FetchState<List<MemoryCardsPreview>>>(
+                builder: (context, state) {
+                  return switch (state) {
+                    FetchInitial() => const Center(
+                      child: Text('Initial state'),
+                    ),
+                    FetchLoading<List<MemoryCardsPreview>>() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    FetchLoaded<List<MemoryCardsPreview>>(data: final data) =>
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Wrap(
+                          runSpacing: 16,
+                          spacing: 16,
+                          children: [
+                            for (int i = 0; i < data.length; i++)
+                              ChallangeCard(
+                                width: width,
+                                title: data[i].title,
+                                theme: data[i].theme,
+                                onTap: () => context
+                                    .read<TiliNavigation>()
+                                    .goToChallenge(
+                                      context,
+                                      challengeTheme: data[i].theme,
+                                    ),
+                                onDictionaryTap: () => context
+                                    .read<TiliNavigation>()
+                                    .pushVocabularyInformation(
+                                      context,
+                                      challengeTheme: data[i].theme,
+                                    ),
                               ),
-                          onDictionaryTap: () => context
-                              .read<TiliNavigation>()
-                              .pushVocabularyInformation(
-                                context,
-                                challengeTheme: data[i].theme,
-                              ),
+                          ],
                         ),
-                    ],
-                  ),
-                ),
-              FetchError<List<MemoryCardsPreview>>(error: final error) =>
-                ErrorPlaceholder(error: error),
-            };
-          },
+                      ),
+                    FetchError<List<MemoryCardsPreview>>(error: final error) =>
+                      ErrorPlaceholder(error: error),
+                  };
+                },
+              ),
         ),
       ),
     );

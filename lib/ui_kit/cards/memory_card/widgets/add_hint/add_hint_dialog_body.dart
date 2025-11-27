@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/bloc/add_hint_bloc.dart';
 import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 
-//TODO: fix UI, button Coхранть и Добавить подсказку
 class AddHintDialogBody extends StatefulWidget {
   final String literaId;
 

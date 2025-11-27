@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lang_learn_mobile/core/bloc/model_handler/model_handler_bloc.dart';
+import 'package:lang_learn_mobile/core/constants/ui_constants.dart';
 import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/utils/string_extension.dart';
 import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcards_settings.dart';
@@ -34,26 +35,33 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 36),
-        Text(
-          widget.lang.displayRussianName,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: Theme.of(context).colorScheme.tertiary,
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: UIConstants.maxCardHeight),
+      child: Column(
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.lang.displayRussianName,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  widget.question.capitalizeFirst(),
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 24),
-        Text(
-          widget.question.capitalizeFirst(),
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        if (widget.imageHintPath.isNotEmpty || widget.stringHint.isNotEmpty)
           Expanded(
             child:
                 BlocBuilder<
@@ -63,7 +71,10 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
                   builder: (context, state) {
                     if (state
                         case final ModelHandlerLoaded<FlashcardsSettings>
-                            loadedState when loadedState.model.isShowHint) {
+                            loadedState
+                        when loadedState.model.isShowHint &&
+                            (widget.imageHintPath.isNotEmpty ||
+                                widget.stringHint.isNotEmpty)) {
                       if (_isHintVisible) {
                         return Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -108,7 +119,8 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
                   },
                 ),
           ),
-      ],
+        ],
+      ),
     );
   }
 }

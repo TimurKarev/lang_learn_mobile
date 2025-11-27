@@ -58,7 +58,7 @@ class ChallangeCard extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Словарь',
+                        'Все слова',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class ChallangeCard extends StatelessWidget {
               Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InfoBadge(
                       icon: _iconData,
@@ -80,7 +80,20 @@ class ChallangeCard extends StatelessWidget {
                       iconSize: 18,
                     ),
                     const SizedBox(height: 16),
-                    Text(title, style: Theme.of(context).textTheme.labelMedium),
+                    SizedBox(
+                      height: 40,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
                   ],
                 ),
               ),
@@ -98,25 +111,25 @@ class ChallangeCard extends StatelessWidget {
       case ChallengeThemes.basic_qualities:
         return FontAwesomeIcons.star;
       case ChallengeThemes.biological_verbs:
-        return FontAwesomeIcons.heartbeat;
+        return FontAwesomeIcons.heartPulse;
       case ChallengeThemes.body_parts:
         return FontAwesomeIcons.user;
       case ChallengeThemes.city:
         return FontAwesomeIcons.city;
       case ChallengeThemes.clothes:
-        return FontAwesomeIcons.tshirt;
+        return FontAwesomeIcons.shirt;
       case ChallengeThemes.colors:
         return FontAwesomeIcons.palette;
       case ChallengeThemes.consumption_verbs:
         return FontAwesomeIcons.utensils;
       case ChallengeThemes.food:
-        return FontAwesomeIcons.appleAlt;
+        return FontAwesomeIcons.appleWhole;
       case ChallengeThemes.functional:
-        return FontAwesomeIcons.cogs;
+        return FontAwesomeIcons.gears;
       case ChallengeThemes.furniture:
         return FontAwesomeIcons.couch;
       case ChallengeThemes.head:
-        return FontAwesomeIcons.userCircle;
+        return FontAwesomeIcons.circleUser;
       case ChallengeThemes.household:
         return FontAwesomeIcons.house;
       case ChallengeThemes.interaction_verbs:
@@ -124,7 +137,7 @@ class ChallangeCard extends StatelessWidget {
       case ChallengeThemes.mind_verbs:
         return FontAwesomeIcons.brain;
       case ChallengeThemes.movement_verbs:
-        return FontAwesomeIcons.running;
+        return FontAwesomeIcons.personRunning;
       case ChallengeThemes.nature:
         return FontAwesomeIcons.leaf;
       case ChallengeThemes.numbers:
@@ -138,7 +151,7 @@ class ChallangeCard extends StatelessWidget {
       case ChallengeThemes.questions:
         return FontAwesomeIcons.question;
       case ChallengeThemes.sizes:
-        return FontAwesomeIcons.expandArrowsAlt;
+        return FontAwesomeIcons.maximize;
       case ChallengeThemes.tools:
         return FontAwesomeIcons.wrench;
       case ChallengeThemes.vehicles:

@@ -22,19 +22,17 @@ class InformationScreen extends StatelessWidget {
               FetchLoading<Vocabulary>() => const Center(
                 child: CircularProgressIndicator(),
               ),
-              FetchLoaded<Vocabulary>(data: final data) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: ListView.builder(
-                  itemCount: data.memoryCards.length,
-                  itemBuilder: (context, index) {
-                    final card = data.memoryCards[index];
-                    return VocabularyTile(
-                      memoryCard: card,
-                      isFirst: index == 0,
-                      isLast: index == data.memoryCards.length - 1,
-                    );
-                  },
-                ),
+              FetchLoaded<Vocabulary>(data: final data) => ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                itemCount: data.memoryCards.length,
+                itemBuilder: (context, index) {
+                  final card = data.memoryCards[index];
+                  return VocabularyTile(
+                    memoryCard: card,
+                    isFirst: index == 0,
+                    isLast: index == data.memoryCards.length - 1,
+                  );
+                },
               ),
               FetchError<Vocabulary>(error: final failure) => Center(
                 child: Text(failure.title),
