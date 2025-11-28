@@ -49,9 +49,11 @@ class MemoryChallengeWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: MemoryCardWidget(
+              alignment: Alignment.topCenter,
               onPressAudio: (String literalId) {
                 context.read<PerformMemoryChallangeBloc>().add(
                   PerformMemoryChallangePlayAudioEvent(literalId),

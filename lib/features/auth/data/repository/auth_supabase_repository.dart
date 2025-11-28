@@ -35,11 +35,9 @@ class AuthSupabaseRepository implements AuthRepository {
         await _supabase.signInWithOAuth(
           OAuthProvider.google,
           redirectTo: kIsWeb
-              ? (AppConfig.isLocalSupabase ? 'http://127.0.0.1:3000' : null)
+              ? Uri.base.origin
               : 'io.supabase.flutter://login-callback/',
         );
-        // On Web, this triggers a redirect, so the return value doesn't matter much
-        // as the app will reload.
         return Right(UnauthenticatedUser());
       }
 

@@ -13,12 +13,14 @@ class MemoryCardWidget extends StatefulWidget {
     this.onPressedAfterFlipped,
     this.onCardFlipped,
     this.padding = EdgeInsets.zero,
+    this.alignment = Alignment.center,
   });
 
   final Flashcard card;
   final VoidCallback? onCardFlipped;
   final VoidCallback? onPressedAfterFlipped;
   final void Function(String literalId) onPressAudio;
+  final Alignment alignment;
 
   final EdgeInsets padding;
 
@@ -88,7 +90,7 @@ class _MemoryCardWidgetState extends State<MemoryCardWidget>
               transform: Matrix4.rotationY(_animation.value),
               alignment: Alignment.center,
               child: Align(
-                alignment: Alignment.center,
+                alignment: widget.alignment,
                 child: SizedBox(
                   width: double.infinity,
                   child: Card(
