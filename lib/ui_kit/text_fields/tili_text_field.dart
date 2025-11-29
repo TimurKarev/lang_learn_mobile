@@ -9,6 +9,7 @@ class TiliTextField extends StatefulWidget {
     this.obscureText = false,
     this.suffixIcon,
     this.onSuffixIconTap,
+    this.onChanged,
   });
 
   final TextEditingController? controller;
@@ -17,6 +18,7 @@ class TiliTextField extends StatefulWidget {
   final bool obscureText;
   final IconData? suffixIcon;
   final Function()? onSuffixIconTap;
+  final ValueChanged<String>? onChanged;
 
   @override
   State<TiliTextField> createState() => _TiliTextFieldState();
@@ -57,6 +59,7 @@ class _TiliTextFieldState extends State<TiliTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       autocorrect: false,
       cursorColor: Theme.of(context).colorScheme.tertiary,
       controller: _controller,

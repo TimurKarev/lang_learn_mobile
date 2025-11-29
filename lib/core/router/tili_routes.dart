@@ -13,6 +13,7 @@ import 'package:lang_learn_mobile/features/memory_cards/presentation/information
 import 'package:lang_learn_mobile/features/memory_cards/presentation/memory_challenge/memory_challenge_page.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/flashcards_settings_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/login_page.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/register_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/terms_of_use_page.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/privacy_policy_page.dart';
 import 'package:lang_learn_mobile/features/onboarding/presentation/onboarding_page.dart';
@@ -48,9 +49,10 @@ class TiliRoutes {
         // If user is not authenticated, only allow them to access login, onboarding, terms of use, or privacy policy.
         final isGoingToPublicRoute =
             location == '/login' ||
+            location == '/login/register' ||
             location == '/onboarding' ||
-            location == '/terms-of-use' ||
-            location == '/privacy-policy';
+            location == '/login/terms-of-use' ||
+            location == '/login/privacy-policy';
         if (user is UnauthenticatedUser && !isGoingToPublicRoute) {
           // The SplashBloc should have already decided between login and onboarding.
           // This redirect is a fallback for other cases.
@@ -68,6 +70,7 @@ class TiliRoutes {
             return ErrorPage(error: error);
           },
         ),
+
         GoRoute(
           path: Paths.splash.path,
           name: Paths.splash.name,
@@ -77,7 +80,25 @@ class TiliRoutes {
               path: Paths.login.path,
               name: Paths.login.name,
               builder: (context, state) => const LoginPage(),
+              routes: [
+                GoRoute(
+                  path: Paths.register.path,
+                  name: Paths.register.name,
+                  builder: (context, state) => const RegisterPage(),
+                ),
+                GoRoute(
+                  path: Paths.termsOfUse.path,
+                  name: Paths.termsOfUse.name,
+                  builder: (context, state) => const TermsOfUsePage(),
+                ),
+                GoRoute(
+                  path: Paths.privacyPolicy.path,
+                  name: Paths.privacyPolicy.name,
+                  builder: (context, state) => const PrivacyPolicyPage(),
+                ),
+              ],
             ),
+
             GoRoute(
               path: Paths.onboarding.path,
               name: Paths.onboarding.name,
@@ -85,16 +106,7 @@ class TiliRoutes {
             ),
           ],
         ),
-        GoRoute(
-          path: Paths.termsOfUse.path,
-          name: Paths.termsOfUse.name,
-          builder: (context, state) => const TermsOfUsePage(),
-        ),
-        GoRoute(
-          path: Paths.privacyPolicy.path,
-          name: Paths.privacyPolicy.name,
-          builder: (context, state) => const PrivacyPolicyPage(),
-        ),
+
         GoRoute(
           path: Paths.home.path,
           name: Paths.home.name,

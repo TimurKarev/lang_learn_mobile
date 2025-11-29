@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/router/paths.dart';
 import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
 class PolicyWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class PolicyWidget extends StatelessWidget {
           WidgetSpan(
             child: GestureDetector(
               onTap: () {
-                context.go('/terms-of-use');
+                context.pushNamed(Paths.termsOfUse.name);
               },
               child: Text(
                 l10n.termsOfUse,
@@ -39,7 +40,7 @@ class PolicyWidget extends StatelessWidget {
           WidgetSpan(
             child: GestureDetector(
               onTap: () {
-                context.go('/privacy-policy');
+                context.pushNamed(Paths.privacyPolicy.name);
               },
               child: Text(
                 l10n.privacyPolicy,

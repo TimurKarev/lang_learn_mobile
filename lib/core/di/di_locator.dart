@@ -25,6 +25,19 @@ class DiLocator {
       return object;
     }
 
+    if (T == AuthRepository) {
+      final AuthRepository authRepo;
+      if (mock) {
+        throw Exception('Mock not implemented');
+      } else {
+        authRepo = AuthSupabaseRepository();
+      }
+      if (keepAlive) {
+        _objectContainer.add(authRepo);
+      }
+      return authRepo as T;
+    }
+
     if (T == MemoryCardsRepository) {
       final MemoryCardsRepository newObject;
       if (mock) {

@@ -71,7 +71,6 @@ class _MainAppState extends State<MainApp> {
       child: BlocProvider.value(
         value: _authBloc,
         child: MaterialApp.router(
-          title: 'Flutter Demo',
           theme: TiliTheme.lightTheme,
           darkTheme: TiliTheme.darkTheme,
           themeMode: ThemeMode.light,

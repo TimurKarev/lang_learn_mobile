@@ -131,6 +131,45 @@ class AuthSupabaseRepository implements AuthRepository {
   }
 
   @override
+  Future<Either<Failure, ProjectUser>> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String fullName,
+  }) async {
+    try {
+      final result = await _supabase.signUp(
+        email: email,
+        password: password,
+        data: {'full_name': fullName},
+      );
+
+      if (result.session?.user case final User user) {
+        return Right(AuthenticatedUser(id: user.id));
+      } else if (result.user case final User user) {
+        // User created but session might be null (e.g. email confirmation required)
+        return Right(AuthenticatedUser(id: user.id));
+      }
+
+      return Left(
+        Failure(
+          technicalMessage: 'Sign up failed: User is null',
+          type: FailureType.authFailed,
+          stackTrace: StackTrace.current,
+        ),
+      );
+    } catch (e, s) {
+      return Left(
+        Failure(
+          technicalMessage: 'Sign up error: $e',
+          type: FailureType.authFailed,
+          error: e,
+          stackTrace: s,
+        ),
+      );
+    }
+  }
+
+  @override
   Stream<ProjectUser> authStateChange() {
     return _supabase.onAuthStateChange.map((event) {
       if (event.session?.user case final User user) {

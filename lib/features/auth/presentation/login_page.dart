@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/router/paths.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/policy_widget.dart';
 import 'package:lang_learn_mobile/ui_kit/buttons/login_with_button.dart';
@@ -85,7 +86,12 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(l10n.dontHaveAccount),
-                      TextButton(onPressed: null, child: Text(l10n.signUp)),
+                      TextButton(
+                        onPressed: () {
+                          context.pushNamed(Paths.register.name);
+                        },
+                        child: Text(l10n.signUp),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 32),
