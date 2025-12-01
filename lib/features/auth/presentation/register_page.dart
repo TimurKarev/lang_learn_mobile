@@ -49,7 +49,7 @@ class _RegisterView extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: TiliToast(
-                message: state.errorMessage ?? 'Registration failed',
+                message: state.errorMessage ?? l10n.registrationFailed,
                 type: ToastType.error,
               ),
             ),
@@ -85,7 +85,7 @@ class _RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Create Account', // l10n.createAccount
+                  l10n.createAccount,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -93,7 +93,7 @@ class _RegisterView extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Join thousands learning Kyrgyz', // l10n.joinThousands
+                  l10n.joinThousands,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
@@ -102,14 +102,14 @@ class _RegisterView extends StatelessWidget {
                 const SizedBox(height: 32),
 
                 // Full Name
-                Text('Full Name', style: theme.textTheme.titleSmall),
+                Text(l10n.fullName, style: theme.textTheme.titleSmall),
                 const SizedBox(height: 8),
                 BlocBuilder<RegisterBloc, RegisterState>(
                   buildWhen: (previous, current) =>
                       previous.name != current.name,
                   builder: (context, state) {
                     return TiliTextField(
-                      hintText: 'Your Name',
+                      hintText: l10n.yourName,
                       onChanged: (value) {
                         context.read<RegisterBloc>().add(
                           RegisterNameChanged(value),
@@ -128,7 +128,7 @@ class _RegisterView extends StatelessWidget {
                       previous.email != current.email,
                   builder: (context, state) {
                     return TiliTextField(
-                      hintText: 'your.email@example.com',
+                      hintText: l10n.emailPlaceholder,
                       onChanged: (value) {
                         context.read<RegisterBloc>().add(
                           RegisterEmailChanged(value),
@@ -148,7 +148,7 @@ class _RegisterView extends StatelessWidget {
                   builder: (context, state) {
                     return PasswordTextField(
                       enabled: true,
-                      hintText: 'Create a strong password',
+                      hintText: l10n.createStrongPassword,
                       onChanged: (value) {
                         context.read<RegisterBloc>().add(
                           RegisterPasswordChanged(value),
@@ -160,7 +160,7 @@ class _RegisterView extends StatelessWidget {
                 const SizedBox(height: 16),
 
                 // Confirm Password
-                Text('Confirm Password', style: theme.textTheme.titleSmall),
+                Text(l10n.confirmPassword, style: theme.textTheme.titleSmall),
                 const SizedBox(height: 8),
                 BlocBuilder<RegisterBloc, RegisterState>(
                   buildWhen: (previous, current) =>
@@ -168,7 +168,7 @@ class _RegisterView extends StatelessWidget {
                   builder: (context, state) {
                     return PasswordTextField(
                       enabled: true,
-                      hintText: 'Confirm your password',
+                      hintText: l10n.confirmYourPassword,
                       onChanged: (value) {
                         context.read<RegisterBloc>().add(
                           RegisterConfirmPasswordChanged(value),
@@ -205,7 +205,7 @@ class _RegisterView extends StatelessWidget {
                         Expanded(
                           child: Text.rich(
                             TextSpan(
-                              text: 'I agree to the ', // l10n.iAgreeTo
+                              text: l10n.iAgreeTo,
                               style: theme.textTheme.bodyMedium,
                               children: [
                                 TextSpan(
@@ -215,7 +215,7 @@ class _RegisterView extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const TextSpan(text: ' and '), // l10n.and
+                                TextSpan(text: l10n.and),
                                 TextSpan(
                                   text: l10n.privacyPolicy,
                                   style: TextStyle(
@@ -237,13 +237,13 @@ class _RegisterView extends StatelessWidget {
                 BlocBuilder<RegisterBloc, RegisterState>(
                   builder: (context, state) {
                     return ElevatedButton(
-                      onPressed: state.status == RegisterStatus.loading
-                          ? null
-                          : () {
+                      onPressed: state.canSubmit
+                          ? () {
                               context.read<RegisterBloc>().add(
                                 const RegisterSubmitted(),
                               );
-                            },
+                            }
+                          : null,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(
                           0xFFE87A54,
@@ -262,9 +262,9 @@ class _RegisterView extends StatelessWidget {
                                 strokeWidth: 2,
                               ),
                             )
-                          : const Text(
-                              'Create Account', // l10n.createAccount
-                              style: TextStyle(
+                          : Text(
+                              l10n.createAccount,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -279,15 +279,13 @@ class _RegisterView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Already have an account? ',
-                    ), // l10n.alreadyHaveAccount
+                    Text(l10n.alreadyHaveAccount),
                     GestureDetector(
                       onTap: () {
                         context.pop(); // Go back to Login
                       },
                       child: Text(
-                        'Sign In', // l10n.signIn
+                        l10n.signIn,
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,

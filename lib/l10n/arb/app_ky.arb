@@ -78,5 +78,17 @@
     "imageOptional": "Сүрөт (милдеттүү эмес)",
     "clickToSelectImage": "Сүрөттү тандоо үчүн басыңыз",
     "fileSelected": "Файл тандалды:",
-    "failedToLoadImage": "Сүрөттү жүктөө оңунан чыккан жок"
+    "failedToLoadImage": "Сүрөттү жүктөө оңунан чыккан жок",
+    "createAccount": "Аккаунт түзүү",
+    "joinThousands": "Кыргыз тилин үйрөнгөн миңдеген адамдарга кошулуңуз",
+    "fullName": "Толук аты",
+    "yourName": "Сиздин атыңыз",
+    "emailPlaceholder": "your.email@example.com",
+    "createStrongPassword": "Күчтүү сыр сөз түзүңүз",
+    "confirmPassword": "Сыр сөздү ырастаңыз",
+    "confirmYourPassword": "Сыр сөзүңүздү ырастаңыз",
+    "iAgreeTo": "Мен кабыл алам ",
+    "registrationFailed": "Катталуу оңунан чыккан жок",
+    "alreadyHaveAccount": "Аккаунтуңуз барбы? ",
+    "signIn": "Кирүү"
 }

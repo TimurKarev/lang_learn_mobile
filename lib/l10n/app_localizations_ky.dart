@@ -244,4 +244,41 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get failedToLoadImage => 'Сүрөттү жүктөө оңунан чыккан жок';
+
+  @override
+  String get createAccount => 'Аккаунт түзүү';
+
+  @override
+  String get joinThousands =>
+      'Кыргыз тилин үйрөнгөн миңдеген адамдарга кошулуңуз';
+
+  @override
+  String get fullName => 'Толук аты';
+
+  @override
+  String get yourName => 'Сиздин атыңыз';
+
+  @override
+  String get emailPlaceholder => 'your.email@example.com';
+
+  @override
+  String get createStrongPassword => 'Күчтүү сыр сөз түзүңүз';
+
+  @override
+  String get confirmPassword => 'Сыр сөздү ырастаңыз';
+
+  @override
+  String get confirmYourPassword => 'Сыр сөзүңүздү ырастаңыз';
+
+  @override
+  String get iAgreeTo => 'Мен кабыл алам ';
+
+  @override
+  String get registrationFailed => 'Катталуу оңунан чыккан жок';
+
+  @override
+  String get alreadyHaveAccount => 'Аккаунтуңуз барбы? ';
+
+  @override
+  String get signIn => 'Кирүү';
 }

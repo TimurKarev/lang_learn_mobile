@@ -78,5 +78,17 @@
     "imageOptional": "Изображение (необязательно)",
     "clickToSelectImage": "Нажмите для выбора изображения",
     "fileSelected": "Файл выбран:",
-    "failedToLoadImage": "Не удалось загрузить изображение"
+    "failedToLoadImage": "Не удалось загрузить изображение",
+    "createAccount": "Создать аккаунт",
+    "joinThousands": "Присоединяйтесь к тысячам изучающих кыргызский",
+    "fullName": "Полное имя",
+    "yourName": "Ваше имя",
+    "emailPlaceholder": "your.email@example.com",
+    "createStrongPassword": "Создайте надежный пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "confirmYourPassword": "Подтвердите ваш пароль",
+    "iAgreeTo": "Я принимаю ",
+    "registrationFailed": "Регистрация не удалась",
+    "alreadyHaveAccount": "Уже есть аккаунт? ",
+    "signIn": "Войти"
 }

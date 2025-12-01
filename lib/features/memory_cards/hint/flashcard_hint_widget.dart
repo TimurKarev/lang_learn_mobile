@@ -45,6 +45,7 @@ class FlashcardHintWidget extends StatelessWidget {
               return Column(
                 children: [
                   Expanded(
+                    flex: 2,
                     child: data.pictureUrl.isEmpty
                         ? const SizedBox.shrink()
                         : ClipRRect(

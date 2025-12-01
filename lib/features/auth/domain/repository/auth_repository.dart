@@ -6,6 +6,10 @@ import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart
 abstract class AuthRepository {
   Future<Either<Failure, ProjectUser>> signInAnonymously();
   Future<Either<Failure, ProjectUser>> signInWithGoogle();
+  Future<Either<Failure, ProjectUser>> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
   Future<Either<Failure, ProjectUser>> signUpWithEmailAndPassword({
     required String email,
     required String password,

@@ -573,6 +573,78 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Не удалось загрузить изображение'**
   String get failedToLoadImage;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создать аккаунт'**
+  String get createAccount;
+
+  /// No description provided for @joinThousands.
+  ///
+  /// In ru, this message translates to:
+  /// **'Присоединяйтесь к тысячам изучающих кыргызский'**
+  String get joinThousands;
+
+  /// No description provided for @fullName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Полное имя'**
+  String get fullName;
+
+  /// No description provided for @yourName.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваше имя'**
+  String get yourName;
+
+  /// No description provided for @emailPlaceholder.
+  ///
+  /// In ru, this message translates to:
+  /// **'your.email@example.com'**
+  String get emailPlaceholder;
+
+  /// No description provided for @createStrongPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Создайте надежный пароль'**
+  String get createStrongPassword;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтвердите пароль'**
+  String get confirmPassword;
+
+  /// No description provided for @confirmYourPassword.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтвердите ваш пароль'**
+  String get confirmYourPassword;
+
+  /// No description provided for @iAgreeTo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я принимаю '**
+  String get iAgreeTo;
+
+  /// No description provided for @registrationFailed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Регистрация не удалась'**
+  String get registrationFailed;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уже есть аккаунт? '**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @signIn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти'**
+  String get signIn;
 }
 
 class _AppLocalizationsDelegate

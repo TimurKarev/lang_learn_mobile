@@ -81,5 +81,17 @@
     "imageOptional": "Image (optional)",
     "clickToSelectImage": "Click to select image",
     "fileSelected": "File selected:",
-    "failedToLoadImage": "Failed to load image"
+    "failedToLoadImage": "Failed to load image",
+    "createAccount": "Create Account",
+    "joinThousands": "Join thousands learning Kyrgyz",
+    "fullName": "Full Name",
+    "yourName": "Your Name",
+    "emailPlaceholder": "your.email@example.com",
+    "createStrongPassword": "Create a strong password",
+    "confirmPassword": "Confirm Password",
+    "confirmYourPassword": "Confirm your password",
+    "iAgreeTo": "I agree to the ",
+    "registrationFailed": "Registration failed",
+    "alreadyHaveAccount": "Already have an account? ",
+    "signIn": "Sign In"
 }

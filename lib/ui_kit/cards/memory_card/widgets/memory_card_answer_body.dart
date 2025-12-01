@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lang_learn_mobile/core/constants/ui_constants.dart';
+import 'package:lang_learn_mobile/core/entities/languages.dart';
 import 'package:lang_learn_mobile/core/entities/litera.dart';
 import 'package:lang_learn_mobile/core/utils/string_extension.dart';
 import 'package:lang_learn_mobile/ui_kit/cards/memory_card/widgets/add_hint/add_hint_dialog.dart';
@@ -10,13 +11,11 @@ class MemoryCardAnswerBody extends StatelessWidget {
     required this.question,
     required this.answer,
     required this.onPressAudio,
-    required this.literaId,
   });
 
   final Literal question;
   final Literal answer;
   final void Function(String literalId) onPressAudio;
-  final String literaId;
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +157,12 @@ class MemoryCardAnswerBody extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.lightbulb_outline_rounded),
                   iconSize: 42,
-                  onPressed: () =>
-                      showAddHintDialog(context, literaId: literaId),
+                  onPressed: () => showAddHintDialog(
+                    context,
+                    literaId: answer.lang == Languages.ky
+                        ? answer.id
+                        : question.id,
+                  ),
                 ),
               ],
             ),

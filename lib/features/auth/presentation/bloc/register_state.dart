@@ -21,6 +21,14 @@ final class RegisterState extends Equatable {
   final bool termsAccepted;
   final String? errorMessage;
 
+  bool get canSubmit =>
+      status != RegisterStatus.loading &&
+      name.isNotEmpty &&
+      email.isNotEmpty &&
+      password.isNotEmpty &&
+      confirmPassword.isNotEmpty &&
+      termsAccepted;
+
   RegisterState copyWith({
     RegisterStatus? status,
     String? name,

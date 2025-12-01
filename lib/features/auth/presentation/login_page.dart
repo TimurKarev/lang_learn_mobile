@@ -4,12 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lang_learn_mobile/core/di/di_locator.dart';
 import 'package:lang_learn_mobile/core/router/paths.dart';
+import 'package:lang_learn_mobile/features/auth/domain/repository/auth_repository.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/bloc/login_with_email_bloc.dart';
 import 'package:lang_learn_mobile/features/auth/presentation/policy_widget.dart';
+import 'package:lang_learn_mobile/features/auth/presentation/widgets/email_login_form.dart';
 import 'package:lang_learn_mobile/ui_kit/buttons/login_with_button.dart';
-import 'package:lang_learn_mobile/ui_kit/text_fields/password_text_field.dart';
-import 'package:lang_learn_mobile/ui_kit/text_fields/tili_text_field.dart';
 import 'package:lang_learn_mobile/ui_kit/toasts/tili_toast.dart';
 import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 
@@ -52,34 +54,13 @@ class LoginPage extends StatelessWidget {
                     style: theme.textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 32),
-                  Text(l10n.email, style: theme.textTheme.titleSmall),
-                  const SizedBox(height: 8),
-                  TiliTextField(hintText: l10n.enterEmail, enabled: false),
-                  const SizedBox(height: 16),
-                  Text(l10n.password, style: theme.textTheme.titleSmall),
-                  const SizedBox(height: 8),
-                  PasswordTextField(enabled: false),
-                  const SizedBox(height: 8),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: null,
-                      child: Text(l10n.forgotPassword),
+                  BlocProvider(
+                    create: (context) => LoginWithEmailBloc(
+                      authRepository: context
+                          .read<DiLocator>()
+                          .get<AuthRepository>(),
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text(
-                      l10n.login,
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
+                    child: const EmailLoginForm(),
                   ),
                   const SizedBox(height: 16),
                   Row(

@@ -244,4 +244,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get failedToLoadImage => 'Failed to load image';
+
+  @override
+  String get createAccount => 'Create Account';
+
+  @override
+  String get joinThousands => 'Join thousands learning Kyrgyz';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get yourName => 'Your Name';
+
+  @override
+  String get emailPlaceholder => 'your.email@example.com';
+
+  @override
+  String get createStrongPassword => 'Create a strong password';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get confirmYourPassword => 'Confirm your password';
+
+  @override
+  String get iAgreeTo => 'I agree to the ';
+
+  @override
+  String get registrationFailed => 'Registration failed';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account? ';
+
+  @override
+  String get signIn => 'Sign In';
 }

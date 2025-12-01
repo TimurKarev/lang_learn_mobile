@@ -244,4 +244,40 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get failedToLoadImage => 'Не удалось загрузить изображение';
+
+  @override
+  String get createAccount => 'Создать аккаунт';
+
+  @override
+  String get joinThousands => 'Присоединяйтесь к тысячам изучающих кыргызский';
+
+  @override
+  String get fullName => 'Полное имя';
+
+  @override
+  String get yourName => 'Ваше имя';
+
+  @override
+  String get emailPlaceholder => 'your.email@example.com';
+
+  @override
+  String get createStrongPassword => 'Создайте надежный пароль';
+
+  @override
+  String get confirmPassword => 'Подтвердите пароль';
+
+  @override
+  String get confirmYourPassword => 'Подтвердите ваш пароль';
+
+  @override
+  String get iAgreeTo => 'Я принимаю ';
+
+  @override
+  String get registrationFailed => 'Регистрация не удалась';
+
+  @override
+  String get alreadyHaveAccount => 'Уже есть аккаунт? ';
+
+  @override
+  String get signIn => 'Войти';
 }

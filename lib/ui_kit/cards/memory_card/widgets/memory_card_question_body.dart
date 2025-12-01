@@ -38,6 +38,7 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: UIConstants.maxCardHeight),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Column(
@@ -63,6 +64,7 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
             ),
           ),
           Expanded(
+            flex: 2,
             child:
                 BlocBuilder<
                   SettingsBloc,
