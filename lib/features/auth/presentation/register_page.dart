@@ -57,6 +57,7 @@ class _RegisterView extends StatelessWidget {
         }
       },
       child: Scaffold(
+        appBar: AppBar(title: Text(l10n.createAccount)),
         backgroundColor: theme.colorScheme.surface,
 
         body: SafeArea(
@@ -65,42 +66,6 @@ class _RegisterView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Icon
-                Center(
-                  child: Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: const Color(
-                        0xFFC19E67,
-                      ), // Gold-ish color from image
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.landscape, // Placeholder for the mountain icon
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  l10n.createAccount,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  l10n.joinThousands,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 32),
-
                 // Full Name
                 Text(l10n.fullName, style: theme.textTheme.titleSmall),
                 const SizedBox(height: 8),

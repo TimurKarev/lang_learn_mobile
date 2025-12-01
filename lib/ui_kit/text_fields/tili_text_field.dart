@@ -71,7 +71,6 @@ class _TiliTextFieldState extends State<TiliTextField> {
                 child: Icon(widget.suffixIcon),
               )
             : null,
-        suffixIconColor: Theme.of(context).colorScheme.outlineVariant,
         hintText: widget.hintText,
         filled: true,
         fillColor: widget.enabled

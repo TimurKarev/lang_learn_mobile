@@ -219,6 +219,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get showHint => 'Show Hint';
 
   @override
+  String get showHintButton => 'Show Hint';
+
+  @override
   String get questionLanguage => 'Question Language';
 
   @override
@@ -247,9 +250,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createAccount => 'Create Account';
-
-  @override
-  String get joinThousands => 'Join thousands learning Kyrgyz';
 
   @override
   String get fullName => 'Full Name';

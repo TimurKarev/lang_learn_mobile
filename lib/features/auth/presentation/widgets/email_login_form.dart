@@ -57,9 +57,10 @@ class EmailLoginForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {
-                  // TODO: Implement forgot password
-                },
+                onPressed: null,
+                //{
+                //   // TODO: Implement forgot password
+                // },
                 child: Text(l10n.forgotPassword),
               ),
             ),

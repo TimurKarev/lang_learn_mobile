@@ -116,11 +116,14 @@ class TiliTheme {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: _TiliPalette.grayMedium, width: 1),
+        borderSide: const BorderSide(
+          color: _TiliPalette.lightMutedTeal,
+          width: 1,
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: _TiliPalette.grayMedium, width: 1),
+        borderSide: const BorderSide(color: _TiliPalette.mutedTeal, width: 1),
       ),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -143,6 +146,7 @@ class TiliTheme {
       errorStyle: _textTheme.labelSmall?.copyWith(
         color: _TiliPalette.deepOrange,
       ),
+      suffixIconColor: _TiliPalette.lightMutedTeal,
     ),
     dividerTheme: const DividerThemeData(color: _TiliPalette.grayMedium),
     dialogTheme: DialogThemeData(

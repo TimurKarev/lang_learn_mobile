@@ -8,6 +8,7 @@ import 'package:lang_learn_mobile/features/memory_cards/domain/entities/flashcar
 import 'package:lang_learn_mobile/features/memory_cards/hint/flashcard_hint_widget.dart';
 import 'package:lang_learn_mobile/features/memory_cards/presentation/settings/bloc/settings_bloc.dart'
     show SettingsBloc;
+import 'package:lang_learn_mobile/l10n/app_localizations.dart';
 import 'package:lang_learn_mobile/ui_kit/buttons/outline_icon_button.dart';
 
 class MemoryCardQuestionBody extends StatefulWidget {
@@ -104,7 +105,7 @@ class _MemoryCardQuestionBodyState extends State<MemoryCardQuestionBody> {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              'Показать подсказку',
+                              AppLocalizations.of(context)!.showHintButton,
                               style: Theme.of(context).textTheme.bodyLarge
                                   ?.copyWith(
                                     color: Theme.of(

@@ -219,6 +219,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get showHint => 'Показывать подсказку';
 
   @override
+  String get showHintButton => 'Показать подсказку';
+
+  @override
   String get questionLanguage => 'Язык вопроса';
 
   @override
@@ -247,9 +250,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get createAccount => 'Создать аккаунт';
-
-  @override
-  String get joinThousands => 'Присоединяйтесь к тысячам изучающих кыргызский';
 
   @override
   String get fullName => 'Полное имя';

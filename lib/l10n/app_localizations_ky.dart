@@ -219,6 +219,9 @@ class AppLocalizationsKy extends AppLocalizations {
   String get showHint => 'Көрсөтмөнү көрсөтүү';
 
   @override
+  String get showHintButton => 'Көрсөтмөнү көрсөтүү';
+
+  @override
   String get questionLanguage => 'Суроо тили';
 
   @override
@@ -247,10 +250,6 @@ class AppLocalizationsKy extends AppLocalizations {
 
   @override
   String get createAccount => 'Аккаунт түзүү';
-
-  @override
-  String get joinThousands =>
-      'Кыргыз тилин үйрөнгөн миңдеген адамдарга кошулуңуз';
 
   @override
   String get fullName => 'Толук аты';

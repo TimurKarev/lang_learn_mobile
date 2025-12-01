@@ -520,6 +520,12 @@ abstract class AppLocalizations {
   /// **'Показывать подсказку'**
   String get showHint;
 
+  /// No description provided for @showHintButton.
+  ///
+  /// In ru, this message translates to:
+  /// **'Показать подсказку'**
+  String get showHintButton;
+
   /// No description provided for @questionLanguage.
   ///
   /// In ru, this message translates to:
@@ -579,12 +585,6 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Создать аккаунт'**
   String get createAccount;
-
-  /// No description provided for @joinThousands.
-  ///
-  /// In ru, this message translates to:
-  /// **'Присоединяйтесь к тысячам изучающих кыргызский'**
-  String get joinThousands;
 
   /// No description provided for @fullName.
   ///
